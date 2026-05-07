@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 import 'core/config/app_config.dart';
+import 'core/firebase/firebase_initializer.dart';
 import 'core/storage/hive_initializer.dart';
 
 typedef AppBuilder = FutureOr<Widget> Function();
@@ -16,6 +17,7 @@ Future<void> bootstrap(AppBuilder builder) async {
 
       final logger = Logger();
       await HiveInitializer.initialize(logger: logger);
+      await FirebaseInitializer.initialize(logger: logger);
 
       FlutterError.onError = (details) {
         FlutterError.presentError(details);

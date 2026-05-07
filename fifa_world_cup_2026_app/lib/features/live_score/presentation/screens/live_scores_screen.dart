@@ -30,18 +30,22 @@ class LiveScoresScreen extends ConsumerWidget {
       body: liveScores.when(
         loading: () => const AppLoader(label: 'Checking live matches'),
         error: (error, stackTrace) => AppErrorView(
-          message: isOnline ? error.toString() : 'Offline. Showing the latest cached live score data when available.',
+          message: isOnline
+              ? error.toString()
+              : 'Offline. Showing the latest cached live score data when available.',
           onRetry: () => ref.read(liveScoreProvider.notifier).refreshStream(),
         ),
         data: (matches) {
           if (matches.isEmpty) {
             return RefreshIndicator(
-              onRefresh: () async => ref.read(liveScoreProvider.notifier).refreshStream(),
+              onRefresh: () async =>
+                  ref.read(liveScoreProvider.notifier).refreshStream(),
               child: ListView(
                 children: const [
                   AppEmptyState(
                     title: 'No live matches',
-                    message: 'Live score cards will appear during active matches.',
+                    message:
+                        'Live score cards will appear during active matches.',
                     icon: Icons.scoreboard_outlined,
                   ),
                 ],
@@ -49,7 +53,8 @@ class LiveScoresScreen extends ConsumerWidget {
             );
           }
           return RefreshIndicator(
-            onRefresh: () async => ref.read(liveScoreProvider.notifier).refreshStream(),
+            onRefresh: () async =>
+                ref.read(liveScoreProvider.notifier).refreshStream(),
             child: ListView.builder(
               itemCount: matches.length + (isOnline ? 0 : 1),
               itemBuilder: (context, index) {
@@ -58,7 +63,9 @@ class LiveScoresScreen extends ConsumerWidget {
                     child: ListTile(
                       leading: Icon(Icons.cloud_off),
                       title: Text('Offline fallback'),
-                      subtitle: Text('Scores may be cached and not fully current.'),
+                      subtitle: Text(
+                        'Scores may be cached and not fully current.',
+                      ),
                     ),
                   );
                 }

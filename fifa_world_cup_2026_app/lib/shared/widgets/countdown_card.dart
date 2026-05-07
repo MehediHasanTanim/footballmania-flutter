@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../../features/countdown/domain/entities/countdown.dart';
 
 class CountdownCard extends StatelessWidget {
-  const CountdownCard({super.key, required this.title, required this.countdown});
+  const CountdownCard({
+    super.key,
+    required this.title,
+    required this.countdown,
+  });
 
   final String title;
   final Countdown countdown;
@@ -74,9 +78,9 @@ class _CountdownCell extends StatelessWidget {
           Text(
             value.toString().padLeft(2, '0'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+              fontWeight: FontWeight.w900,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
           ),
           Text(label, style: Theme.of(context).textTheme.labelMedium),
         ],

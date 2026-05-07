@@ -21,9 +21,21 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 8),
           SegmentedButton<ThemeMode>(
             segments: const [
-              ButtonSegment(value: ThemeMode.system, label: Text('System'), icon: Icon(Icons.phone_iphone)),
-              ButtonSegment(value: ThemeMode.light, label: Text('Light'), icon: Icon(Icons.light_mode)),
-              ButtonSegment(value: ThemeMode.dark, label: Text('Dark'), icon: Icon(Icons.dark_mode)),
+              ButtonSegment(
+                value: ThemeMode.system,
+                label: Text('System'),
+                icon: Icon(Icons.phone_iphone),
+              ),
+              ButtonSegment(
+                value: ThemeMode.light,
+                label: Text('Light'),
+                icon: Icon(Icons.light_mode),
+              ),
+              ButtonSegment(
+                value: ThemeMode.dark,
+                label: Text('Dark'),
+                icon: Icon(Icons.dark_mode),
+              ),
             ],
             selected: {settings.themeMode},
             onSelectionChanged: (value) => notifier.setThemeMode(value.first),
@@ -43,6 +55,14 @@ class SettingsScreen extends ConsumerWidget {
             onChanged: notifier.setGoalAlerts,
           ),
           SwitchListTile(
+            title: const Text('Live score changes'),
+            subtitle: const Text(
+              'Scoreline and status updates for live matches',
+            ),
+            value: settings.liveScoreAlerts,
+            onChanged: notifier.setLiveScoreAlerts,
+          ),
+          SwitchListTile(
             title: const Text('News alerts'),
             subtitle: const Text('Breaking World Cup news updates'),
             value: settings.newsAlerts,
@@ -59,7 +79,9 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            onPressed: settings.isClearingCache ? null : () => notifier.clearAllCache(),
+            onPressed: settings.isClearingCache
+                ? null
+                : () => notifier.clearAllCache(),
             icon: const Icon(Icons.delete_sweep),
             label: const Text('Clear all cache'),
           ),

@@ -31,8 +31,8 @@ class TeamCard extends StatelessWidget {
                     Text(
                       team.name,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w800,
-                          ),
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     Text(
                       [

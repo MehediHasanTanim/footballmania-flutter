@@ -25,6 +25,7 @@ class HiveConstants {
   static const userSettingsKey = 'user_settings';
   static const themeSettingKey = 'theme_mode';
   static const notificationSettingKey = 'notifications_enabled';
+  static const liveScoreAlertSettingKey = 'live_score_alerts_enabled';
 
   static const allBoxes = [
     fixturesBox,

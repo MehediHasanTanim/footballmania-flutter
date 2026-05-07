@@ -52,7 +52,10 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            Text('Filter fixtures', style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              'Filter fixtures',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 16),
             OutlinedButton.icon(
               onPressed: () async {
@@ -65,7 +68,11 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 if (picked != null) setState(() => _date = picked);
               },
               icon: const Icon(Icons.calendar_month),
-              label: Text(_date == null ? 'Any date' : _date!.toLocal().toString().split(' ').first),
+              label: Text(
+                _date == null
+                    ? 'Any date'
+                    : _date!.toLocal().toString().split(' ').first,
+              ),
             ),
             const SizedBox(height: 12),
             TextField(
@@ -90,10 +97,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               items: [
                 const DropdownMenuItem(value: null, child: Text('Any status')),
                 ...MatchStatus.values.map(
-                  (status) => DropdownMenuItem(
-                    value: status,
-                    child: Text(status.name),
-                  ),
+                  (status) =>
+                      DropdownMenuItem(value: status, child: Text(status.name)),
                 ),
               ],
               onChanged: (value) => setState(() => _status = value),

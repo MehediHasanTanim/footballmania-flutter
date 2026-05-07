@@ -16,7 +16,8 @@ class NewsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final news = ref.watch(searchedNewsProvider);
-    final query = ref.watch(newsSearchProvider.select((filter) => filter.keyword)) ?? '';
+    final query =
+        ref.watch(newsSearchProvider.select((filter) => filter.keyword)) ?? '';
 
     return AppScaffold(
       title: 'News',
@@ -50,7 +51,8 @@ class NewsScreen extends ConsumerWidget {
                   );
                 }
                 return RefreshIndicator(
-                  onRefresh: () => ref.read(newsProvider.notifier).forceRefresh(),
+                  onRefresh: () =>
+                      ref.read(newsProvider.notifier).forceRefresh(),
                   child: ListView.builder(
                     itemCount: items.length,
                     itemBuilder: (context, index) => NewsCard(

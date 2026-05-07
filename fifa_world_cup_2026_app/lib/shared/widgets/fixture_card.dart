@@ -51,12 +51,15 @@ class FixtureCard extends StatelessWidget {
                     child: Text(
                       fixture.displayScore,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w900,
-                          ),
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: _TeamName(name: fixture.awayTeamName, alignEnd: true),
+                    child: _TeamName(
+                      name: fixture.awayTeamName,
+                      alignEnd: true,
+                    ),
                   ),
                 ],
               ),
@@ -99,9 +102,9 @@ class _TeamName extends StatelessWidget {
     return Text(
       name,
       textAlign: alignEnd ? TextAlign.end : TextAlign.start,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w800,
-          ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
     );
   }
 }

@@ -16,5 +16,7 @@ class ApiConstants {
   static const groups = '$apiV1/groups';
   static const news = '$apiV1/news';
   static const newsSearch = '$apiV1/news/search';
+  static const notificationDevices = '$apiV1/notifications/devices';
+  static const notificationPreferences = '$apiV1/notifications/preferences';
   static const favorites = '/favorites';
 }

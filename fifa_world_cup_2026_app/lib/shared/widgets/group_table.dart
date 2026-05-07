@@ -24,9 +24,9 @@ class GroupTable extends StatelessWidget {
           children: [
             Text(
               'Group $group',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w900,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 8),
             SingleChildScrollView(
@@ -41,31 +41,31 @@ class GroupTable extends StatelessWidget {
                   DataColumn(label: Text('GD')),
                   DataColumn(label: Text('Pts')),
                 ],
-                rows: standings.map((standing) {
-                  final qualifies = standing.rank <= 2;
-                  return DataRow(
-                    color: qualifies
-                        ? WidgetStatePropertyAll(
-                            Theme.of(context)
-                                .colorScheme
-                                .primaryContainer
-                                .withValues(alpha: 0.35),
-                          )
-                        : null,
-                    cells: [
-                      DataCell(
-                        Text('${standing.rank}. ${standing.teamName}'),
-                        onTap: () => onTeamTap?.call(standing),
-                      ),
-                      DataCell(Text('${standing.played}')),
-                      DataCell(Text('${standing.won}')),
-                      DataCell(Text('${standing.drawn}')),
-                      DataCell(Text('${standing.lost}')),
-                      DataCell(Text('${standing.goalDifference}')),
-                      DataCell(Text('${standing.points}')),
-                    ],
-                  );
-                }).toList(growable: false),
+                rows: standings
+                    .map((standing) {
+                      final qualifies = standing.rank <= 2;
+                      return DataRow(
+                        color: qualifies
+                            ? WidgetStatePropertyAll(
+                                Theme.of(context).colorScheme.primaryContainer
+                                    .withValues(alpha: 0.35),
+                              )
+                            : null,
+                        cells: [
+                          DataCell(
+                            Text('${standing.rank}. ${standing.teamName}'),
+                            onTap: () => onTeamTap?.call(standing),
+                          ),
+                          DataCell(Text('${standing.played}')),
+                          DataCell(Text('${standing.won}')),
+                          DataCell(Text('${standing.drawn}')),
+                          DataCell(Text('${standing.lost}')),
+                          DataCell(Text('${standing.goalDifference}')),
+                          DataCell(Text('${standing.points}')),
+                        ],
+                      );
+                    })
+                    .toList(growable: false),
               ),
             ),
           ],

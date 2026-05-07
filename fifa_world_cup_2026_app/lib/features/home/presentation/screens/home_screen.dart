@@ -38,13 +38,18 @@ class HomeScreen extends ConsumerWidget {
           onRetry: () => ref.read(homeSummaryProvider.notifier).forceRefresh(),
         ),
         data: (data) => RefreshIndicator(
-          onRefresh: () => ref.read(homeSummaryProvider.notifier).forceRefresh(),
+          onRefresh: () =>
+              ref.read(homeSummaryProvider.notifier).forceRefresh(),
           child: ListView(
             children: [
               const _HeroCountdown(),
               SectionHeader(title: 'Quick navigation'),
               const _QuickNavGrid(),
-              SectionHeader(title: 'Next Match', actionLabel: 'Fixtures', onAction: () => context.push(RoutePaths.fixtures)),
+              SectionHeader(
+                title: 'Next Match',
+                actionLabel: 'Fixtures',
+                onAction: () => context.push(RoutePaths.fixtures),
+              ),
               if (data.nextMatch == null)
                 const AppEmptyState(
                   title: 'No next match',
@@ -56,21 +61,34 @@ class HomeScreen extends ConsumerWidget {
                   fixture: data.nextMatch!,
                   onTap: () => context.push('/fixtures/${data.nextMatch!.id}'),
                 ),
-              SectionHeader(title: 'Live Now', actionLabel: 'Live Scores', onAction: () => context.push(RoutePaths.liveScores)),
+              SectionHeader(
+                title: 'Live Now',
+                actionLabel: 'Live Scores',
+                onAction: () => context.push(RoutePaths.liveScores),
+              ),
               if (data.liveMatches.isEmpty)
                 const _CompactEmpty(message: 'No live matches right now')
               else
-                ...data.liveMatches.take(3).map(
+                ...data.liveMatches
+                    .take(3)
+                    .map(
                       (match) => MatchCard(
                         match: match,
-                        onTap: () => context.push('/fixtures/${match.fixtureId}'),
+                        onTap: () =>
+                            context.push('/fixtures/${match.fixtureId}'),
                       ),
                     ),
-              SectionHeader(title: 'Latest News', actionLabel: 'News', onAction: () => context.push(RoutePaths.news)),
+              SectionHeader(
+                title: 'Latest News',
+                actionLabel: 'News',
+                onAction: () => context.push(RoutePaths.news),
+              ),
               if (data.latestNews.isEmpty)
                 const _CompactEmpty(message: 'No news available')
               else
-                ...data.latestNews.take(3).map(
+                ...data.latestNews
+                    .take(3)
+                    .map(
                       (news) => NewsCard(
                         news: news,
                         onTap: () => context.push('/news/${news.id}'),
@@ -81,7 +99,9 @@ class HomeScreen extends ConsumerWidget {
                 child: ListTile(
                   leading: const Icon(Icons.favorite),
                   title: const Text('Favorite teams and matches'),
-                  subtitle: const Text('Track the teams and fixtures you care about most.'),
+                  subtitle: const Text(
+                    'Track the teams and fixtures you care about most.',
+                  ),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () => context.push(RoutePaths.favorites),
                 ),
@@ -126,10 +146,16 @@ class _HeroCountdown extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Tournament countdown', style: Theme.of(context).textTheme.titleMedium),
                       Text(
-                        value.isExpired ? 'World Cup is underway' : '${value.days} days ${value.hours} hours to kickoff',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900),
+                        'Tournament countdown',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        value.isExpired
+                            ? 'World Cup is underway'
+                            : '${value.days} days ${value.hours} hours to kickoff',
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.w900),
                       ),
                     ],
                   ),
@@ -176,7 +202,11 @@ class _QuickNavGrid extends StatelessWidget {
                 onTap: () => context.push(item.$3),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Icon(item.$2), const SizedBox(height: 6), Text(item.$1)],
+                  children: [
+                    Icon(item.$2),
+                    const SizedBox(height: 6),
+                    Text(item.$1),
+                  ],
                 ),
               ),
             );

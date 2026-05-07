@@ -14,7 +14,8 @@ class FavoriteButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isFavorite = ref.watch(
       favoritesProvider.select(
-        (value) => value.valueOrNull?.any(
+        (value) =>
+            value.valueOrNull?.any(
               (item) =>
                   item.type == favorite.type &&
                   item.referenceId == favorite.referenceId,

@@ -33,9 +33,18 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
           initialValue: _sort,
           onSelected: (value) => setState(() => _sort = value),
           itemBuilder: (context) => const [
-            PopupMenuItem(value: _StandingSort.points, child: Text('Sort by points')),
-            PopupMenuItem(value: _StandingSort.goalDifference, child: Text('Sort by goal difference')),
-            PopupMenuItem(value: _StandingSort.goalsFor, child: Text('Sort by goals scored')),
+            PopupMenuItem(
+              value: _StandingSort.points,
+              child: Text('Sort by points'),
+            ),
+            PopupMenuItem(
+              value: _StandingSort.goalDifference,
+              child: Text('Sort by goal difference'),
+            ),
+            PopupMenuItem(
+              value: _StandingSort.goalsFor,
+              child: Text('Sort by goals scored'),
+            ),
           ],
         ),
       ],
@@ -64,7 +73,8 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
                 return GroupTable(
                   group: group,
                   standings: _sortStandings(grouped[group]!),
-                  onTeamTap: (standing) => context.push('/teams/${standing.teamId}'),
+                  onTeamTap: (standing) =>
+                      context.push('/teams/${standing.teamId}'),
                 );
               },
             ),
@@ -77,7 +87,9 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
   Map<String, List<GroupStanding>> _group(List<GroupStanding> items) {
     final grouped = <String, List<GroupStanding>>{};
     for (final standing in items) {
-      grouped.putIfAbsent(standing.group, () => <GroupStanding>[]).add(standing);
+      grouped
+          .putIfAbsent(standing.group, () => <GroupStanding>[])
+          .add(standing);
     }
     return grouped;
   }
@@ -87,7 +99,9 @@ class _GroupsScreenState extends ConsumerState<GroupsScreen> {
     copy.sort((a, b) {
       final result = switch (_sort) {
         _StandingSort.points => b.points.compareTo(a.points),
-        _StandingSort.goalDifference => b.goalDifference.compareTo(a.goalDifference),
+        _StandingSort.goalDifference => b.goalDifference.compareTo(
+          a.goalDifference,
+        ),
         _StandingSort.goalsFor => b.goalsFor.compareTo(a.goalsFor),
       };
       return result == 0 ? a.rank.compareTo(b.rank) : result;

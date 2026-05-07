@@ -50,7 +50,8 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
               loading: () => const AppLoader(label: 'Loading fixtures'),
               error: (error, stackTrace) => AppErrorView(
                 message: error.toString(),
-                onRetry: () => ref.read(fixturesProvider.notifier).forceRefresh(),
+                onRetry: () =>
+                    ref.read(fixturesProvider.notifier).forceRefresh(),
               ),
               data: (items) {
                 final searched = _search(items);
@@ -64,7 +65,8 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
                 final grouped = _groupByDate(searched);
                 final keys = grouped.keys.toList();
                 return RefreshIndicator(
-                  onRefresh: () => ref.read(fixturesProvider.notifier).forceRefresh(),
+                  onRefresh: () =>
+                      ref.read(fixturesProvider.notifier).forceRefresh(),
                   child: ListView.builder(
                     itemCount: keys.length,
                     itemBuilder: (context, index) {
@@ -75,12 +77,16 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(4, 16, 4, 4),
-                            child: Text(date, style: Theme.of(context).textTheme.titleMedium),
+                            child: Text(
+                              date,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
                           ),
                           ...groupItems.map(
                             (fixture) => FixtureCard(
                               fixture: fixture,
-                              onTap: () => context.push('/fixtures/${fixture.id}'),
+                              onTap: () =>
+                                  context.push('/fixtures/${fixture.id}'),
                             ),
                           ),
                         ],
@@ -100,13 +106,14 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
     final result = await showModalBottomSheet<FixtureFilter>(
       context: context,
       isScrollControlled: true,
-      builder: (context) => FilterBottomSheet(
-        initialFilter: ref.read(fixtureFilterProvider),
-      ),
+      builder: (context) =>
+          FilterBottomSheet(initialFilter: ref.read(fixtureFilterProvider)),
     );
     if (result == null) return;
     ref.read(fixtureFilterProvider.notifier).clearFilters();
-    ref.read(fixtureFilterProvider.notifier).update(
+    ref
+        .read(fixtureFilterProvider.notifier)
+        .update(
           date: result.date,
           teamId: result.teamId,
           group: result.group,
@@ -119,20 +126,24 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
   List<Fixture> _search(List<Fixture> items) {
     final query = _query.trim().toLowerCase();
     if (query.isEmpty) return items;
-    return items.where((fixture) {
-      return fixture.homeTeamName.toLowerCase().contains(query) ||
-          fixture.awayTeamName.toLowerCase().contains(query) ||
-          fixture.venue.toLowerCase().contains(query) ||
-          fixture.stage.toLowerCase().contains(query) ||
-          (fixture.group?.toLowerCase().contains(query) ?? false);
-    }).toList(growable: false);
+    return items
+        .where((fixture) {
+          return fixture.homeTeamName.toLowerCase().contains(query) ||
+              fixture.awayTeamName.toLowerCase().contains(query) ||
+              fixture.venue.toLowerCase().contains(query) ||
+              fixture.stage.toLowerCase().contains(query) ||
+              (fixture.group?.toLowerCase().contains(query) ?? false);
+        })
+        .toList(growable: false);
   }
 
   Map<String, List<Fixture>> _groupByDate(List<Fixture> items) {
     final grouped = <String, List<Fixture>>{};
     for (final fixture in items) {
       final date = fixture.matchDateUtc?.toLocal();
-      final key = date == null ? 'Date TBD' : DateTimeFormatter.formatDate(date);
+      final key = date == null
+          ? 'Date TBD'
+          : DateTimeFormatter.formatDate(date);
       grouped.putIfAbsent(key, () => <Fixture>[]).add(fixture);
     }
     return grouped;

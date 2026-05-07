@@ -39,14 +39,18 @@ class MatchDetailsScreen extends ConsumerWidget {
         loading: () => const AppLoader(label: 'Loading match details'),
         error: (error, stackTrace) => AppErrorView(
           message: error.toString(),
-          onRetry: () => ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
+          onRetry: () =>
+              ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
         ),
         data: (match) {
-          final liveMatch = liveMatches.where((item) => item.fixtureId == match.id).firstOrNull;
+          final liveMatch = liveMatches
+              .where((item) => item.fixtureId == match.id)
+              .firstOrNull;
           final events = liveMatch?.events ?? const <MatchEvent>[];
           final kickoff = match.matchDateUtc?.toLocal();
           return RefreshIndicator(
-            onRefresh: () => ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
+            onRefresh: () =>
+                ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
             child: ListView(
               children: [
                 Card(
@@ -63,7 +67,8 @@ class MatchDetailsScreen extends ConsumerWidget {
                                 id: 'match-${match.id}',
                                 type: FavoriteType.match,
                                 referenceId: match.id.toString(),
-                                title: '${match.homeTeamName} vs ${match.awayTeamName}',
+                                title:
+                                    '${match.homeTeamName} vs ${match.awayTeamName}',
                                 subtitle: match.venue,
                                 createdAt: DateTime.now(),
                               ),
@@ -73,12 +78,20 @@ class MatchDetailsScreen extends ConsumerWidget {
                         const SizedBox(height: 20),
                         Row(
                           children: [
-                            Expanded(child: _TeamBlock(name: match.homeTeamName)),
+                            Expanded(
+                              child: _TeamBlock(name: match.homeTeamName),
+                            ),
                             Text(
                               match.displayScore,
-                              style: Theme.of(context).textTheme.displaySmall?.copyWith(fontWeight: FontWeight.w900),
+                              style: Theme.of(context).textTheme.displaySmall
+                                  ?.copyWith(fontWeight: FontWeight.w900),
                             ),
-                            Expanded(child: _TeamBlock(name: match.awayTeamName, alignEnd: true)),
+                            Expanded(
+                              child: _TeamBlock(
+                                name: match.awayTeamName,
+                                alignEnd: true,
+                              ),
+                            ),
                           ],
                         ),
                       ],
@@ -88,20 +101,44 @@ class MatchDetailsScreen extends ConsumerWidget {
                 Card(
                   child: Column(
                     children: [
-                      ListTile(leading: const Icon(Icons.schedule), title: const Text('Kickoff'), subtitle: Text(kickoff == null ? 'TBD' : DateTimeFormatter.formatDateTime(kickoff))),
-                      ListTile(leading: const Icon(Icons.stadium), title: const Text('Venue'), subtitle: Text(match.venue)),
-                      ListTile(leading: const Icon(Icons.emoji_events), title: const Text('Stage'), subtitle: Text(match.group == null ? match.stage : '${match.stage} - ${match.group}')),
+                      ListTile(
+                        leading: const Icon(Icons.schedule),
+                        title: const Text('Kickoff'),
+                        subtitle: Text(
+                          kickoff == null
+                              ? 'TBD'
+                              : DateTimeFormatter.formatDateTime(kickoff),
+                        ),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.stadium),
+                        title: const Text('Venue'),
+                        subtitle: Text(match.venue),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.emoji_events),
+                        title: const Text('Stage'),
+                        subtitle: Text(
+                          match.group == null
+                              ? match.stage
+                              : '${match.stage} - ${match.group}',
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
-                  child: Text('Match Timeline', style: Theme.of(context).textTheme.titleLarge),
+                  child: Text(
+                    'Match Timeline',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ),
                 if (events.isEmpty)
                   const AppEmptyState(
                     title: 'No events yet',
-                    message: 'Goals, cards, substitutions, and penalties will appear here.',
+                    message:
+                        'Goals, cards, substitutions, and penalties will appear here.',
                     icon: Icons.timeline,
                   )
                 else
@@ -124,11 +161,17 @@ class _TeamBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: alignEnd ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      crossAxisAlignment: alignEnd
+          ? CrossAxisAlignment.end
+          : CrossAxisAlignment.start,
       children: [
         CircleAvatar(child: Text(name.characters.first)),
         const SizedBox(height: 8),
-        Text(name, textAlign: alignEnd ? TextAlign.end : TextAlign.start, style: Theme.of(context).textTheme.titleMedium),
+        Text(
+          name,
+          textAlign: alignEnd ? TextAlign.end : TextAlign.start,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
       ],
     );
   }
@@ -142,16 +185,25 @@ class _EventTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final icon = switch (event.type) {
-      MatchEventType.goal || MatchEventType.ownGoal || MatchEventType.penalty => Icons.sports_soccer,
+      MatchEventType.goal ||
+      MatchEventType.ownGoal ||
+      MatchEventType.penalty => Icons.sports_soccer,
       MatchEventType.yellowCard || MatchEventType.redCard => Icons.style,
       MatchEventType.substitution => Icons.swap_horiz,
       MatchEventType.unknown => Icons.circle,
     };
     return Card(
       child: ListTile(
-        leading: CircleAvatar(child: Text(event.minute == null ? '-' : '${event.minute}\'')),
+        leading: CircleAvatar(
+          child: Text(event.minute == null ? '-' : '${event.minute}\''),
+        ),
         title: Text(event.playerName ?? event.detail ?? event.type.name),
-        subtitle: Text([event.teamName, event.assistName == null ? null : 'Assist: ${event.assistName}'].whereType<String>().join(' - ')),
+        subtitle: Text(
+          [
+            event.teamName,
+            event.assistName == null ? null : 'Assist: ${event.assistName}',
+          ].whereType<String>().join(' - '),
+        ),
         trailing: Icon(icon),
       ),
     );

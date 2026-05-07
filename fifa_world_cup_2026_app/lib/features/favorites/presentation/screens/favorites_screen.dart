@@ -32,7 +32,8 @@ class FavoritesScreen extends ConsumerWidget {
           if (teams.isEmpty && matches.isEmpty) {
             return const AppEmptyState(
               title: 'No favorites yet',
-              message: 'Favorite teams and matches to build your personal World Cup hub.',
+              message:
+                  'Favorite teams and matches to build your personal World Cup hub.',
               icon: Icons.favorite_border,
             );
           }
@@ -49,7 +50,9 @@ class FavoritesScreen extends ConsumerWidget {
                 if (matches.isEmpty)
                   const _EmptySection(message: 'No favorite matches')
                 else
-                  ...matches.map((favorite) => _FavoriteTile(favorite: favorite)),
+                  ...matches.map(
+                    (favorite) => _FavoriteTile(favorite: favorite),
+                  ),
               ],
             ),
           );
@@ -72,15 +75,25 @@ class _FavoriteTile extends ConsumerWidget {
     return Card(
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: favorite.imageUrl == null ? null : NetworkImage(favorite.imageUrl!),
-          child: favorite.imageUrl == null ? Icon(favorite.type == FavoriteType.team ? Icons.groups : Icons.event) : null,
+          backgroundImage: favorite.imageUrl == null
+              ? null
+              : NetworkImage(favorite.imageUrl!),
+          child: favorite.imageUrl == null
+              ? Icon(
+                  favorite.type == FavoriteType.team
+                      ? Icons.groups
+                      : Icons.event,
+                )
+              : null,
         ),
         title: Text(favorite.title),
         subtitle: Text(favorite.subtitle ?? favorite.type.name),
         onTap: () => context.push(route),
         trailing: IconButton(
           tooltip: 'Remove favorite',
-          onPressed: () => ref.read(favoritesProvider.notifier).removeFavorite(
+          onPressed: () => ref
+              .read(favoritesProvider.notifier)
+              .removeFavorite(
                 type: favorite.type,
                 referenceId: favorite.referenceId,
               ),
@@ -99,10 +112,7 @@ class _EmptySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(message),
-      ),
+      child: Padding(padding: const EdgeInsets.all(16), child: Text(message)),
     );
   }
 }

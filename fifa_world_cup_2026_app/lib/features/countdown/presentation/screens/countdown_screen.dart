@@ -30,24 +30,37 @@ class CountdownScreen extends ConsumerWidget {
           onRefresh: () => ref.read(fixturesProvider.notifier).forceRefresh(),
           child: ListView(
             children: [
-              CountdownCard(title: 'FIFA World Cup 2026 begins in', countdown: value),
+              CountdownCard(
+                title: 'FIFA World Cup 2026 begins in',
+                countdown: value,
+              ),
               const SizedBox(height: 8),
-              Text('Upcoming match countdowns', style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                'Upcoming match countdowns',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const SizedBox(height: 8),
               fixtures.when(
                 loading: () => const AppLoader(),
-                error: (error, stackTrace) => AppErrorView(message: error.toString()),
+                error: (error, stackTrace) =>
+                    AppErrorView(message: error.toString()),
                 data: (items) {
-                  final dated = items.where((fixture) => fixture.matchDateUtc != null).take(6).toList(growable: false);
+                  final dated = items
+                      .where((fixture) => fixture.matchDateUtc != null)
+                      .take(6)
+                      .toList(growable: false);
                   if (dated.isEmpty) {
                     return const AppEmptyState(
                       title: 'No upcoming matches',
-                      message: 'Match countdowns will appear once fixtures are available.',
+                      message:
+                          'Match countdowns will appear once fixtures are available.',
                       icon: Icons.timer_outlined,
                     );
                   }
                   return Column(
-                    children: dated.map((fixture) => FixtureCard(fixture: fixture)).toList(growable: false),
+                    children: dated
+                        .map((fixture) => FixtureCard(fixture: fixture))
+                        .toList(growable: false),
                   );
                 },
               ),

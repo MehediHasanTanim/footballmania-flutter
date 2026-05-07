@@ -13,8 +13,10 @@ final selectedTeamProvider = StateNotifierProvider<SelectedTeamNotifier, int?>(
   (ref) => SelectedTeamNotifier(),
 );
 
-final teamDetailsProvider = AutoDisposeAsyncNotifierProviderFamily<
-    TeamDetailsNotifier, Team, int>(TeamDetailsNotifier.new);
+final teamDetailsProvider =
+    AutoDisposeAsyncNotifierProviderFamily<TeamDetailsNotifier, Team, int>(
+      TeamDetailsNotifier.new,
+    );
 
 class TeamsNotifier extends AutoDisposeAsyncNotifier<List<Team>> {
   @override

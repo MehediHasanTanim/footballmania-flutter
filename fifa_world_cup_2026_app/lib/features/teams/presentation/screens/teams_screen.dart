@@ -51,7 +51,8 @@ class _TeamsScreenState extends ConsumerState<TeamsScreen> {
                   );
                 }
                 return RefreshIndicator(
-                  onRefresh: () => ref.read(teamsProvider.notifier).forceRefresh(),
+                  onRefresh: () =>
+                      ref.read(teamsProvider.notifier).forceRefresh(),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       if (constraints.maxWidth < 520) {
@@ -59,19 +60,22 @@ class _TeamsScreenState extends ConsumerState<TeamsScreen> {
                           itemCount: filtered.length,
                           itemBuilder: (context, index) => TeamCard(
                             team: filtered[index],
-                            onTap: () => context.push('/teams/${filtered[index].id}'),
+                            onTap: () =>
+                                context.push('/teams/${filtered[index].id}'),
                           ),
                         );
                       }
                       return GridView.builder(
                         itemCount: filtered.length,
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 360,
-                          mainAxisExtent: 104,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 360,
+                              mainAxisExtent: 104,
+                            ),
                         itemBuilder: (context, index) => TeamCard(
                           team: filtered[index],
-                          onTap: () => context.push('/teams/${filtered[index].id}'),
+                          onTap: () =>
+                              context.push('/teams/${filtered[index].id}'),
                         ),
                       );
                     },
@@ -88,10 +92,12 @@ class _TeamsScreenState extends ConsumerState<TeamsScreen> {
   List<Team> _filter(List<Team> items) {
     final query = _query.trim().toLowerCase();
     if (query.isEmpty) return items;
-    return items.where((team) {
-      return team.name.toLowerCase().contains(query) ||
-          team.countryCode.toLowerCase().contains(query) ||
-          (team.group?.toLowerCase().contains(query) ?? false);
-    }).toList(growable: false);
+    return items
+        .where((team) {
+          return team.name.toLowerCase().contains(query) ||
+              team.countryCode.toLowerCase().contains(query) ||
+              (team.group?.toLowerCase().contains(query) ?? false);
+        })
+        .toList(growable: false);
   }
 }

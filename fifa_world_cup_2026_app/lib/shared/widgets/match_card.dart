@@ -37,8 +37,8 @@ class MatchCard extends StatelessWidget {
                   Text(
                     match.displayScore,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w900,
-                        ),
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                   Expanded(
                     child: Text(match.awayTeamName, textAlign: TextAlign.end),
@@ -48,10 +48,15 @@ class MatchCard extends StatelessWidget {
               if (match.events.isNotEmpty) ...[
                 const SizedBox(height: 12),
                 Text(
-                  match.events.take(2).map((event) {
-                    final minute = event.minute == null ? '' : '${event.minute}\' ';
-                    return '$minute${event.playerName ?? event.detail ?? event.type.name}';
-                  }).join('  |  '),
+                  match.events
+                      .take(2)
+                      .map((event) {
+                        final minute = event.minute == null
+                            ? ''
+                            : '${event.minute}\' ';
+                        return '$minute${event.playerName ?? event.detail ?? event.type.name}';
+                      })
+                      .join('  |  '),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodySmall,
