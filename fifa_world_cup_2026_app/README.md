@@ -59,3 +59,24 @@ Run the app in the default dev environment with:
 ```bash
 flutter run --dart-define=ENV=dev
 ```
+
+## UI Navigation Overview
+
+Phase 8 adds the production mobile UI shell for the FIFA World Cup 2026 app. The root route `/` opens the splash screen, initializes local cache/config readiness, and then navigates to `/home`.
+
+Main routes:
+
+- `/home` - dashboard with tournament countdown, next match, live summary, latest news, favorites preview, and quick navigation.
+- `/countdown` - tournament and upcoming match countdowns.
+- `/fixtures` - searchable, filterable fixtures grouped by match date.
+- `/fixtures/:matchId` - match details with score, status, venue, local kickoff time, stage/group, favorite action, and event timeline.
+- `/live-scores` - auto-refreshing live score cards with cached/offline fallback messaging.
+- `/teams` - searchable responsive team list/grid with favorite actions.
+- `/teams/:teamId` - team profile with group, coach/ranking, fixtures, and results.
+- `/groups` - group standings tables with sort controls and qualifying team highlight.
+- `/news` - searchable latest news feed.
+- `/news/:newsId` - article detail with image, source, publish time, content, and original article URL action.
+- `/favorites` - favorite teams and matches with remove actions.
+- `/settings` - theme mode, notification toggles, cache actions, and app version/about.
+
+Shared UI widgets live in `lib/shared/widgets/` and cover cards, countdowns, tables, filters, search, favorites, status chips, and section headers. Screens watch Riverpod providers only; repository and data-source access stays behind use cases/providers.

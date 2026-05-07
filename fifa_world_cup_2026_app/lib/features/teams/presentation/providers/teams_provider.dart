@@ -13,6 +13,9 @@ final selectedTeamProvider = StateNotifierProvider<SelectedTeamNotifier, int?>(
   (ref) => SelectedTeamNotifier(),
 );
 
+final teamDetailsProvider = AutoDisposeAsyncNotifierProviderFamily<
+    TeamDetailsNotifier, Team, int>(TeamDetailsNotifier.new);
+
 class TeamsNotifier extends AutoDisposeAsyncNotifier<List<Team>> {
   @override
   Future<List<Team>> build() => _load();
@@ -45,4 +48,31 @@ class SelectedTeamNotifier extends StateNotifier<int?> {
   void select(int? teamId) => state = teamId;
 
   void clear() => state = null;
+}
+
+class TeamDetailsNotifier extends AutoDisposeFamilyAsyncNotifier<Team, int> {
+  @override
+  Future<Team> build(int arg) => _load(arg);
+
+  Future<void> refresh() => _setState(forceRefresh: false);
+
+  Future<void> forceRefresh() => _setState(forceRefresh: true);
+
+  Future<void> _setState({required bool forceRefresh}) async {
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(
+      () => _load(arg, forceRefresh: forceRefresh),
+    );
+  }
+
+  Future<Team> _load(int teamId, {bool forceRefresh = false}) async {
+    final result = await ref.read(getTeamByIdUseCaseProvider)(
+      teamId,
+      forceRefresh: forceRefresh,
+    );
+    return switch (result) {
+      Success<Team>(:final data) => data,
+      FailureResult<Team>(:final failure) => throw failure,
+    };
+  }
 }

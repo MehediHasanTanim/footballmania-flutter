@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/favorites/presentation/screens/favorites_screen.dart';
+import '../features/countdown/presentation/screens/countdown_screen.dart';
 import '../features/fixtures/presentation/screens/fixtures_screen.dart';
 import '../features/fixtures/presentation/screens/match_details_screen.dart';
 import '../features/groups/presentation/screens/groups_screen.dart';
@@ -10,6 +11,7 @@ import '../features/live_score/presentation/screens/live_scores_screen.dart';
 import '../features/news/presentation/screens/news_details_screen.dart';
 import '../features/news/presentation/screens/news_screen.dart';
 import '../features/settings/presentation/screens/settings_screen.dart';
+import '../features/splash/presentation/screens/splash_screen.dart';
 import '../features/teams/presentation/screens/team_details_screen.dart';
 import '../features/teams/presentation/screens/teams_screen.dart';
 import '../shared/widgets/not_found_screen.dart';
@@ -24,12 +26,17 @@ final appRouter = GoRouter(
     GoRoute(
       path: RoutePaths.root,
       name: RouteNames.root,
-      builder: (context, state) => const HomeScreen(),
+      builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
       path: RoutePaths.home,
       name: RouteNames.home,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: RoutePaths.countdown,
+      name: RouteNames.countdown,
+      builder: (context, state) => const CountdownScreen(),
     ),
     GoRoute(
       path: RoutePaths.fixtures,

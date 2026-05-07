@@ -3,6 +3,7 @@ class RouteNames {
 
   static const root = 'root';
   static const home = 'home';
+  static const countdown = 'countdown';
   static const fixtures = 'fixtures';
   static const matchDetails = 'matchDetails';
   static const liveScores = 'liveScores';
@@ -20,6 +21,7 @@ class RoutePaths {
 
   static const root = '/';
   static const home = '/home';
+  static const countdown = '/countdown';
   static const fixtures = '/fixtures';
   static const matchDetails = '/fixtures/:matchId';
   static const liveScores = '/live-scores';
