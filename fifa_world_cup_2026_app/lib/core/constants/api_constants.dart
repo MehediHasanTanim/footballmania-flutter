@@ -8,10 +8,13 @@ class ApiConstants {
   static const contentType = 'application/json';
   static const accept = 'application/json';
 
-  static const fixtures = '/fixtures';
-  static const liveScores = '/live-scores';
-  static const teams = '/teams';
-  static const groups = '/groups';
-  static const news = '/news';
+  static const apiV1 = '/api/v1';
+  static const home = '$apiV1/home';
+  static const fixtures = '$apiV1/fixtures';
+  static const liveScores = '$apiV1/live';
+  static const teams = '$apiV1/teams';
+  static const groups = '$apiV1/groups';
+  static const news = '$apiV1/news';
+  static const newsSearch = '$apiV1/news/search';
   static const favorites = '/favorites';
 }

@@ -30,7 +30,7 @@ class AppConfig {
 
   static const dev = AppConfig(
     appName: 'FIFA World Cup 2026 Dev',
-    baseApiUrl: 'https://dev-api.fifa-world-cup-2026.example.com',
+    baseApiUrl: 'http://localhost:8020/',
     footballApiBaseUrl:
         'https://dev-football-api.fifa-world-cup-2026.example.com',
     newsApiBaseUrl: 'https://dev-news-api.fifa-world-cup-2026.example.com',

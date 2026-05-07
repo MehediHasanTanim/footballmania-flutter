@@ -18,8 +18,28 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Code Generation
 
-Run this after changing Hive models or other generated Dart sources:
+Run this after changing Freezed DTOs, Json Serializable models, Hive models, or other generated Dart sources:
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
+```
+
+## Backend API
+
+The dev app environment points Dio at the FastAPI backend proxy:
+
+```text
+http://localhost:8020/
+```
+
+Swagger docs are available while the backend is running:
+
+```text
+http://localhost:8020/docs
+```
+
+Run the app in the default dev environment with:
+
+```bash
+flutter run --dart-define=ENV=dev
 ```
