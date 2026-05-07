@@ -95,10 +95,17 @@ void main() {
   testWidgets('team card renders team identity', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [favoritesProvider.overrideWith((ref) => FavoritesNotifier(ref))],
+        overrides: [
+          favoritesProvider.overrideWith((ref) => FavoritesNotifier(ref)),
+        ],
         child: const MaterialApp(
           home: TeamCard(
-            team: Team(id: 1, name: 'Argentina', countryCode: 'ARG', group: 'C'),
+            team: Team(
+              id: 1,
+              name: 'Argentina',
+              countryCode: 'ARG',
+              group: 'C',
+            ),
           ),
         ),
       ),
@@ -157,7 +164,9 @@ void main() {
   });
 
   testWidgets('settings theme toggle updates provider', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: MaterialApp(home: SettingsScreen())));
+    await tester.pumpWidget(
+      const ProviderScope(child: MaterialApp(home: SettingsScreen())),
+    );
 
     await tester.tap(find.text('Dark'));
     await tester.pumpAndSettle();

@@ -1,28 +1,28 @@
 import '../../../../core/domain/enums/match_status.dart';
-import '../../../../core/domain/value_objects/fixture_filter.dart';
 import '../entities/fixture.dart';
+import '../entities/fixture_filter.dart';
 
 class FilterFixtures {
   const FilterFixtures();
 
   List<Fixture> call(List<Fixture> fixtures, FixtureFilter filter) {
-    if (filter.isEmpty) return List.unmodifiable(fixtures);
+    if (!filter.hasFilters) return List.unmodifiable(fixtures);
 
     return fixtures
         .where((fixture) {
           return _matchesDate(fixture, filter) &&
-              _matchesTeam(fixture, filter.teamId) &&
-              _matchesText(fixture.group, filter.group) &&
-              _matchesText(fixture.stage, filter.stage) &&
-              _matchesStatus(fixture.status, filter.status);
+              _matchesTeam(fixture, filter.selectedTeamId) &&
+              _matchesText(fixture.group, filter.selectedGroup) &&
+              _matchesText(fixture.stage, filter.selectedStage) &&
+              _matchesStatus(fixture.status, filter.selectedStatus);
         })
         .toList(growable: false);
   }
 
   bool _matchesDate(Fixture fixture, FixtureFilter filter) {
     final kickoff = fixture.matchDateUtc;
-    if (kickoff == null) return filter.date == null && filter.dateRange == null;
-    final date = filter.date;
+    if (kickoff == null) return filter.selectedDate == null;
+    final date = filter.selectedDate;
     if (date != null) {
       final utc = kickoff.toUtc();
       final target = date.toUtc();
@@ -32,7 +32,7 @@ class FilterFixtures {
         return false;
       }
     }
-    return filter.dateRange?.contains(kickoff) ?? true;
+    return true;
   }
 
   bool _matchesTeam(Fixture fixture, int? teamId) =>

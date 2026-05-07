@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/match_status.dart';
-import '../../../../core/domain/value_objects/fixture_filter.dart';
 import '../../../../core/utils/result.dart';
 import '../../../../shared/providers/usecase_providers.dart';
 import '../../domain/entities/fixture.dart';
+import '../../domain/entities/fixture_filter.dart';
 
 final fixtureFilterProvider =
     StateNotifierProvider<FixtureFilterNotifier, FixtureFilter>((ref) {
-      return FixtureFilterNotifier();
+      return FixtureFilterNotifier(ref)..loadSaved();
     });
 
 final fixturesProvider =
@@ -27,7 +29,10 @@ final filteredFixturesProvider = Provider<AsyncValue<List<Fixture>>>((ref) {
   final fixtures = ref.watch(fixturesProvider);
   final filter = ref.watch(fixtureFilterProvider);
   final filterFixtures = ref.watch(filterFixturesUseCaseProvider);
-  return fixtures.whenData((items) => filterFixtures(items, filter));
+  final searchFixtures = ref.watch(searchFixturesUseCaseProvider);
+  return fixtures.whenData((items) {
+    return searchFixtures(filterFixtures(items, filter), filter.searchQuery);
+  });
 });
 
 final upcomingFixturesProvider = Provider<AsyncValue<List<Fixture>>>((ref) {
@@ -82,10 +87,10 @@ class FixturesNotifier extends AutoDisposeAsyncNotifier<List<Fixture>> {
   Future<List<Fixture>> _load({bool forceRefresh = false}) async {
     final filter = ref.read(fixtureFilterProvider);
     final result = await ref.read(getFixturesUseCaseProvider)(
-      date: _dateParam(filter.date),
-      teamId: filter.teamId,
-      group: filter.group,
-      stage: filter.stage,
+      date: _dateParam(filter.selectedDate),
+      teamId: filter.selectedTeamId,
+      group: filter.selectedGroup,
+      stage: filter.selectedStage,
       forceRefresh: forceRefresh,
     );
     return switch (result) {
@@ -132,7 +137,27 @@ class FixtureDetailsNotifier
 }
 
 class FixtureFilterNotifier extends StateNotifier<FixtureFilter> {
-  FixtureFilterNotifier() : super(const FixtureFilter());
+  FixtureFilterNotifier(this._ref) : super(const FixtureFilter());
+
+  final Ref _ref;
+  static const _filterKey = 'fixtures';
+
+  void loadSaved() {
+    final saved = _tryGetSaved();
+    if (saved == null) return;
+    state = FixtureFilter(
+      selectedDate: saved['selectedDate'] is DateTime
+          ? saved['selectedDate'] as DateTime
+          : null,
+      selectedTeamId: saved['selectedTeamId'] as int?,
+      selectedGroup: saved['selectedGroup'] as String?,
+      selectedStage: saved['selectedStage'] as String?,
+      selectedStatus: saved['selectedStatus'] is String
+          ? MatchStatus.fromString(saved['selectedStatus'] as String)
+          : null,
+      searchQuery: saved['searchQuery'] as String?,
+    );
+  }
 
   void setDate(DateTime? date) => update(date: date);
 
@@ -150,16 +175,70 @@ class FixtureFilterNotifier extends StateNotifier<FixtureFilter> {
     String? group,
     String? stage,
     MatchStatus? status,
+    String? searchQuery,
   }) {
-    state = FixtureFilter(
-      date: date ?? state.date,
-      dateRange: state.dateRange,
-      teamId: teamId ?? state.teamId,
-      group: group ?? state.group,
-      stage: stage ?? state.stage,
-      status: status ?? state.status,
+    state = state.copyWith(
+      selectedDate: date,
+      selectedTeamId: teamId,
+      selectedGroup: group,
+      selectedStage: stage,
+      selectedStatus: status,
+      searchQuery: searchQuery,
     );
+    _save();
   }
 
-  void clearFilters() => state = const FixtureFilter();
+  void replaceFilters(FixtureFilter filter) {
+    state = FixtureFilter(
+      selectedDate: filter.selectedDate,
+      selectedTeamId: filter.selectedTeamId,
+      selectedGroup: filter.selectedGroup,
+      selectedStage: filter.selectedStage,
+      selectedStatus: filter.selectedStatus,
+      searchQuery: state.searchQuery,
+    );
+    _save();
+  }
+
+  void setSearchQuery(String query) => update(searchQuery: query);
+
+  void clearFilters() {
+    state = const FixtureFilter();
+    _tryClearSaved();
+  }
+
+  void _save() {
+    try {
+      unawaited(
+        _ref
+            .read(saveFilterUseCaseProvider)(_filterKey, {
+              'selectedDate': state.selectedDate,
+              'selectedTeamId': state.selectedTeamId,
+              'selectedGroup': state.selectedGroup,
+              'selectedStage': state.selectedStage,
+              'selectedStatus': state.selectedStatus?.name,
+              'searchQuery': state.searchQuery,
+            })
+            .catchError((_) {}),
+      );
+    } catch (_) {}
+  }
+
+  Map<String, dynamic>? _tryGetSaved() {
+    try {
+      return _ref.read(getSavedFilterUseCaseProvider)(_filterKey);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void _tryClearSaved() {
+    try {
+      unawaited(
+        _ref
+            .read(clearSavedFilterUseCaseProvider)(_filterKey)
+            .catchError((_) {}),
+      );
+    } catch (_) {}
+  }
 }

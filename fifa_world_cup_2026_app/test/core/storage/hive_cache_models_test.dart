@@ -15,6 +15,8 @@ void main() {
     expect(Hive.isAdapterRegistered(4), isTrue);
     expect(Hive.isAdapterRegistered(5), isTrue);
     expect(Hive.isAdapterRegistered(6), isTrue);
+    expect(Hive.isAdapterRegistered(7), isTrue);
+    expect(Hive.isAdapterRegistered(8), isTrue);
   });
 
   test('contains all required box names', () {
@@ -24,6 +26,8 @@ void main() {
     expect(HiveConstants.allBoxes, contains(HiveConstants.favoritesBox));
     expect(HiveConstants.allBoxes, contains(HiveConstants.settingsBox));
     expect(HiveConstants.allBoxes, contains(HiveConstants.cacheMetadataBox));
+    expect(HiveConstants.allBoxes, contains(HiveConstants.recentSearchesBox));
+    expect(HiveConstants.allBoxes, contains(HiveConstants.persistedFiltersBox));
   });
 
   test('cached fixture round-trips through dto map', () {

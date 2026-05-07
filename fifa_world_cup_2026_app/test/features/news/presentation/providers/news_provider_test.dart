@@ -26,7 +26,7 @@ void main() {
 
     container.read(newsSearchProvider.notifier).setQuery('cup');
 
-    expect(container.read(newsSearchProvider).keyword, 'cup');
+    expect(container.read(newsSearchProvider).searchQuery, 'cup');
   });
 }
 

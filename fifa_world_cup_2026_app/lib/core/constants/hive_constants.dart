@@ -10,6 +10,8 @@ class HiveConstants {
   static const favoritesBox = 'favorites_box';
   static const settingsBox = 'settings_box';
   static const cacheMetadataBox = 'cache_metadata_box';
+  static const recentSearchesBox = 'recent_searches_box';
+  static const persistedFiltersBox = 'persisted_filters_box';
 
   static const cacheVersionKey = 'cache_version';
   static const lastSyncedAtKey = 'last_synced_at';
@@ -37,5 +39,7 @@ class HiveConstants {
     favoritesBox,
     settingsBox,
     cacheMetadataBox,
+    recentSearchesBox,
+    persistedFiltersBox,
   ];
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/domain/enums/match_status.dart';
-import '../../core/domain/value_objects/fixture_filter.dart';
+import '../../features/fixtures/domain/entities/fixture_filter.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({super.key, required this.initialFilter});
@@ -22,13 +22,17 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   @override
   void initState() {
     super.initState();
-    _date = widget.initialFilter.date;
-    _status = widget.initialFilter.status;
+    _date = widget.initialFilter.selectedDate;
+    _status = widget.initialFilter.selectedStatus;
     _teamController = TextEditingController(
-      text: widget.initialFilter.teamId?.toString() ?? '',
+      text: widget.initialFilter.selectedTeamId?.toString() ?? '',
     );
-    _groupController = TextEditingController(text: widget.initialFilter.group);
-    _stageController = TextEditingController(text: widget.initialFilter.stage);
+    _groupController = TextEditingController(
+      text: widget.initialFilter.selectedGroup,
+    );
+    _stageController = TextEditingController(
+      text: widget.initialFilter.selectedStage,
+    );
   }
 
   @override
@@ -108,11 +112,11 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               onPressed: () {
                 Navigator.of(context).pop(
                   FixtureFilter(
-                    date: _date,
-                    teamId: int.tryParse(_teamController.text.trim()),
-                    group: _emptyToNull(_groupController.text),
-                    stage: _emptyToNull(_stageController.text),
-                    status: _status,
+                    selectedDate: _date,
+                    selectedTeamId: int.tryParse(_teamController.text.trim()),
+                    selectedGroup: _emptyToNull(_groupController.text),
+                    selectedStage: _emptyToNull(_stageController.text),
+                    selectedStatus: _status,
                   ),
                 );
               },

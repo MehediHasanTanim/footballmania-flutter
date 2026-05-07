@@ -11,6 +11,7 @@ import '../../features/favorites/domain/usecases/toggle_favorite.dart';
 import '../../features/fixtures/domain/usecases/filter_fixtures.dart';
 import '../../features/fixtures/domain/usecases/get_fixture_by_id.dart';
 import '../../features/fixtures/domain/usecases/get_fixtures.dart';
+import '../../features/fixtures/domain/usecases/search_fixtures.dart';
 import '../../features/fixtures/domain/usecases/sort_fixtures_by_date.dart';
 import '../../features/groups/domain/usecases/get_group_standings.dart';
 import '../../features/groups/domain/usecases/sort_group_standings.dart';
@@ -20,8 +21,17 @@ import '../../features/live_score/domain/usecases/get_match_events.dart';
 import '../../features/news/domain/usecases/get_news.dart';
 import '../../features/news/domain/usecases/search_news.dart';
 import '../../features/news/domain/usecases/sort_news_by_published_date.dart';
+import '../../features/search/domain/usecases/add_recent_search.dart';
+import '../../features/search/domain/usecases/clear_recent_searches.dart';
+import '../../features/search/domain/usecases/clear_saved_filter.dart';
+import '../../features/search/domain/usecases/get_recent_searches.dart';
+import '../../features/search/domain/usecases/get_saved_filter.dart';
+import '../../features/search/domain/usecases/remove_recent_search.dart';
+import '../../features/search/domain/usecases/save_filter.dart';
 import '../../features/teams/domain/usecases/get_team_by_id.dart';
 import '../../features/teams/domain/usecases/get_teams.dart';
+import '../../features/teams/domain/usecases/search_teams.dart';
+import 'data_source_providers.dart';
 import 'repository_providers.dart';
 
 final getFixturesUseCaseProvider = Provider<GetFixtures>(
@@ -32,6 +42,9 @@ final getFixtureByIdUseCaseProvider = Provider<GetFixtureById>(
 );
 final filterFixturesUseCaseProvider = Provider<FilterFixtures>(
   (ref) => const FilterFixtures(),
+);
+final searchFixturesUseCaseProvider = Provider<SearchFixtures>(
+  (ref) => const SearchFixtures(),
 );
 final sortFixturesByDateUseCaseProvider = Provider<SortFixturesByDate>(
   (ref) => const SortFixturesByDate(),
@@ -49,6 +62,9 @@ final getTeamsUseCaseProvider = Provider<GetTeams>(
 );
 final getTeamByIdUseCaseProvider = Provider<GetTeamById>(
   (ref) => GetTeamById(ref.watch(teamsRepositoryProvider)),
+);
+final searchTeamsUseCaseProvider = Provider<SearchTeams>(
+  (ref) => const SearchTeams(),
 );
 
 final getGroupStandingsUseCaseProvider = Provider<GetGroupStandings>(
@@ -85,6 +101,28 @@ final toggleFavoriteUseCaseProvider = Provider<ToggleFavorite>(
 );
 final isFavoriteUseCaseProvider = Provider<IsFavorite>(
   (ref) => IsFavorite(ref.watch(favoritesRepositoryProvider)),
+);
+
+final addRecentSearchUseCaseProvider = Provider<AddRecentSearch>(
+  (ref) => AddRecentSearch(ref.watch(recentSearchRepositoryProvider)),
+);
+final getRecentSearchesUseCaseProvider = Provider<GetRecentSearches>(
+  (ref) => GetRecentSearches(ref.watch(recentSearchRepositoryProvider)),
+);
+final removeRecentSearchUseCaseProvider = Provider<RemoveRecentSearch>(
+  (ref) => RemoveRecentSearch(ref.watch(recentSearchRepositoryProvider)),
+);
+final clearRecentSearchesUseCaseProvider = Provider<ClearRecentSearches>(
+  (ref) => ClearRecentSearches(ref.watch(recentSearchRepositoryProvider)),
+);
+final saveFilterUseCaseProvider = Provider<SaveFilter>(
+  (ref) => SaveFilter(ref.watch(filterLocalDataSourceProvider)),
+);
+final getSavedFilterUseCaseProvider = Provider<GetSavedFilter>(
+  (ref) => GetSavedFilter(ref.watch(filterLocalDataSourceProvider)),
+);
+final clearSavedFilterUseCaseProvider = Provider<ClearSavedFilter>(
+  (ref) => ClearSavedFilter(ref.watch(filterLocalDataSourceProvider)),
 );
 
 final calculateCountdownUseCaseProvider = Provider<CalculateCountdown>(

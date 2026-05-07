@@ -1,6 +1,6 @@
 import 'package:fifa_world_cup_2026_app/core/domain/enums/match_status.dart';
-import 'package:fifa_world_cup_2026_app/core/domain/value_objects/fixture_filter.dart';
 import 'package:fifa_world_cup_2026_app/features/fixtures/domain/entities/fixture.dart';
+import 'package:fifa_world_cup_2026_app/features/fixtures/domain/entities/fixture_filter.dart';
 import 'package:fifa_world_cup_2026_app/features/fixtures/domain/usecases/filter_fixtures.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -33,20 +33,20 @@ void main() {
   test('filters fixtures by date', () {
     final result = useCase(
       fixtures,
-      FixtureFilter(date: DateTime.utc(2026, 6, 12)),
+      FixtureFilter(selectedDate: DateTime.utc(2026, 6, 12)),
     );
 
     expect(result.map((fixture) => fixture.id), [2]);
   });
 
   test('filters fixtures by team', () {
-    final result = useCase(fixtures, const FixtureFilter(teamId: 10));
+    final result = useCase(fixtures, const FixtureFilter(selectedTeamId: 10));
 
     expect(result.map((fixture) => fixture.id), [1]);
   });
 
   test('filters fixtures by group', () {
-    final result = useCase(fixtures, const FixtureFilter(group: 'A'));
+    final result = useCase(fixtures, const FixtureFilter(selectedGroup: 'A'));
 
     expect(result.map((fixture) => fixture.id), [1, 3]);
   });
@@ -54,7 +54,7 @@ void main() {
   test('filters fixtures by status', () {
     final result = useCase(
       fixtures,
-      const FixtureFilter(status: MatchStatus.live),
+      const FixtureFilter(selectedStatus: MatchStatus.live),
     );
 
     expect(result.map((fixture) => fixture.id), [2]);
@@ -63,7 +63,10 @@ void main() {
   test('supports combined filters', () {
     final result = useCase(
       fixtures,
-      const FixtureFilter(group: 'A', status: MatchStatus.completed),
+      const FixtureFilter(
+        selectedGroup: 'A',
+        selectedStatus: MatchStatus.completed,
+      ),
     );
 
     expect(result.map((fixture) => fixture.id), [3]);

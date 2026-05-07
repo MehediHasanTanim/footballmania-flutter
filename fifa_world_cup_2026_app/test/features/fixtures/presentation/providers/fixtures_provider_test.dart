@@ -62,9 +62,21 @@ void main() {
     notifier.setStatus(MatchStatus.live);
 
     final state = container.read(fixtureFilterProvider);
-    expect(state.date, date);
-    expect(state.teamId, 10);
-    expect(state.status, MatchStatus.live);
+    expect(state.selectedDate, date);
+    expect(state.selectedTeamId, 10);
+    expect(state.selectedStatus, MatchStatus.live);
+  });
+
+  test('filter reset clears selected filters and query', () {
+    final container = ProviderContainer();
+    addTearDown(container.dispose);
+
+    final notifier = container.read(fixtureFilterProvider.notifier);
+    notifier.setTeamId(10);
+    notifier.setSearchQuery('usa');
+    notifier.clearFilters();
+
+    expect(container.read(fixtureFilterProvider).isEmpty, isTrue);
   });
 
   test('derived providers return correct filtered data', () async {

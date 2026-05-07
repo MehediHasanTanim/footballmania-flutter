@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/domain/value_objects/news_filter.dart';
 import '../../../../core/utils/result.dart';
 import '../../../../shared/providers/usecase_providers.dart';
 import '../../domain/entities/news.dart';
+import '../../domain/entities/news_filter.dart';
 
 final newsSearchProvider =
     StateNotifierProvider<NewsSearchNotifier, NewsFilter>(
-      (ref) => NewsSearchNotifier(),
+      (ref) => NewsSearchNotifier(ref)..loadSaved(),
     );
 
 final newsProvider = AutoDisposeAsyncNotifierProvider<NewsNotifier, List<News>>(
@@ -48,7 +50,7 @@ class NewsNotifier extends AutoDisposeAsyncNotifier<List<News>> {
   }
 
   Future<void> _setState({required bool forceRefresh}) async {
-    final query = ref.read(newsSearchProvider).keyword;
+    final query = ref.read(newsSearchProvider).searchQuery;
     state = const AsyncLoading();
     state = await AsyncValue.guard(
       () => _load(query: query, forceRefresh: forceRefresh),
@@ -74,23 +76,68 @@ class NewsNotifier extends AutoDisposeAsyncNotifier<List<News>> {
 }
 
 class NewsSearchNotifier extends StateNotifier<NewsFilter> {
-  NewsSearchNotifier() : super(const NewsFilter());
+  NewsSearchNotifier(this._ref) : super(const NewsFilter());
+
+  final Ref _ref;
+  static const _filterKey = 'news';
+
+  void loadSaved() {
+    final saved = _tryGetSaved();
+    if (saved == null) return;
+    state = NewsFilter(
+      searchQuery: saved['searchQuery'] as String?,
+      source: saved['source'] as String?,
+    );
+  }
 
   void setQuery(String query) {
     state = NewsFilter(
-      keyword: query,
-      requireSourceUrl: state.requireSourceUrl,
-      requireTitle: state.requireTitle,
+      searchQuery: query,
+      source: state.source,
+      dateRange: state.dateRange,
     );
+    _save();
   }
 
-  void update({String? keyword, bool? requireSourceUrl, bool? requireTitle}) {
-    state = NewsFilter(
-      keyword: keyword ?? state.keyword,
-      requireSourceUrl: requireSourceUrl ?? state.requireSourceUrl,
-      requireTitle: requireTitle ?? state.requireTitle,
-    );
+  void update({String? searchQuery, String? source}) {
+    state = state.copyWith(searchQuery: searchQuery, source: source);
+    _save();
   }
 
-  void clear() => state = const NewsFilter();
+  void clear() {
+    state = const NewsFilter();
+    _tryClearSaved();
+  }
+
+  void _save() {
+    try {
+      unawaited(
+        _ref
+            .read(saveFilterUseCaseProvider)(_filterKey, {
+              'searchQuery': state.searchQuery,
+              'source': state.source,
+              'dateRange': null,
+            })
+            .catchError((_) {}),
+      );
+    } catch (_) {}
+  }
+
+  Map<String, dynamic>? _tryGetSaved() {
+    try {
+      return _ref.read(getSavedFilterUseCaseProvider)(_filterKey);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void _tryClearSaved() {
+    try {
+      unawaited(
+        _ref
+            .read(clearSavedFilterUseCaseProvider)(_filterKey)
+            .catchError((_) {}),
+      );
+    } catch (_) {}
+  }
 }

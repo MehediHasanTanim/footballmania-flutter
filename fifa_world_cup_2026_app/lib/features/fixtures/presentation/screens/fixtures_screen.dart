@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/domain/value_objects/fixture_filter.dart';
 import '../../../../core/utils/date_time_formatter.dart';
-import '../../../../core/widgets/app_empty_state.dart';
 import '../../../../core/widgets/app_error_view.dart';
 import '../../../../core/widgets/app_loader.dart';
 import '../../../../core/widgets/app_scaffold.dart';
+import '../../../../features/search/domain/entities/recent_search.dart';
+import '../../../../features/search/presentation/providers/recent_search_provider.dart';
 import '../../../../shared/widgets/filter_bottom_sheet.dart';
+import '../../../../shared/widgets/filter_chip_bar.dart';
 import '../../../../shared/widgets/fixture_card.dart';
-import '../../../../shared/widgets/search_bar_widget.dart';
+import '../../../../shared/widgets/recent_search_list.dart';
+import '../../../../shared/widgets/search_empty_state.dart';
+import '../../../../shared/widgets/search_result_count.dart';
 import '../../domain/entities/fixture.dart';
+import '../../domain/entities/fixture_filter.dart';
 import '../providers/fixtures_provider.dart';
+import '../widgets/fixture_search_bar.dart';
 
 class FixturesScreen extends ConsumerStatefulWidget {
   const FixturesScreen({super.key});
@@ -22,11 +27,11 @@ class FixturesScreen extends ConsumerStatefulWidget {
 }
 
 class _FixturesScreenState extends ConsumerState<FixturesScreen> {
-  String _query = '';
-
   @override
   Widget build(BuildContext context) {
     final fixtures = ref.watch(filteredFixturesProvider);
+    final filter = ref.watch(fixtureFilterProvider);
+    final recentSearches = ref.watch(recentSearchProvider(SearchType.fixture));
 
     return AppScaffold(
       title: 'Fixtures',
@@ -39,12 +44,24 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
       ],
       body: Column(
         children: [
-          SearchBarWidget(
-            hintText: 'Search team, venue, or stage',
-            onChanged: (value) => setState(() => _query = value),
-            onClear: _query.isEmpty ? null : () => setState(() => _query = ''),
+          FixtureSearchBar(
+            initialValue: filter.searchQuery,
+            onChanged: _applySearch,
+            onClear: filter.hasSearch ? () => _applySearch('') : null,
           ),
           const SizedBox(height: 12),
+          if (!filter.hasSearch)
+            RecentSearchList(
+              searches: recentSearches,
+              onSelected: _applySearch,
+              onRemove: (query) => ref
+                  .read(recentSearchProvider(SearchType.fixture).notifier)
+                  .remove(query),
+              onClear: () => ref
+                  .read(recentSearchProvider(SearchType.fixture).notifier)
+                  .clear(),
+            ),
+          FilterChipBar(chips: _chips(filter), onReset: _resetFilters),
           Expanded(
             child: fixtures.when(
               loading: () => const AppLoader(label: 'Loading fixtures'),
@@ -54,23 +71,27 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
                     ref.read(fixturesProvider.notifier).forceRefresh(),
               ),
               data: (items) {
-                final searched = _search(items);
-                if (searched.isEmpty) {
-                  return const AppEmptyState(
+                if (items.isEmpty) {
+                  return const SearchEmptyState(
                     title: 'No fixtures found',
                     message: 'Try clearing search or filters.',
-                    icon: Icons.event_busy,
                   );
                 }
-                final grouped = _groupByDate(searched);
+                final grouped = _groupByDate(items);
                 final keys = grouped.keys.toList();
                 return RefreshIndicator(
                   onRefresh: () =>
                       ref.read(fixturesProvider.notifier).forceRefresh(),
                   child: ListView.builder(
-                    itemCount: keys.length,
+                    itemCount: keys.length + 1,
                     itemBuilder: (context, index) {
-                      final date = keys[index];
+                      if (index == 0) {
+                        return SearchResultCount(
+                          count: items.length,
+                          label: items.length == 1 ? 'fixture' : 'fixtures',
+                        );
+                      }
+                      final date = keys[index - 1];
                       final groupItems = grouped[date]!;
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,31 +131,39 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
           FilterBottomSheet(initialFilter: ref.read(fixtureFilterProvider)),
     );
     if (result == null) return;
-    ref.read(fixtureFilterProvider.notifier).clearFilters();
-    ref
-        .read(fixtureFilterProvider.notifier)
-        .update(
-          date: result.date,
-          teamId: result.teamId,
-          group: result.group,
-          stage: result.stage,
-          status: result.status,
-        );
+    ref.read(fixtureFilterProvider.notifier).replaceFilters(result);
     await ref.read(fixturesProvider.notifier).refresh();
   }
 
-  List<Fixture> _search(List<Fixture> items) {
-    final query = _query.trim().toLowerCase();
-    if (query.isEmpty) return items;
-    return items
-        .where((fixture) {
-          return fixture.homeTeamName.toLowerCase().contains(query) ||
-              fixture.awayTeamName.toLowerCase().contains(query) ||
-              fixture.venue.toLowerCase().contains(query) ||
-              fixture.stage.toLowerCase().contains(query) ||
-              (fixture.group?.toLowerCase().contains(query) ?? false);
-        })
-        .toList(growable: false);
+  Future<void> _applySearch(String query) async {
+    ref.read(fixtureFilterProvider.notifier).setSearchQuery(query);
+    if (query.trim().isNotEmpty) {
+      await ref
+          .read(recentSearchProvider(SearchType.fixture).notifier)
+          .add(query);
+    }
+  }
+
+  void _resetFilters() {
+    ref.read(fixtureFilterProvider.notifier).clearFilters();
+    ref.read(fixturesProvider.notifier).refresh();
+  }
+
+  List<FilterChipData> _chips(FixtureFilter filter) {
+    return [
+      if (filter.searchQuery?.trim().isNotEmpty == true)
+        FilterChipData(label: 'Search: ${filter.searchQuery}'),
+      if (filter.selectedDate != null)
+        FilterChipData(
+          label: DateTimeFormatter.formatDate(filter.selectedDate!),
+        ),
+      if (filter.selectedGroup?.trim().isNotEmpty == true)
+        FilterChipData(label: 'Group ${filter.selectedGroup}'),
+      if (filter.selectedStage?.trim().isNotEmpty == true)
+        FilterChipData(label: filter.selectedStage!),
+      if (filter.selectedStatus != null)
+        FilterChipData(label: filter.selectedStatus!.name),
+    ];
   }
 
   Map<String, List<Fixture>> _groupByDate(List<Fixture> items) {

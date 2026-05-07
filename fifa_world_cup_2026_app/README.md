@@ -34,6 +34,18 @@ Shared dependencies are centralized under `lib/shared/providers/`:
 
 Feature providers live beside each feature presentation layer and expose `AsyncValue` for API-driven state. Widgets should watch providers and call notifier methods such as `refresh()` or `forceRefresh()` instead of constructing services or calling repositories directly.
 
+## Search And Filters
+
+Phase 10 adds reusable search and filter behavior across fixtures, news, and teams:
+
+- Fixtures search local cached fixture data by team, venue, stage, group, status, and match date, then combines the query with selected date/team/group/stage/status filters.
+- News search uses the backend `GET /api/v1/news/search?q={keyword}` endpoint, falls back to cached news when offline or on backend failure, and shows latest news when the query is empty.
+- Teams search runs locally over cached teams by team name, country code, and group, with optional favorite-only filtering.
+- Search fields use a reusable `DebouncedSearchField` backed by `Debouncer` with a 500ms delay to reduce API calls and repeated filtering.
+- Recent searches are persisted in Hive per type (`fixture`, `news`, `team`), deduplicated case-insensitively, sorted latest-first, and capped at 10 entries per type.
+- Applied filters are persisted in Hive and restored through Riverpod filter notifiers. Reset actions clear both in-memory and saved filter state.
+- Shared search UI widgets live in `lib/shared/widgets/`: `debounced_search_field.dart`, `recent_search_list.dart`, `filter_chip_bar.dart`, `search_empty_state.dart`, and `search_result_count.dart`.
+
 Useful provider test command:
 
 ```bash

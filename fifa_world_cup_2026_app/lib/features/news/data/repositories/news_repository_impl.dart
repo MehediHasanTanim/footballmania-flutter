@@ -90,6 +90,7 @@ class NewsRepositoryImpl implements NewsRepository {
         page: page,
         pageSize: pageSize,
       );
+      await _localDataSource.cacheNews(remote);
       return Success(
         remote.map((news) => news.toEntity()).toList(growable: false),
       );

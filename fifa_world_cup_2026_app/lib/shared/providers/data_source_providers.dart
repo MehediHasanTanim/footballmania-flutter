@@ -13,6 +13,8 @@ import '../../features/live_score/data/datasources/live_score_local_data_source.
 import '../../features/live_score/data/datasources/live_score_remote_data_source.dart';
 import '../../features/news/data/datasources/news_local_data_source.dart';
 import '../../features/news/data/datasources/news_remote_data_source.dart';
+import '../../features/search/data/datasources/filter_local_data_source.dart';
+import '../../features/search/data/datasources/recent_search_local_data_source.dart';
 import '../../features/teams/data/datasources/teams_local_data_source.dart';
 import '../../features/teams/data/datasources/teams_remote_data_source.dart';
 import 'core_providers.dart';
@@ -88,4 +90,13 @@ final favoritesLocalDataSourceProvider = Provider<FavoritesLocalDataSource>((
   ref,
 ) {
   return FavoritesLocalDataSource(ref.watch(cacheServiceProvider));
+});
+
+final recentSearchLocalDataSourceProvider =
+    Provider<RecentSearchLocalDataSource>((ref) {
+      return RecentSearchLocalDataSource(ref.watch(cacheServiceProvider));
+    });
+
+final filterLocalDataSourceProvider = Provider<FilterLocalDataSource>((ref) {
+  return FilterLocalDataSource(ref.watch(cacheServiceProvider));
 });

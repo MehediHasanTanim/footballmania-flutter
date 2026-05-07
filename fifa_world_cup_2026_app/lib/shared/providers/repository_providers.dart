@@ -14,6 +14,8 @@ import '../../features/live_score/data/repositories/live_score_repository_impl.d
 import '../../features/live_score/domain/repositories/live_score_repository.dart';
 import '../../features/news/data/repositories/news_repository_impl.dart';
 import '../../features/news/domain/repositories/news_repository.dart';
+import '../../features/search/data/repositories/recent_search_repository_impl.dart';
+import '../../features/search/domain/repositories/recent_search_repository.dart';
 import '../../features/teams/data/repositories/teams_repository_impl.dart';
 import '../../features/teams/domain/repositories/teams_repository.dart';
 import 'core_providers.dart';
@@ -77,6 +79,12 @@ final favoritesRepositoryProvider = Provider<FavoritesRepository>((ref) {
   return FavoritesRepositoryImpl(
     localDataSource: ref.watch(favoritesLocalDataSourceProvider),
     errorHandler: ref.watch(errorHandlerProvider),
+  );
+});
+
+final recentSearchRepositoryProvider = Provider<RecentSearchRepository>((ref) {
+  return RecentSearchRepositoryImpl(
+    ref.watch(recentSearchLocalDataSourceProvider),
   );
 });
 
