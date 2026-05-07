@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Dart / Flutter
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+coverage/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Android
+**/android/.gradle/
+**/android/local.properties
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+
+# iOS / macOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/macos/Pods/
+**/macos/.symlinks/
+
+# Generated signing and local env files
+*.jks
+*.keystore
+*.p8
+*.p12
+*.mobileprovision
+*.provisionprofile
+.env
+.env.*
+
+# Logs
+*.log
