@@ -12,11 +12,21 @@ void main() {
       _standing('Brazil', points: 4, goalsFor: 5, goalsAgainst: 3),
     ]);
 
-    expect(result.map((standing) => standing.teamName), ['USA', 'Brazil', 'Mexico', 'Canada']);
+    expect(result.map((standing) => standing.teamName), [
+      'USA',
+      'Brazil',
+      'Mexico',
+      'Canada',
+    ]);
   });
 }
 
-GroupStanding _standing(String name, {required int points, required int goalsFor, required int goalsAgainst}) {
+GroupStanding _standing(
+  String name, {
+  required int points,
+  required int goalsFor,
+  required int goalsAgainst,
+}) {
   return GroupStanding(
     group: 'A',
     teamId: name.hashCode,

@@ -10,7 +10,10 @@ class LiveScoreLocalDataSource {
 
   final CacheService _cacheService;
 
-  Future<void> cacheLiveScores(List<LiveMatchDto> matches, {Duration ttl = const Duration(minutes: 2)}) async {
+  Future<void> cacheLiveScores(
+    List<LiveMatchDto> matches, {
+    Duration ttl = const Duration(minutes: 2),
+  }) async {
     await _cacheService.put<List<Map<String, dynamic>>>(
       HiveConstants.liveScoresBox,
       _itemsKey,
@@ -25,7 +28,10 @@ class LiveScoreLocalDataSource {
 
   List<LiveMatchDto> getLiveScores() {
     if (_isExpired()) return const [];
-    final cached = _cacheService.get<Object>(HiveConstants.liveScoresBox, _itemsKey);
+    final cached = _cacheService.get<Object>(
+      HiveConstants.liveScoresBox,
+      _itemsKey,
+    );
     if (cached is! List) return const [];
     return cached
         .whereType<Map>()
@@ -34,7 +40,10 @@ class LiveScoreLocalDataSource {
   }
 
   bool _isExpired() {
-    final expiresAt = _cacheService.get<String>(HiveConstants.liveScoresBox, _expiresAtKey);
+    final expiresAt = _cacheService.get<String>(
+      HiveConstants.liveScoresBox,
+      _expiresAtKey,
+    );
     if (expiresAt == null) return true;
     final parsed = DateTime.tryParse(expiresAt);
     return parsed == null || DateTime.now().toUtc().isAfter(parsed);

@@ -45,9 +45,14 @@ void main() {
   test('local data source reads unexpired cached fixture', () {
     final cacheService = MockCacheService();
     final dataSource = FixturesLocalDataSource(cacheService);
-    final cached = _cachedFixture(1, expiresAt: DateTime.now().add(const Duration(hours: 1)));
+    final cached = _cachedFixture(
+      1,
+      expiresAt: DateTime.now().add(const Duration(hours: 1)),
+    );
 
-    when(() => cacheService.get<CachedFixture>(HiveConstants.fixturesBox, '1')).thenReturn(cached);
+    when(
+      () => cacheService.get<CachedFixture>(HiveConstants.fixturesBox, '1'),
+    ).thenReturn(cached);
 
     final result = dataSource.getFixtureById(1);
 
@@ -60,13 +65,21 @@ void main() {
     final dataSource = FixturesLocalDataSource(cacheService);
     final fixtures = [_fixtureDto(1)];
 
-    when(() => cacheService.clear(HiveConstants.fixturesBox)).thenAnswer((_) async {});
-    when(() => cacheService.putAll<CachedFixture>(HiveConstants.fixturesBox, any())).thenAnswer((_) async {});
+    when(
+      () => cacheService.clear(HiveConstants.fixturesBox),
+    ).thenAnswer((_) async {});
+    when(
+      () =>
+          cacheService.putAll<CachedFixture>(HiveConstants.fixturesBox, any()),
+    ).thenAnswer((_) async {});
 
     await dataSource.cacheFixtures(fixtures);
 
     verify(() => cacheService.clear(HiveConstants.fixturesBox)).called(1);
-    verify(() => cacheService.putAll<CachedFixture>(HiveConstants.fixturesBox, any())).called(1);
+    verify(
+      () =>
+          cacheService.putAll<CachedFixture>(HiveConstants.fixturesBox, any()),
+    ).called(1);
   });
 }
 

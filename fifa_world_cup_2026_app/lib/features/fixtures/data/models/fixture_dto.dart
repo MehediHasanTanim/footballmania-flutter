@@ -18,7 +18,9 @@ class FixtureDto with _$FixtureDto {
     @JsonKey(name: 'away_team_name') String? awayTeamName,
     @JsonKey(name: 'home_team_flag') String? homeTeamFlag,
     @JsonKey(name: 'away_team_flag') String? awayTeamFlag,
-    @DateTimeJsonConverter() @JsonKey(name: 'match_date_utc') DateTime? matchDateUtc,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'match_date_utc')
+    DateTime? matchDateUtc,
     String? venue,
     String? stage,
     String? group,
@@ -29,7 +31,8 @@ class FixtureDto with _$FixtureDto {
 
   const FixtureDto._();
 
-  factory FixtureDto.fromJson(Map<String, dynamic> json) => _$FixtureDtoFromJson(_normalize(json));
+  factory FixtureDto.fromJson(Map<String, dynamic> json) =>
+      _$FixtureDtoFromJson(_normalize(json));
 
   Fixture toEntity() {
     return Fixture(

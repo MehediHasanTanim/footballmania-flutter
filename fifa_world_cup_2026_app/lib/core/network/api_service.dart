@@ -6,9 +6,11 @@ import 'api_response.dart';
 import 'dio_client.dart';
 
 class ApiService {
-  const ApiService({required DioClient dioClient, required ErrorHandler errorHandler})
-    : _dioClient = dioClient,
-      _errorHandler = errorHandler;
+  const ApiService({
+    required DioClient dioClient,
+    required ErrorHandler errorHandler,
+  }) : _dioClient = dioClient,
+       _errorHandler = errorHandler;
 
   final DioClient _dioClient;
   final ErrorHandler _errorHandler;
@@ -31,7 +33,10 @@ class ApiService {
     return ApiResponse.parseList<T>(response.data, fromJson);
   }
 
-  Future<Response<Object?>> _get(String path, {Map<String, dynamic>? queryParameters}) async {
+  Future<Response<Object?>> _get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+  }) async {
     try {
       return await _dioClient.get<Object?>(
         path,
@@ -48,7 +53,8 @@ class ApiService {
 
   Map<String, dynamic>? _compactQuery(Map<String, dynamic>? query) {
     if (query == null) return null;
-    final compact = Map<String, dynamic>.from(query)..removeWhere((_, value) => value == null || value == '');
+    final compact = Map<String, dynamic>.from(query)
+      ..removeWhere((_, value) => value == null || value == '');
     return compact.isEmpty ? null : compact;
   }
 }

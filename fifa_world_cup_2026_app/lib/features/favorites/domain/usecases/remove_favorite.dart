@@ -7,7 +7,10 @@ class RemoveFavorite {
 
   final FavoritesRepository _repository;
 
-  Future<Result<void>> call({required FavoriteType type, required String referenceId}) {
+  Future<Result<void>> call({
+    required FavoriteType type,
+    required String referenceId,
+  }) {
     return _repository.removeFavorite(type: type, referenceId: referenceId);
   }
 }

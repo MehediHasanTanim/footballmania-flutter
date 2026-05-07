@@ -29,7 +29,9 @@ void main() {
 
     when(() => local.getLatestNews(page: 1, pageSize: 20)).thenReturn(cached);
     when(() => networkInfo.isConnected).thenAnswer((_) async => true);
-    when(() => remote.getLatestNews(page: 1, pageSize: 20)).thenThrow(Exception('server down'));
+    when(
+      () => remote.getLatestNews(page: 1, pageSize: 20),
+    ).thenThrow(Exception('server down'));
 
     final result = await repository.getLatestNews();
 

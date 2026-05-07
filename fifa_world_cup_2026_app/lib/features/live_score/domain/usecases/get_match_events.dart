@@ -7,7 +7,10 @@ class GetMatchEvents {
 
   final LiveScoreRepository _repository;
 
-  Future<Result<List<MatchEvent>>> call(int fixtureId, {bool forceRefresh = false}) {
+  Future<Result<List<MatchEvent>>> call(
+    int fixtureId, {
+    bool forceRefresh = false,
+  }) {
     return _repository.getMatchEvents(fixtureId, forceRefresh: forceRefresh);
   }
 }

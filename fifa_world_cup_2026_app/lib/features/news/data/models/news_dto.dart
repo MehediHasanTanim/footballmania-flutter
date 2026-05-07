@@ -17,13 +17,16 @@ class NewsDto with _$NewsDto {
     @JsonKey(name: 'image_url') String? imageUrl,
     @JsonKey(name: 'source_name') String? sourceName,
     @JsonKey(name: 'source_url') String? sourceUrl,
-    @DateTimeJsonConverter() @JsonKey(name: 'published_at') DateTime? publishedAt,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'published_at')
+    DateTime? publishedAt,
     String? url,
   }) = _NewsDto;
 
   const NewsDto._();
 
-  factory NewsDto.fromJson(Map<String, dynamic> json) => _$NewsDtoFromJson(_normalize(json));
+  factory NewsDto.fromJson(Map<String, dynamic> json) =>
+      _$NewsDtoFromJson(_normalize(json));
 
   News toEntity() {
     return News(

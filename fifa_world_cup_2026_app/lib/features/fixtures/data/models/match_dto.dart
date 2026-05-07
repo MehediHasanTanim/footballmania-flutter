@@ -18,13 +18,16 @@ class MatchDto with _$MatchDto {
     String? score,
     String? status,
     String? venue,
-    @DateTimeJsonConverter() @JsonKey(name: 'kickoff_time_utc') DateTime? kickoffTimeUtc,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'kickoff_time_utc')
+    DateTime? kickoffTimeUtc,
     @Default(<MatchEventDto>[]) List<MatchEventDto> events,
   }) = _MatchDto;
 
   const MatchDto._();
 
-  factory MatchDto.fromJson(Map<String, dynamic> json) => _$MatchDtoFromJson(_normalize(json));
+  factory MatchDto.fromJson(Map<String, dynamic> json) =>
+      _$MatchDtoFromJson(_normalize(json));
 
   Match toEntity() {
     return Match(

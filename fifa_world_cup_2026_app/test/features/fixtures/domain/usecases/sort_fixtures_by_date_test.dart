@@ -26,7 +26,11 @@ void main() {
   });
 }
 
-Fixture _fixture(int id, DateTime date, {MatchStatus status = MatchStatus.upcoming}) {
+Fixture _fixture(
+  int id,
+  DateTime date, {
+  MatchStatus status = MatchStatus.upcoming,
+}) {
   return Fixture(
     id: id,
     homeTeamId: 1,

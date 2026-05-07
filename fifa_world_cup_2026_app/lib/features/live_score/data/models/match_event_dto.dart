@@ -21,7 +21,8 @@ class MatchEventDto with _$MatchEventDto {
 
   const MatchEventDto._();
 
-  factory MatchEventDto.fromJson(Map<String, dynamic> json) => _$MatchEventDtoFromJson(_normalize(json));
+  factory MatchEventDto.fromJson(Map<String, dynamic> json) =>
+      _$MatchEventDtoFromJson(_normalize(json));
 
   MatchEvent toEntity() {
     return MatchEvent(

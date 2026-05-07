@@ -12,7 +12,8 @@ part of 'group_standing_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 GroupStandingDto _$GroupStandingDtoFromJson(Map<String, dynamic> json) {
   return _GroupStandingDto.fromJson(json);
@@ -55,24 +56,26 @@ mixin _$GroupStandingDto {
 /// @nodoc
 abstract class $GroupStandingDtoCopyWith<$Res> {
   factory $GroupStandingDtoCopyWith(
-          GroupStandingDto value, $Res Function(GroupStandingDto) then) =
-      _$GroupStandingDtoCopyWithImpl<$Res, GroupStandingDto>;
+    GroupStandingDto value,
+    $Res Function(GroupStandingDto) then,
+  ) = _$GroupStandingDtoCopyWithImpl<$Res, GroupStandingDto>;
   @useResult
-  $Res call(
-      {String? group,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
-      @JsonKey(name: 'team_name') String? teamName,
-      @JsonKey(name: 'team_flag') String? teamFlag,
-      @JsonKey(fromJson: _nullableInt) int? played,
-      @JsonKey(fromJson: _nullableInt) int? won,
-      @JsonKey(fromJson: _nullableInt) int? drawn,
-      @JsonKey(fromJson: _nullableInt) int? lost,
-      @JsonKey(name: 'goals_for', fromJson: _nullableInt) int? goalsFor,
-      @JsonKey(name: 'goals_against', fromJson: _nullableInt) int? goalsAgainst,
-      @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
-      int? goalDifference,
-      @JsonKey(fromJson: _nullableInt) int? points,
-      @JsonKey(fromJson: _nullableInt) int? rank});
+  $Res call({
+    String? group,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
+    @JsonKey(name: 'team_name') String? teamName,
+    @JsonKey(name: 'team_flag') String? teamFlag,
+    @JsonKey(fromJson: _nullableInt) int? played,
+    @JsonKey(fromJson: _nullableInt) int? won,
+    @JsonKey(fromJson: _nullableInt) int? drawn,
+    @JsonKey(fromJson: _nullableInt) int? lost,
+    @JsonKey(name: 'goals_for', fromJson: _nullableInt) int? goalsFor,
+    @JsonKey(name: 'goals_against', fromJson: _nullableInt) int? goalsAgainst,
+    @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
+    int? goalDifference,
+    @JsonKey(fromJson: _nullableInt) int? points,
+    @JsonKey(fromJson: _nullableInt) int? rank,
+  });
 }
 
 /// @nodoc
@@ -102,95 +105,101 @@ class _$GroupStandingDtoCopyWithImpl<$Res, $Val extends GroupStandingDto>
     Object? points = freezed,
     Object? rank = freezed,
   }) {
-    return _then(_value.copyWith(
-      group: freezed == group
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teamId: freezed == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamName: freezed == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teamFlag: freezed == teamFlag
-          ? _value.teamFlag
-          : teamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      played: freezed == played
-          ? _value.played
-          : played // ignore: cast_nullable_to_non_nullable
-              as int?,
-      won: freezed == won
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as int?,
-      drawn: freezed == drawn
-          ? _value.drawn
-          : drawn // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lost: freezed == lost
-          ? _value.lost
-          : lost // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalsFor: freezed == goalsFor
-          ? _value.goalsFor
-          : goalsFor // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalsAgainst: freezed == goalsAgainst
-          ? _value.goalsAgainst
-          : goalsAgainst // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalDifference: freezed == goalDifference
-          ? _value.goalDifference
-          : goalDifference // ignore: cast_nullable_to_non_nullable
-              as int?,
-      points: freezed == points
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      rank: freezed == rank
-          ? _value.rank
-          : rank // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            group: freezed == group
+                ? _value.group
+                : group // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            teamId: freezed == teamId
+                ? _value.teamId
+                : teamId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            teamName: freezed == teamName
+                ? _value.teamName
+                : teamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            teamFlag: freezed == teamFlag
+                ? _value.teamFlag
+                : teamFlag // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            played: freezed == played
+                ? _value.played
+                : played // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            won: freezed == won
+                ? _value.won
+                : won // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            drawn: freezed == drawn
+                ? _value.drawn
+                : drawn // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            lost: freezed == lost
+                ? _value.lost
+                : lost // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            goalsFor: freezed == goalsFor
+                ? _value.goalsFor
+                : goalsFor // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            goalsAgainst: freezed == goalsAgainst
+                ? _value.goalsAgainst
+                : goalsAgainst // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            goalDifference: freezed == goalDifference
+                ? _value.goalDifference
+                : goalDifference // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            points: freezed == points
+                ? _value.points
+                : points // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            rank: freezed == rank
+                ? _value.rank
+                : rank // ignore: cast_nullable_to_non_nullable
+                      as int?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$GroupStandingDtoImplCopyWith<$Res>
     implements $GroupStandingDtoCopyWith<$Res> {
-  factory _$$GroupStandingDtoImplCopyWith(_$GroupStandingDtoImpl value,
-          $Res Function(_$GroupStandingDtoImpl) then) =
-      __$$GroupStandingDtoImplCopyWithImpl<$Res>;
+  factory _$$GroupStandingDtoImplCopyWith(
+    _$GroupStandingDtoImpl value,
+    $Res Function(_$GroupStandingDtoImpl) then,
+  ) = __$$GroupStandingDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? group,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
-      @JsonKey(name: 'team_name') String? teamName,
-      @JsonKey(name: 'team_flag') String? teamFlag,
-      @JsonKey(fromJson: _nullableInt) int? played,
-      @JsonKey(fromJson: _nullableInt) int? won,
-      @JsonKey(fromJson: _nullableInt) int? drawn,
-      @JsonKey(fromJson: _nullableInt) int? lost,
-      @JsonKey(name: 'goals_for', fromJson: _nullableInt) int? goalsFor,
-      @JsonKey(name: 'goals_against', fromJson: _nullableInt) int? goalsAgainst,
-      @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
-      int? goalDifference,
-      @JsonKey(fromJson: _nullableInt) int? points,
-      @JsonKey(fromJson: _nullableInt) int? rank});
+  $Res call({
+    String? group,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
+    @JsonKey(name: 'team_name') String? teamName,
+    @JsonKey(name: 'team_flag') String? teamFlag,
+    @JsonKey(fromJson: _nullableInt) int? played,
+    @JsonKey(fromJson: _nullableInt) int? won,
+    @JsonKey(fromJson: _nullableInt) int? drawn,
+    @JsonKey(fromJson: _nullableInt) int? lost,
+    @JsonKey(name: 'goals_for', fromJson: _nullableInt) int? goalsFor,
+    @JsonKey(name: 'goals_against', fromJson: _nullableInt) int? goalsAgainst,
+    @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
+    int? goalDifference,
+    @JsonKey(fromJson: _nullableInt) int? points,
+    @JsonKey(fromJson: _nullableInt) int? rank,
+  });
 }
 
 /// @nodoc
 class __$$GroupStandingDtoImplCopyWithImpl<$Res>
     extends _$GroupStandingDtoCopyWithImpl<$Res, _$GroupStandingDtoImpl>
     implements _$$GroupStandingDtoImplCopyWith<$Res> {
-  __$$GroupStandingDtoImplCopyWithImpl(_$GroupStandingDtoImpl _value,
-      $Res Function(_$GroupStandingDtoImpl) _then)
-      : super(_value, _then);
+  __$$GroupStandingDtoImplCopyWithImpl(
+    _$GroupStandingDtoImpl _value,
+    $Res Function(_$GroupStandingDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -209,82 +218,84 @@ class __$$GroupStandingDtoImplCopyWithImpl<$Res>
     Object? points = freezed,
     Object? rank = freezed,
   }) {
-    return _then(_$GroupStandingDtoImpl(
-      group: freezed == group
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teamId: freezed == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamName: freezed == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teamFlag: freezed == teamFlag
-          ? _value.teamFlag
-          : teamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      played: freezed == played
-          ? _value.played
-          : played // ignore: cast_nullable_to_non_nullable
-              as int?,
-      won: freezed == won
-          ? _value.won
-          : won // ignore: cast_nullable_to_non_nullable
-              as int?,
-      drawn: freezed == drawn
-          ? _value.drawn
-          : drawn // ignore: cast_nullable_to_non_nullable
-              as int?,
-      lost: freezed == lost
-          ? _value.lost
-          : lost // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalsFor: freezed == goalsFor
-          ? _value.goalsFor
-          : goalsFor // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalsAgainst: freezed == goalsAgainst
-          ? _value.goalsAgainst
-          : goalsAgainst // ignore: cast_nullable_to_non_nullable
-              as int?,
-      goalDifference: freezed == goalDifference
-          ? _value.goalDifference
-          : goalDifference // ignore: cast_nullable_to_non_nullable
-              as int?,
-      points: freezed == points
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as int?,
-      rank: freezed == rank
-          ? _value.rank
-          : rank // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _$GroupStandingDtoImpl(
+        group: freezed == group
+            ? _value.group
+            : group // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        teamId: freezed == teamId
+            ? _value.teamId
+            : teamId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        teamName: freezed == teamName
+            ? _value.teamName
+            : teamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        teamFlag: freezed == teamFlag
+            ? _value.teamFlag
+            : teamFlag // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        played: freezed == played
+            ? _value.played
+            : played // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        won: freezed == won
+            ? _value.won
+            : won // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        drawn: freezed == drawn
+            ? _value.drawn
+            : drawn // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        lost: freezed == lost
+            ? _value.lost
+            : lost // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        goalsFor: freezed == goalsFor
+            ? _value.goalsFor
+            : goalsFor // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        goalsAgainst: freezed == goalsAgainst
+            ? _value.goalsAgainst
+            : goalsAgainst // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        goalDifference: freezed == goalDifference
+            ? _value.goalDifference
+            : goalDifference // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        points: freezed == points
+            ? _value.points
+            : points // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        rank: freezed == rank
+            ? _value.rank
+            : rank // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$GroupStandingDtoImpl extends _GroupStandingDto {
-  const _$GroupStandingDtoImpl(
-      {this.group,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) this.teamId,
-      @JsonKey(name: 'team_name') this.teamName,
-      @JsonKey(name: 'team_flag') this.teamFlag,
-      @JsonKey(fromJson: _nullableInt) this.played,
-      @JsonKey(fromJson: _nullableInt) this.won,
-      @JsonKey(fromJson: _nullableInt) this.drawn,
-      @JsonKey(fromJson: _nullableInt) this.lost,
-      @JsonKey(name: 'goals_for', fromJson: _nullableInt) this.goalsFor,
-      @JsonKey(name: 'goals_against', fromJson: _nullableInt) this.goalsAgainst,
-      @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
-      this.goalDifference,
-      @JsonKey(fromJson: _nullableInt) this.points,
-      @JsonKey(fromJson: _nullableInt) this.rank})
-      : super._();
+  const _$GroupStandingDtoImpl({
+    this.group,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) this.teamId,
+    @JsonKey(name: 'team_name') this.teamName,
+    @JsonKey(name: 'team_flag') this.teamFlag,
+    @JsonKey(fromJson: _nullableInt) this.played,
+    @JsonKey(fromJson: _nullableInt) this.won,
+    @JsonKey(fromJson: _nullableInt) this.drawn,
+    @JsonKey(fromJson: _nullableInt) this.lost,
+    @JsonKey(name: 'goals_for', fromJson: _nullableInt) this.goalsFor,
+    @JsonKey(name: 'goals_against', fromJson: _nullableInt) this.goalsAgainst,
+    @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
+    this.goalDifference,
+    @JsonKey(fromJson: _nullableInt) this.points,
+    @JsonKey(fromJson: _nullableInt) this.rank,
+  }) : super._();
 
   factory _$GroupStandingDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$GroupStandingDtoImplFromJson(json);
@@ -361,54 +372,55 @@ class _$GroupStandingDtoImpl extends _GroupStandingDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      group,
-      teamId,
-      teamName,
-      teamFlag,
-      played,
-      won,
-      drawn,
-      lost,
-      goalsFor,
-      goalsAgainst,
-      goalDifference,
-      points,
-      rank);
+    runtimeType,
+    group,
+    teamId,
+    teamName,
+    teamFlag,
+    played,
+    won,
+    drawn,
+    lost,
+    goalsFor,
+    goalsAgainst,
+    goalDifference,
+    points,
+    rank,
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupStandingDtoImplCopyWith<_$GroupStandingDtoImpl> get copyWith =>
       __$$GroupStandingDtoImplCopyWithImpl<_$GroupStandingDtoImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GroupStandingDtoImplToJson(
-      this,
-    );
+    return _$$GroupStandingDtoImplToJson(this);
   }
 }
 
 abstract class _GroupStandingDto extends GroupStandingDto {
-  const factory _GroupStandingDto(
-      {final String? group,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) final int? teamId,
-      @JsonKey(name: 'team_name') final String? teamName,
-      @JsonKey(name: 'team_flag') final String? teamFlag,
-      @JsonKey(fromJson: _nullableInt) final int? played,
-      @JsonKey(fromJson: _nullableInt) final int? won,
-      @JsonKey(fromJson: _nullableInt) final int? drawn,
-      @JsonKey(fromJson: _nullableInt) final int? lost,
-      @JsonKey(name: 'goals_for', fromJson: _nullableInt) final int? goalsFor,
-      @JsonKey(name: 'goals_against', fromJson: _nullableInt)
-      final int? goalsAgainst,
-      @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
-      final int? goalDifference,
-      @JsonKey(fromJson: _nullableInt) final int? points,
-      @JsonKey(fromJson: _nullableInt)
-      final int? rank}) = _$GroupStandingDtoImpl;
+  const factory _GroupStandingDto({
+    final String? group,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) final int? teamId,
+    @JsonKey(name: 'team_name') final String? teamName,
+    @JsonKey(name: 'team_flag') final String? teamFlag,
+    @JsonKey(fromJson: _nullableInt) final int? played,
+    @JsonKey(fromJson: _nullableInt) final int? won,
+    @JsonKey(fromJson: _nullableInt) final int? drawn,
+    @JsonKey(fromJson: _nullableInt) final int? lost,
+    @JsonKey(name: 'goals_for', fromJson: _nullableInt) final int? goalsFor,
+    @JsonKey(name: 'goals_against', fromJson: _nullableInt)
+    final int? goalsAgainst,
+    @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
+    final int? goalDifference,
+    @JsonKey(fromJson: _nullableInt) final int? points,
+    @JsonKey(fromJson: _nullableInt) final int? rank,
+  }) = _$GroupStandingDtoImpl;
   const _GroupStandingDto._() : super._();
 
   factory _GroupStandingDto.fromJson(Map<String, dynamic> json) =

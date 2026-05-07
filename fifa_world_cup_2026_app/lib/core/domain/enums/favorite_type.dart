@@ -8,7 +8,11 @@ enum FavoriteType {
       'team' => FavoriteType.team,
       'match' || 'fixture' => FavoriteType.match,
       'news' => FavoriteType.news,
-      _ => throw ArgumentError.value(value, 'value', 'Unsupported favorite type'),
+      _ => throw ArgumentError.value(
+        value,
+        'value',
+        'Unsupported favorite type',
+      ),
     };
   }
 }

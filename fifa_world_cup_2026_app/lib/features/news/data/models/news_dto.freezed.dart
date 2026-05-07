@@ -12,7 +12,8 @@ part of 'news_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 NewsDto _$NewsDtoFromJson(Map<String, dynamic> json) {
   return _NewsDto.fromJson(json);
@@ -46,18 +47,19 @@ abstract class $NewsDtoCopyWith<$Res> {
   factory $NewsDtoCopyWith(NewsDto value, $Res Function(NewsDto) then) =
       _$NewsDtoCopyWithImpl<$Res, NewsDto>;
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      String? title,
-      String? description,
-      String? content,
-      @JsonKey(name: 'image_url') String? imageUrl,
-      @JsonKey(name: 'source_name') String? sourceName,
-      @JsonKey(name: 'source_url') String? sourceUrl,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'published_at')
-      DateTime? publishedAt,
-      String? url});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    String? title,
+    String? description,
+    String? content,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'source_name') String? sourceName,
+    @JsonKey(name: 'source_url') String? sourceUrl,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'published_at')
+    DateTime? publishedAt,
+    String? url,
+  });
 }
 
 /// @nodoc
@@ -83,66 +85,71 @@ class _$NewsDtoCopyWithImpl<$Res, $Val extends NewsDto>
     Object? publishedAt = freezed,
     Object? url = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sourceName: freezed == sourceName
-          ? _value.sourceName
-          : sourceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sourceUrl: freezed == sourceUrl
-          ? _value.sourceUrl
-          : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            title: freezed == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            description: freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            content: freezed == content
+                ? _value.content
+                : content // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            imageUrl: freezed == imageUrl
+                ? _value.imageUrl
+                : imageUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            sourceName: freezed == sourceName
+                ? _value.sourceName
+                : sourceName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            sourceUrl: freezed == sourceUrl
+                ? _value.sourceUrl
+                : sourceUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            publishedAt: freezed == publishedAt
+                ? _value.publishedAt
+                : publishedAt // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            url: freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NewsDtoImplCopyWith<$Res> implements $NewsDtoCopyWith<$Res> {
   factory _$$NewsDtoImplCopyWith(
-          _$NewsDtoImpl value, $Res Function(_$NewsDtoImpl) then) =
-      __$$NewsDtoImplCopyWithImpl<$Res>;
+    _$NewsDtoImpl value,
+    $Res Function(_$NewsDtoImpl) then,
+  ) = __$$NewsDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      String? title,
-      String? description,
-      String? content,
-      @JsonKey(name: 'image_url') String? imageUrl,
-      @JsonKey(name: 'source_name') String? sourceName,
-      @JsonKey(name: 'source_url') String? sourceUrl,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'published_at')
-      DateTime? publishedAt,
-      String? url});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    String? title,
+    String? description,
+    String? content,
+    @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'source_name') String? sourceName,
+    @JsonKey(name: 'source_url') String? sourceUrl,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'published_at')
+    DateTime? publishedAt,
+    String? url,
+  });
 }
 
 /// @nodoc
@@ -150,8 +157,9 @@ class __$$NewsDtoImplCopyWithImpl<$Res>
     extends _$NewsDtoCopyWithImpl<$Res, _$NewsDtoImpl>
     implements _$$NewsDtoImplCopyWith<$Res> {
   __$$NewsDtoImplCopyWithImpl(
-      _$NewsDtoImpl _value, $Res Function(_$NewsDtoImpl) _then)
-      : super(_value, _then);
+    _$NewsDtoImpl _value,
+    $Res Function(_$NewsDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -166,61 +174,63 @@ class __$$NewsDtoImplCopyWithImpl<$Res>
     Object? publishedAt = freezed,
     Object? url = freezed,
   }) {
-    return _then(_$NewsDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sourceName: freezed == sourceName
-          ? _value.sourceName
-          : sourceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      sourceUrl: freezed == sourceUrl
-          ? _value.sourceUrl
-          : sourceUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$NewsDtoImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        title: freezed == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        description: freezed == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        content: freezed == content
+            ? _value.content
+            : content // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        imageUrl: freezed == imageUrl
+            ? _value.imageUrl
+            : imageUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sourceName: freezed == sourceName
+            ? _value.sourceName
+            : sourceName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sourceUrl: freezed == sourceUrl
+            ? _value.sourceUrl
+            : sourceUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        publishedAt: freezed == publishedAt
+            ? _value.publishedAt
+            : publishedAt // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        url: freezed == url
+            ? _value.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$NewsDtoImpl extends _NewsDto {
-  const _$NewsDtoImpl(
-      {@JsonKey(fromJson: _nullableInt) this.id,
-      this.title,
-      this.description,
-      this.content,
-      @JsonKey(name: 'image_url') this.imageUrl,
-      @JsonKey(name: 'source_name') this.sourceName,
-      @JsonKey(name: 'source_url') this.sourceUrl,
-      @DateTimeJsonConverter() @JsonKey(name: 'published_at') this.publishedAt,
-      this.url})
-      : super._();
+  const _$NewsDtoImpl({
+    @JsonKey(fromJson: _nullableInt) this.id,
+    this.title,
+    this.description,
+    this.content,
+    @JsonKey(name: 'image_url') this.imageUrl,
+    @JsonKey(name: 'source_name') this.sourceName,
+    @JsonKey(name: 'source_url') this.sourceUrl,
+    @DateTimeJsonConverter() @JsonKey(name: 'published_at') this.publishedAt,
+    this.url,
+  }) : super._();
 
   factory _$NewsDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsDtoImplFromJson(json);
@@ -278,8 +288,18 @@ class _$NewsDtoImpl extends _NewsDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, content,
-      imageUrl, sourceName, sourceUrl, publishedAt, url);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    title,
+    description,
+    content,
+    imageUrl,
+    sourceName,
+    sourceUrl,
+    publishedAt,
+    url,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -289,25 +309,24 @@ class _$NewsDtoImpl extends _NewsDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NewsDtoImplToJson(
-      this,
-    );
+    return _$$NewsDtoImplToJson(this);
   }
 }
 
 abstract class _NewsDto extends NewsDto {
-  const factory _NewsDto(
-      {@JsonKey(fromJson: _nullableInt) final int? id,
-      final String? title,
-      final String? description,
-      final String? content,
-      @JsonKey(name: 'image_url') final String? imageUrl,
-      @JsonKey(name: 'source_name') final String? sourceName,
-      @JsonKey(name: 'source_url') final String? sourceUrl,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'published_at')
-      final DateTime? publishedAt,
-      final String? url}) = _$NewsDtoImpl;
+  const factory _NewsDto({
+    @JsonKey(fromJson: _nullableInt) final int? id,
+    final String? title,
+    final String? description,
+    final String? content,
+    @JsonKey(name: 'image_url') final String? imageUrl,
+    @JsonKey(name: 'source_name') final String? sourceName,
+    @JsonKey(name: 'source_url') final String? sourceUrl,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'published_at')
+    final DateTime? publishedAt,
+    final String? url,
+  }) = _$NewsDtoImpl;
   const _NewsDto._() : super._();
 
   factory _NewsDto.fromJson(Map<String, dynamic> json) = _$NewsDtoImpl.fromJson;

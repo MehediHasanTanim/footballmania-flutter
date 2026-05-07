@@ -26,5 +26,6 @@ class LiveMatch {
 
   bool get hasEvents => events.isNotEmpty;
   bool get isLive => status == MatchStatus.live;
-  String get displayScore => homeScore != null && awayScore != null ? '$homeScore - $awayScore' : 'vs';
+  String get displayScore =>
+      homeScore != null && awayScore != null ? '$homeScore - $awayScore' : 'vs';
 }

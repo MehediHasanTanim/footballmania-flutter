@@ -18,10 +18,26 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Code Generation
 
-Run this after changing Freezed DTOs, Json Serializable models, Hive models, or other generated Dart sources:
+Run this after changing Freezed DTOs, Json Serializable models, Hive models, Riverpod generated providers, or other generated Dart sources:
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
+```
+
+## Riverpod State Management
+
+Shared dependencies are centralized under `lib/shared/providers/`:
+
+- `service_providers.dart` exposes core infrastructure providers such as Dio, API service, cache, connectivity, logger, repositories, and use cases.
+- `repository_providers.dart` wires data sources to repository implementations.
+- `usecase_providers.dart` wires repositories to domain use cases.
+
+Feature providers live beside each feature presentation layer and expose `AsyncValue` for API-driven state. Widgets should watch providers and call notifier methods such as `refresh()` or `forceRefresh()` instead of constructing services or calling repositories directly.
+
+Useful provider test command:
+
+```bash
+flutter test test/features test/shared/state
 ```
 
 ## Backend API

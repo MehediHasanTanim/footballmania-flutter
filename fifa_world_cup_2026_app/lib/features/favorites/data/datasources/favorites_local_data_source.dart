@@ -24,16 +24,27 @@ class FavoritesLocalDataSource {
     );
   }
 
-  Future<void> removeFavorite({required FavoriteType type, required String referenceId}) async {
-    final existing = _cacheService.get<CachedFavorite>(HiveConstants.favoritesBox, _key(type, referenceId));
+  Future<void> removeFavorite({
+    required FavoriteType type,
+    required String referenceId,
+  }) async {
+    final existing = _cacheService.get<CachedFavorite>(
+      HiveConstants.favoritesBox,
+      _key(type, referenceId),
+    );
     if (existing != null) await existing.delete();
   }
 
   bool isFavorite({required FavoriteType type, required String referenceId}) {
-    return _cacheService.get<CachedFavorite>(HiveConstants.favoritesBox, _key(type, referenceId)) != null;
+    return _cacheService.get<CachedFavorite>(
+          HiveConstants.favoritesBox,
+          _key(type, referenceId),
+        ) !=
+        null;
   }
 
-  String _key(FavoriteType type, String referenceId) => '${type.name}:$referenceId';
+  String _key(FavoriteType type, String referenceId) =>
+      '${type.name}:$referenceId';
 
   FavoriteItem _toEntity(CachedFavorite favorite) {
     return FavoriteItem(

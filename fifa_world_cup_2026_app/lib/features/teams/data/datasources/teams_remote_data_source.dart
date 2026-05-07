@@ -8,7 +8,10 @@ class TeamsRemoteDataSource {
   final ApiService _apiService;
 
   Future<List<TeamDto>> getTeams() {
-    return _apiService.getList<TeamDto>(ApiConstants.teams, fromJson: TeamDto.fromJson);
+    return _apiService.getList<TeamDto>(
+      ApiConstants.teams,
+      fromJson: TeamDto.fromJson,
+    );
   }
 
   Future<TeamDto> getTeamById(int teamId) {

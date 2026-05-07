@@ -7,5 +7,6 @@ class AddFavorite {
 
   final FavoritesRepository _repository;
 
-  Future<Result<FavoriteItem>> call(FavoriteItem favorite) => _repository.addFavorite(favorite);
+  Future<Result<FavoriteItem>> call(FavoriteItem favorite) =>
+      _repository.addFavorite(favorite);
 }

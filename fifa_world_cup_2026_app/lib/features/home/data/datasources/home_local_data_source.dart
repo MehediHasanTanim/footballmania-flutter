@@ -10,7 +10,10 @@ class HomeLocalDataSource {
 
   final CacheService _cacheService;
 
-  Future<void> cacheHomeSummary(HomeSummaryDto summary, {Duration ttl = const Duration(minutes: 15)}) async {
+  Future<void> cacheHomeSummary(
+    HomeSummaryDto summary, {
+    Duration ttl = const Duration(minutes: 15),
+  }) async {
     await _cacheService.put<Map<String, dynamic>>(
       HiveConstants.homeBox,
       _summaryKey,
@@ -25,13 +28,19 @@ class HomeLocalDataSource {
 
   HomeSummaryDto? getHomeSummary() {
     if (_isExpired()) return null;
-    final cached = _cacheService.get<Object>(HiveConstants.homeBox, _summaryKey);
+    final cached = _cacheService.get<Object>(
+      HiveConstants.homeBox,
+      _summaryKey,
+    );
     if (cached is! Map) return null;
     return HomeSummaryDto.fromJson(Map<String, dynamic>.from(cached));
   }
 
   bool _isExpired() {
-    final expiresAt = _cacheService.get<String>(HiveConstants.homeBox, _expiresAtKey);
+    final expiresAt = _cacheService.get<String>(
+      HiveConstants.homeBox,
+      _expiresAtKey,
+    );
     if (expiresAt == null) return true;
     final parsed = DateTime.tryParse(expiresAt);
     return parsed == null || DateTime.now().toUtc().isAfter(parsed);

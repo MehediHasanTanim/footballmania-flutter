@@ -7,7 +7,10 @@ class IsFavorite {
 
   final FavoritesRepository _repository;
 
-  Future<Result<bool>> call({required FavoriteType type, required String referenceId}) {
+  Future<Result<bool>> call({
+    required FavoriteType type,
+    required String referenceId,
+  }) {
     return _repository.isFavorite(type: type, referenceId: referenceId);
   }
 }

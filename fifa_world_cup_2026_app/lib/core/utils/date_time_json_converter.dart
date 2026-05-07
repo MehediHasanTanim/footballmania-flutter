@@ -7,7 +7,9 @@ class DateTimeJsonConverter implements JsonConverter<DateTime?, Object?> {
   DateTime? fromJson(Object? json) {
     if (json == null) return null;
     if (json is DateTime) return json.toUtc();
-    if (json is int) return DateTime.fromMillisecondsSinceEpoch(json, isUtc: true);
+    if (json is int) {
+      return DateTime.fromMillisecondsSinceEpoch(json, isUtc: true);
+    }
     if (json is String && json.trim().isNotEmpty) {
       return DateTime.tryParse(json)?.toUtc();
     }

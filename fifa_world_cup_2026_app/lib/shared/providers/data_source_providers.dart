@@ -17,7 +17,9 @@ import '../../features/teams/data/datasources/teams_local_data_source.dart';
 import '../../features/teams/data/datasources/teams_remote_data_source.dart';
 import 'core_providers.dart';
 
-final cacheServiceProvider = Provider<CacheService>((ref) => const CacheService());
+final cacheServiceProvider = Provider<CacheService>(
+  (ref) => const CacheService(),
+);
 
 final apiServiceProvider = Provider<ApiService>((ref) {
   return ApiService(
@@ -26,19 +28,27 @@ final apiServiceProvider = Provider<ApiService>((ref) {
   );
 });
 
-final fixturesRemoteDataSourceProvider = Provider<FixturesRemoteDataSource>((ref) {
+final fixturesRemoteDataSourceProvider = Provider<FixturesRemoteDataSource>((
+  ref,
+) {
   return FixturesRemoteDataSource(ref.watch(apiServiceProvider));
 });
 
-final fixturesLocalDataSourceProvider = Provider<FixturesLocalDataSource>((ref) {
+final fixturesLocalDataSourceProvider = Provider<FixturesLocalDataSource>((
+  ref,
+) {
   return FixturesLocalDataSource(ref.watch(cacheServiceProvider));
 });
 
-final liveScoreRemoteDataSourceProvider = Provider<LiveScoreRemoteDataSource>((ref) {
+final liveScoreRemoteDataSourceProvider = Provider<LiveScoreRemoteDataSource>((
+  ref,
+) {
   return LiveScoreRemoteDataSource(ref.watch(apiServiceProvider));
 });
 
-final liveScoreLocalDataSourceProvider = Provider<LiveScoreLocalDataSource>((ref) {
+final liveScoreLocalDataSourceProvider = Provider<LiveScoreLocalDataSource>((
+  ref,
+) {
   return LiveScoreLocalDataSource(ref.watch(cacheServiceProvider));
 });
 
@@ -74,6 +84,8 @@ final homeLocalDataSourceProvider = Provider<HomeLocalDataSource>((ref) {
   return HomeLocalDataSource(ref.watch(cacheServiceProvider));
 });
 
-final favoritesLocalDataSourceProvider = Provider<FavoritesLocalDataSource>((ref) {
+final favoritesLocalDataSourceProvider = Provider<FavoritesLocalDataSource>((
+  ref,
+) {
   return FavoritesLocalDataSource(ref.watch(cacheServiceProvider));
 });

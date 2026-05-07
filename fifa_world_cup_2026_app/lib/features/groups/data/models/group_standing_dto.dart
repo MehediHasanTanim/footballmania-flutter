@@ -18,14 +18,16 @@ class GroupStandingDto with _$GroupStandingDto {
     @JsonKey(fromJson: _nullableInt) int? lost,
     @JsonKey(name: 'goals_for', fromJson: _nullableInt) int? goalsFor,
     @JsonKey(name: 'goals_against', fromJson: _nullableInt) int? goalsAgainst,
-    @JsonKey(name: 'goal_difference', fromJson: _nullableInt) int? goalDifference,
+    @JsonKey(name: 'goal_difference', fromJson: _nullableInt)
+    int? goalDifference,
     @JsonKey(fromJson: _nullableInt) int? points,
     @JsonKey(fromJson: _nullableInt) int? rank,
   }) = _GroupStandingDto;
 
   const GroupStandingDto._();
 
-  factory GroupStandingDto.fromJson(Map<String, dynamic> json) => _$GroupStandingDtoFromJson(_normalize(json));
+  factory GroupStandingDto.fromJson(Map<String, dynamic> json) =>
+      _$GroupStandingDtoFromJson(_normalize(json));
 
   GroupStanding toEntity() {
     return GroupStanding(

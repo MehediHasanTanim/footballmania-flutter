@@ -16,7 +16,8 @@ _$LiveMatchDtoImpl _$$LiveMatchDtoImplFromJson(Map<String, dynamic> json) =>
       awayScore: _nullableInt(json['away_score']),
       status: json['status'] as String?,
       elapsed: _nullableInt(json['elapsed']),
-      events: (json['events'] as List<dynamic>?)
+      events:
+          (json['events'] as List<dynamic>?)
               ?.map((e) => MatchEventDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <MatchEventDto>[],

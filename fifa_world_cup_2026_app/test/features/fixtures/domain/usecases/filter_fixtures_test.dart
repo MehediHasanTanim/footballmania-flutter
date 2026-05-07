@@ -7,13 +7,34 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   const useCase = FilterFixtures();
   final fixtures = [
-    _fixture(id: 1, homeTeamId: 10, group: 'A', status: MatchStatus.upcoming, date: DateTime.utc(2026, 6, 11)),
-    _fixture(id: 2, homeTeamId: 20, group: 'B', status: MatchStatus.live, date: DateTime.utc(2026, 6, 12)),
-    _fixture(id: 3, homeTeamId: 30, group: 'A', status: MatchStatus.completed, date: DateTime.utc(2026, 6, 13)),
+    _fixture(
+      id: 1,
+      homeTeamId: 10,
+      group: 'A',
+      status: MatchStatus.upcoming,
+      date: DateTime.utc(2026, 6, 11),
+    ),
+    _fixture(
+      id: 2,
+      homeTeamId: 20,
+      group: 'B',
+      status: MatchStatus.live,
+      date: DateTime.utc(2026, 6, 12),
+    ),
+    _fixture(
+      id: 3,
+      homeTeamId: 30,
+      group: 'A',
+      status: MatchStatus.completed,
+      date: DateTime.utc(2026, 6, 13),
+    ),
   ];
 
   test('filters fixtures by date', () {
-    final result = useCase(fixtures, FixtureFilter(date: DateTime.utc(2026, 6, 12)));
+    final result = useCase(
+      fixtures,
+      FixtureFilter(date: DateTime.utc(2026, 6, 12)),
+    );
 
     expect(result.map((fixture) => fixture.id), [2]);
   });
@@ -31,19 +52,31 @@ void main() {
   });
 
   test('filters fixtures by status', () {
-    final result = useCase(fixtures, const FixtureFilter(status: MatchStatus.live));
+    final result = useCase(
+      fixtures,
+      const FixtureFilter(status: MatchStatus.live),
+    );
 
     expect(result.map((fixture) => fixture.id), [2]);
   });
 
   test('supports combined filters', () {
-    final result = useCase(fixtures, const FixtureFilter(group: 'A', status: MatchStatus.completed));
+    final result = useCase(
+      fixtures,
+      const FixtureFilter(group: 'A', status: MatchStatus.completed),
+    );
 
     expect(result.map((fixture) => fixture.id), [3]);
   });
 }
 
-Fixture _fixture({required int id, required int homeTeamId, required String group, required MatchStatus status, required DateTime date}) {
+Fixture _fixture({
+  required int id,
+  required int homeTeamId,
+  required String group,
+  required MatchStatus status,
+  required DateTime date,
+}) {
   return Fixture(
     id: id,
     homeTeamId: homeTeamId,

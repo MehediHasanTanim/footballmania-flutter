@@ -8,13 +8,15 @@ class FilterFixtures {
   List<Fixture> call(List<Fixture> fixtures, FixtureFilter filter) {
     if (filter.isEmpty) return List.unmodifiable(fixtures);
 
-    return fixtures.where((fixture) {
-      return _matchesDate(fixture, filter) &&
-          _matchesTeam(fixture, filter.teamId) &&
-          _matchesText(fixture.group, filter.group) &&
-          _matchesText(fixture.stage, filter.stage) &&
-          _matchesStatus(fixture.status, filter.status);
-    }).toList(growable: false);
+    return fixtures
+        .where((fixture) {
+          return _matchesDate(fixture, filter) &&
+              _matchesTeam(fixture, filter.teamId) &&
+              _matchesText(fixture.group, filter.group) &&
+              _matchesText(fixture.stage, filter.stage) &&
+              _matchesStatus(fixture.status, filter.status);
+        })
+        .toList(growable: false);
   }
 
   bool _matchesDate(Fixture fixture, FixtureFilter filter) {
@@ -24,17 +26,23 @@ class FilterFixtures {
     if (date != null) {
       final utc = kickoff.toUtc();
       final target = date.toUtc();
-      if (utc.year != target.year || utc.month != target.month || utc.day != target.day) return false;
+      if (utc.year != target.year ||
+          utc.month != target.month ||
+          utc.day != target.day) {
+        return false;
+      }
     }
     return filter.dateRange?.contains(kickoff) ?? true;
   }
 
-  bool _matchesTeam(Fixture fixture, int? teamId) => teamId == null || fixture.involvesTeam(teamId);
+  bool _matchesTeam(Fixture fixture, int? teamId) =>
+      teamId == null || fixture.involvesTeam(teamId);
 
   bool _matchesText(String? value, String? expected) {
     if (expected == null || expected.trim().isEmpty) return true;
     return value?.toLowerCase() == expected.toLowerCase();
   }
 
-  bool _matchesStatus(MatchStatus status, MatchStatus? expected) => expected == null || status == expected;
+  bool _matchesStatus(MatchStatus status, MatchStatus? expected) =>
+      expected == null || status == expected;
 }

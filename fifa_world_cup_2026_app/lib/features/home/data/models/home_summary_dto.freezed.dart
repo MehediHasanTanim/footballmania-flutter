@@ -12,7 +12,8 @@ part of 'home_summary_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 HomeSummaryDto _$HomeSummaryDtoFromJson(Map<String, dynamic> json) {
   return _HomeSummaryDto.fromJson(json);
@@ -42,18 +43,19 @@ mixin _$HomeSummaryDto {
 /// @nodoc
 abstract class $HomeSummaryDtoCopyWith<$Res> {
   factory $HomeSummaryDtoCopyWith(
-          HomeSummaryDto value, $Res Function(HomeSummaryDto) then) =
-      _$HomeSummaryDtoCopyWithImpl<$Res, HomeSummaryDto>;
+    HomeSummaryDto value,
+    $Res Function(HomeSummaryDto) then,
+  ) = _$HomeSummaryDtoCopyWithImpl<$Res, HomeSummaryDto>;
   @useResult
-  $Res call(
-      {@DateTimeJsonConverter()
-      @JsonKey(name: 'countdown_target_date')
-      DateTime? countdownTargetDate,
-      @JsonKey(name: 'next_match') FixtureDto? nextMatch,
-      @JsonKey(name: 'live_matches') List<LiveMatchDto> liveMatches,
-      @JsonKey(name: 'latest_news') List<NewsDto> latestNews,
-      @JsonKey(name: 'group_highlights')
-      List<GroupStandingDto> groupHighlights});
+  $Res call({
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'countdown_target_date')
+    DateTime? countdownTargetDate,
+    @JsonKey(name: 'next_match') FixtureDto? nextMatch,
+    @JsonKey(name: 'live_matches') List<LiveMatchDto> liveMatches,
+    @JsonKey(name: 'latest_news') List<NewsDto> latestNews,
+    @JsonKey(name: 'group_highlights') List<GroupStandingDto> groupHighlights,
+  });
 
   $FixtureDtoCopyWith<$Res>? get nextMatch;
 }
@@ -77,28 +79,31 @@ class _$HomeSummaryDtoCopyWithImpl<$Res, $Val extends HomeSummaryDto>
     Object? latestNews = null,
     Object? groupHighlights = null,
   }) {
-    return _then(_value.copyWith(
-      countdownTargetDate: freezed == countdownTargetDate
-          ? _value.countdownTargetDate
-          : countdownTargetDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      nextMatch: freezed == nextMatch
-          ? _value.nextMatch
-          : nextMatch // ignore: cast_nullable_to_non_nullable
-              as FixtureDto?,
-      liveMatches: null == liveMatches
-          ? _value.liveMatches
-          : liveMatches // ignore: cast_nullable_to_non_nullable
-              as List<LiveMatchDto>,
-      latestNews: null == latestNews
-          ? _value.latestNews
-          : latestNews // ignore: cast_nullable_to_non_nullable
-              as List<NewsDto>,
-      groupHighlights: null == groupHighlights
-          ? _value.groupHighlights
-          : groupHighlights // ignore: cast_nullable_to_non_nullable
-              as List<GroupStandingDto>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            countdownTargetDate: freezed == countdownTargetDate
+                ? _value.countdownTargetDate
+                : countdownTargetDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            nextMatch: freezed == nextMatch
+                ? _value.nextMatch
+                : nextMatch // ignore: cast_nullable_to_non_nullable
+                      as FixtureDto?,
+            liveMatches: null == liveMatches
+                ? _value.liveMatches
+                : liveMatches // ignore: cast_nullable_to_non_nullable
+                      as List<LiveMatchDto>,
+            latestNews: null == latestNews
+                ? _value.latestNews
+                : latestNews // ignore: cast_nullable_to_non_nullable
+                      as List<NewsDto>,
+            groupHighlights: null == groupHighlights
+                ? _value.groupHighlights
+                : groupHighlights // ignore: cast_nullable_to_non_nullable
+                      as List<GroupStandingDto>,
+          )
+          as $Val,
+    );
   }
 
   @override
@@ -117,20 +122,21 @@ class _$HomeSummaryDtoCopyWithImpl<$Res, $Val extends HomeSummaryDto>
 /// @nodoc
 abstract class _$$HomeSummaryDtoImplCopyWith<$Res>
     implements $HomeSummaryDtoCopyWith<$Res> {
-  factory _$$HomeSummaryDtoImplCopyWith(_$HomeSummaryDtoImpl value,
-          $Res Function(_$HomeSummaryDtoImpl) then) =
-      __$$HomeSummaryDtoImplCopyWithImpl<$Res>;
+  factory _$$HomeSummaryDtoImplCopyWith(
+    _$HomeSummaryDtoImpl value,
+    $Res Function(_$HomeSummaryDtoImpl) then,
+  ) = __$$HomeSummaryDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@DateTimeJsonConverter()
-      @JsonKey(name: 'countdown_target_date')
-      DateTime? countdownTargetDate,
-      @JsonKey(name: 'next_match') FixtureDto? nextMatch,
-      @JsonKey(name: 'live_matches') List<LiveMatchDto> liveMatches,
-      @JsonKey(name: 'latest_news') List<NewsDto> latestNews,
-      @JsonKey(name: 'group_highlights')
-      List<GroupStandingDto> groupHighlights});
+  $Res call({
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'countdown_target_date')
+    DateTime? countdownTargetDate,
+    @JsonKey(name: 'next_match') FixtureDto? nextMatch,
+    @JsonKey(name: 'live_matches') List<LiveMatchDto> liveMatches,
+    @JsonKey(name: 'latest_news') List<NewsDto> latestNews,
+    @JsonKey(name: 'group_highlights') List<GroupStandingDto> groupHighlights,
+  });
 
   @override
   $FixtureDtoCopyWith<$Res>? get nextMatch;
@@ -141,8 +147,9 @@ class __$$HomeSummaryDtoImplCopyWithImpl<$Res>
     extends _$HomeSummaryDtoCopyWithImpl<$Res, _$HomeSummaryDtoImpl>
     implements _$$HomeSummaryDtoImplCopyWith<$Res> {
   __$$HomeSummaryDtoImplCopyWithImpl(
-      _$HomeSummaryDtoImpl _value, $Res Function(_$HomeSummaryDtoImpl) _then)
-      : super(_value, _then);
+    _$HomeSummaryDtoImpl _value,
+    $Res Function(_$HomeSummaryDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -153,50 +160,51 @@ class __$$HomeSummaryDtoImplCopyWithImpl<$Res>
     Object? latestNews = null,
     Object? groupHighlights = null,
   }) {
-    return _then(_$HomeSummaryDtoImpl(
-      countdownTargetDate: freezed == countdownTargetDate
-          ? _value.countdownTargetDate
-          : countdownTargetDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      nextMatch: freezed == nextMatch
-          ? _value.nextMatch
-          : nextMatch // ignore: cast_nullable_to_non_nullable
-              as FixtureDto?,
-      liveMatches: null == liveMatches
-          ? _value._liveMatches
-          : liveMatches // ignore: cast_nullable_to_non_nullable
-              as List<LiveMatchDto>,
-      latestNews: null == latestNews
-          ? _value._latestNews
-          : latestNews // ignore: cast_nullable_to_non_nullable
-              as List<NewsDto>,
-      groupHighlights: null == groupHighlights
-          ? _value._groupHighlights
-          : groupHighlights // ignore: cast_nullable_to_non_nullable
-              as List<GroupStandingDto>,
-    ));
+    return _then(
+      _$HomeSummaryDtoImpl(
+        countdownTargetDate: freezed == countdownTargetDate
+            ? _value.countdownTargetDate
+            : countdownTargetDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        nextMatch: freezed == nextMatch
+            ? _value.nextMatch
+            : nextMatch // ignore: cast_nullable_to_non_nullable
+                  as FixtureDto?,
+        liveMatches: null == liveMatches
+            ? _value._liveMatches
+            : liveMatches // ignore: cast_nullable_to_non_nullable
+                  as List<LiveMatchDto>,
+        latestNews: null == latestNews
+            ? _value._latestNews
+            : latestNews // ignore: cast_nullable_to_non_nullable
+                  as List<NewsDto>,
+        groupHighlights: null == groupHighlights
+            ? _value._groupHighlights
+            : groupHighlights // ignore: cast_nullable_to_non_nullable
+                  as List<GroupStandingDto>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$HomeSummaryDtoImpl extends _HomeSummaryDto {
-  const _$HomeSummaryDtoImpl(
-      {@DateTimeJsonConverter()
-      @JsonKey(name: 'countdown_target_date')
-      this.countdownTargetDate,
-      @JsonKey(name: 'next_match') this.nextMatch,
-      @JsonKey(name: 'live_matches')
-      final List<LiveMatchDto> liveMatches = const <LiveMatchDto>[],
-      @JsonKey(name: 'latest_news')
-      final List<NewsDto> latestNews = const <NewsDto>[],
-      @JsonKey(name: 'group_highlights')
-      final List<GroupStandingDto> groupHighlights =
-          const <GroupStandingDto>[]})
-      : _liveMatches = liveMatches,
-        _latestNews = latestNews,
-        _groupHighlights = groupHighlights,
-        super._();
+  const _$HomeSummaryDtoImpl({
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'countdown_target_date')
+    this.countdownTargetDate,
+    @JsonKey(name: 'next_match') this.nextMatch,
+    @JsonKey(name: 'live_matches')
+    final List<LiveMatchDto> liveMatches = const <LiveMatchDto>[],
+    @JsonKey(name: 'latest_news')
+    final List<NewsDto> latestNews = const <NewsDto>[],
+    @JsonKey(name: 'group_highlights')
+    final List<GroupStandingDto> groupHighlights = const <GroupStandingDto>[],
+  }) : _liveMatches = liveMatches,
+       _latestNews = latestNews,
+       _groupHighlights = groupHighlights,
+       super._();
 
   factory _$HomeSummaryDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeSummaryDtoImplFromJson(json);
@@ -249,49 +257,57 @@ class _$HomeSummaryDtoImpl extends _HomeSummaryDto {
                 other.countdownTargetDate == countdownTargetDate) &&
             (identical(other.nextMatch, nextMatch) ||
                 other.nextMatch == nextMatch) &&
-            const DeepCollectionEquality()
-                .equals(other._liveMatches, _liveMatches) &&
-            const DeepCollectionEquality()
-                .equals(other._latestNews, _latestNews) &&
-            const DeepCollectionEquality()
-                .equals(other._groupHighlights, _groupHighlights));
+            const DeepCollectionEquality().equals(
+              other._liveMatches,
+              _liveMatches,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._latestNews,
+              _latestNews,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._groupHighlights,
+              _groupHighlights,
+            ));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      countdownTargetDate,
-      nextMatch,
-      const DeepCollectionEquality().hash(_liveMatches),
-      const DeepCollectionEquality().hash(_latestNews),
-      const DeepCollectionEquality().hash(_groupHighlights));
+    runtimeType,
+    countdownTargetDate,
+    nextMatch,
+    const DeepCollectionEquality().hash(_liveMatches),
+    const DeepCollectionEquality().hash(_latestNews),
+    const DeepCollectionEquality().hash(_groupHighlights),
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$HomeSummaryDtoImplCopyWith<_$HomeSummaryDtoImpl> get copyWith =>
       __$$HomeSummaryDtoImplCopyWithImpl<_$HomeSummaryDtoImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HomeSummaryDtoImplToJson(
-      this,
-    );
+    return _$$HomeSummaryDtoImplToJson(this);
   }
 }
 
 abstract class _HomeSummaryDto extends HomeSummaryDto {
-  const factory _HomeSummaryDto(
-      {@DateTimeJsonConverter()
-      @JsonKey(name: 'countdown_target_date')
-      final DateTime? countdownTargetDate,
-      @JsonKey(name: 'next_match') final FixtureDto? nextMatch,
-      @JsonKey(name: 'live_matches') final List<LiveMatchDto> liveMatches,
-      @JsonKey(name: 'latest_news') final List<NewsDto> latestNews,
-      @JsonKey(name: 'group_highlights')
-      final List<GroupStandingDto> groupHighlights}) = _$HomeSummaryDtoImpl;
+  const factory _HomeSummaryDto({
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'countdown_target_date')
+    final DateTime? countdownTargetDate,
+    @JsonKey(name: 'next_match') final FixtureDto? nextMatch,
+    @JsonKey(name: 'live_matches') final List<LiveMatchDto> liveMatches,
+    @JsonKey(name: 'latest_news') final List<NewsDto> latestNews,
+    @JsonKey(name: 'group_highlights')
+    final List<GroupStandingDto> groupHighlights,
+  }) = _$HomeSummaryDtoImpl;
   const _HomeSummaryDto._() : super._();
 
   factory _HomeSummaryDto.fromJson(Map<String, dynamic> json) =

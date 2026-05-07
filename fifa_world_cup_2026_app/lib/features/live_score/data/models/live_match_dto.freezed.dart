@@ -12,7 +12,8 @@ part of 'live_match_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 LiveMatchDto _$LiveMatchDtoFromJson(Map<String, dynamic> json) {
   return _LiveMatchDto.fromJson(json);
@@ -46,19 +47,21 @@ mixin _$LiveMatchDto {
 /// @nodoc
 abstract class $LiveMatchDtoCopyWith<$Res> {
   factory $LiveMatchDtoCopyWith(
-          LiveMatchDto value, $Res Function(LiveMatchDto) then) =
-      _$LiveMatchDtoCopyWithImpl<$Res, LiveMatchDto>;
+    LiveMatchDto value,
+    $Res Function(LiveMatchDto) then,
+  ) = _$LiveMatchDtoCopyWithImpl<$Res, LiveMatchDto>;
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
-      @JsonKey(name: 'home_team_name') String? homeTeamName,
-      @JsonKey(name: 'away_team_name') String? awayTeamName,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
-      String? status,
-      @JsonKey(fromJson: _nullableInt) int? elapsed,
-      List<MatchEventDto> events});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
+    @JsonKey(name: 'home_team_name') String? homeTeamName,
+    @JsonKey(name: 'away_team_name') String? awayTeamName,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
+    String? status,
+    @JsonKey(fromJson: _nullableInt) int? elapsed,
+    List<MatchEventDto> events,
+  });
 }
 
 /// @nodoc
@@ -84,44 +87,47 @@ class _$LiveMatchDtoCopyWithImpl<$Res, $Val extends LiveMatchDto>
     Object? elapsed = freezed,
     Object? events = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fixtureId: freezed == fixtureId
-          ? _value.fixtureId
-          : fixtureId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamName: freezed == homeTeamName
-          ? _value.homeTeamName
-          : homeTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamName: freezed == awayTeamName
-          ? _value.awayTeamName
-          : awayTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeScore: freezed == homeScore
-          ? _value.homeScore
-          : homeScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayScore: freezed == awayScore
-          ? _value.awayScore
-          : awayScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      elapsed: freezed == elapsed
-          ? _value.elapsed
-          : elapsed // ignore: cast_nullable_to_non_nullable
-              as int?,
-      events: null == events
-          ? _value.events
-          : events // ignore: cast_nullable_to_non_nullable
-              as List<MatchEventDto>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            fixtureId: freezed == fixtureId
+                ? _value.fixtureId
+                : fixtureId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            homeTeamName: freezed == homeTeamName
+                ? _value.homeTeamName
+                : homeTeamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            awayTeamName: freezed == awayTeamName
+                ? _value.awayTeamName
+                : awayTeamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            homeScore: freezed == homeScore
+                ? _value.homeScore
+                : homeScore // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            awayScore: freezed == awayScore
+                ? _value.awayScore
+                : awayScore // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            elapsed: freezed == elapsed
+                ? _value.elapsed
+                : elapsed // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            events: null == events
+                ? _value.events
+                : events // ignore: cast_nullable_to_non_nullable
+                      as List<MatchEventDto>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -129,20 +135,22 @@ class _$LiveMatchDtoCopyWithImpl<$Res, $Val extends LiveMatchDto>
 abstract class _$$LiveMatchDtoImplCopyWith<$Res>
     implements $LiveMatchDtoCopyWith<$Res> {
   factory _$$LiveMatchDtoImplCopyWith(
-          _$LiveMatchDtoImpl value, $Res Function(_$LiveMatchDtoImpl) then) =
-      __$$LiveMatchDtoImplCopyWithImpl<$Res>;
+    _$LiveMatchDtoImpl value,
+    $Res Function(_$LiveMatchDtoImpl) then,
+  ) = __$$LiveMatchDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
-      @JsonKey(name: 'home_team_name') String? homeTeamName,
-      @JsonKey(name: 'away_team_name') String? awayTeamName,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
-      String? status,
-      @JsonKey(fromJson: _nullableInt) int? elapsed,
-      List<MatchEventDto> events});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
+    @JsonKey(name: 'home_team_name') String? homeTeamName,
+    @JsonKey(name: 'away_team_name') String? awayTeamName,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
+    String? status,
+    @JsonKey(fromJson: _nullableInt) int? elapsed,
+    List<MatchEventDto> events,
+  });
 }
 
 /// @nodoc
@@ -150,8 +158,9 @@ class __$$LiveMatchDtoImplCopyWithImpl<$Res>
     extends _$LiveMatchDtoCopyWithImpl<$Res, _$LiveMatchDtoImpl>
     implements _$$LiveMatchDtoImplCopyWith<$Res> {
   __$$LiveMatchDtoImplCopyWithImpl(
-      _$LiveMatchDtoImpl _value, $Res Function(_$LiveMatchDtoImpl) _then)
-      : super(_value, _then);
+    _$LiveMatchDtoImpl _value,
+    $Res Function(_$LiveMatchDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -166,62 +175,64 @@ class __$$LiveMatchDtoImplCopyWithImpl<$Res>
     Object? elapsed = freezed,
     Object? events = null,
   }) {
-    return _then(_$LiveMatchDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fixtureId: freezed == fixtureId
-          ? _value.fixtureId
-          : fixtureId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamName: freezed == homeTeamName
-          ? _value.homeTeamName
-          : homeTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamName: freezed == awayTeamName
-          ? _value.awayTeamName
-          : awayTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeScore: freezed == homeScore
-          ? _value.homeScore
-          : homeScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayScore: freezed == awayScore
-          ? _value.awayScore
-          : awayScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      elapsed: freezed == elapsed
-          ? _value.elapsed
-          : elapsed // ignore: cast_nullable_to_non_nullable
-              as int?,
-      events: null == events
-          ? _value._events
-          : events // ignore: cast_nullable_to_non_nullable
-              as List<MatchEventDto>,
-    ));
+    return _then(
+      _$LiveMatchDtoImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        fixtureId: freezed == fixtureId
+            ? _value.fixtureId
+            : fixtureId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        homeTeamName: freezed == homeTeamName
+            ? _value.homeTeamName
+            : homeTeamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        awayTeamName: freezed == awayTeamName
+            ? _value.awayTeamName
+            : awayTeamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        homeScore: freezed == homeScore
+            ? _value.homeScore
+            : homeScore // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        awayScore: freezed == awayScore
+            ? _value.awayScore
+            : awayScore // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        elapsed: freezed == elapsed
+            ? _value.elapsed
+            : elapsed // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        events: null == events
+            ? _value._events
+            : events // ignore: cast_nullable_to_non_nullable
+                  as List<MatchEventDto>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$LiveMatchDtoImpl extends _LiveMatchDto {
-  const _$LiveMatchDtoImpl(
-      {@JsonKey(fromJson: _nullableInt) this.id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) this.fixtureId,
-      @JsonKey(name: 'home_team_name') this.homeTeamName,
-      @JsonKey(name: 'away_team_name') this.awayTeamName,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) this.homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) this.awayScore,
-      this.status,
-      @JsonKey(fromJson: _nullableInt) this.elapsed,
-      final List<MatchEventDto> events = const <MatchEventDto>[]})
-      : _events = events,
-        super._();
+  const _$LiveMatchDtoImpl({
+    @JsonKey(fromJson: _nullableInt) this.id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) this.fixtureId,
+    @JsonKey(name: 'home_team_name') this.homeTeamName,
+    @JsonKey(name: 'away_team_name') this.awayTeamName,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) this.homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) this.awayScore,
+    this.status,
+    @JsonKey(fromJson: _nullableInt) this.elapsed,
+    final List<MatchEventDto> events = const <MatchEventDto>[],
+  }) : _events = events,
+       super._();
 
   factory _$LiveMatchDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$LiveMatchDtoImplFromJson(json);
@@ -287,16 +298,17 @@ class _$LiveMatchDtoImpl extends _LiveMatchDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      fixtureId,
-      homeTeamName,
-      awayTeamName,
-      homeScore,
-      awayScore,
-      status,
-      elapsed,
-      const DeepCollectionEquality().hash(_events));
+    runtimeType,
+    id,
+    fixtureId,
+    homeTeamName,
+    awayTeamName,
+    homeScore,
+    awayScore,
+    status,
+    elapsed,
+    const DeepCollectionEquality().hash(_events),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -306,23 +318,22 @@ class _$LiveMatchDtoImpl extends _LiveMatchDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LiveMatchDtoImplToJson(
-      this,
-    );
+    return _$$LiveMatchDtoImplToJson(this);
   }
 }
 
 abstract class _LiveMatchDto extends LiveMatchDto {
-  const factory _LiveMatchDto(
-      {@JsonKey(fromJson: _nullableInt) final int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) final int? fixtureId,
-      @JsonKey(name: 'home_team_name') final String? homeTeamName,
-      @JsonKey(name: 'away_team_name') final String? awayTeamName,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) final int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) final int? awayScore,
-      final String? status,
-      @JsonKey(fromJson: _nullableInt) final int? elapsed,
-      final List<MatchEventDto> events}) = _$LiveMatchDtoImpl;
+  const factory _LiveMatchDto({
+    @JsonKey(fromJson: _nullableInt) final int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) final int? fixtureId,
+    @JsonKey(name: 'home_team_name') final String? homeTeamName,
+    @JsonKey(name: 'away_team_name') final String? awayTeamName,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) final int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) final int? awayScore,
+    final String? status,
+    @JsonKey(fromJson: _nullableInt) final int? elapsed,
+    final List<MatchEventDto> events,
+  }) = _$LiveMatchDtoImpl;
   const _LiveMatchDto._() : super._();
 
   factory _LiveMatchDto.fromJson(Map<String, dynamic> json) =

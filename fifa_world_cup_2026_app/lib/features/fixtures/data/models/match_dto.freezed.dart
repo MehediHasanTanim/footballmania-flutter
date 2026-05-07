@@ -12,7 +12,8 @@ part of 'match_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 MatchDto _$MatchDtoFromJson(Map<String, dynamic> json) {
   return _MatchDto.fromJson(json);
@@ -47,18 +48,19 @@ abstract class $MatchDtoCopyWith<$Res> {
   factory $MatchDtoCopyWith(MatchDto value, $Res Function(MatchDto) then) =
       _$MatchDtoCopyWithImpl<$Res, MatchDto>;
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
-      @JsonKey(name: 'home_team') String? homeTeam,
-      @JsonKey(name: 'away_team') String? awayTeam,
-      String? score,
-      String? status,
-      String? venue,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'kickoff_time_utc')
-      DateTime? kickoffTimeUtc,
-      List<MatchEventDto> events});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
+    @JsonKey(name: 'home_team') String? homeTeam,
+    @JsonKey(name: 'away_team') String? awayTeam,
+    String? score,
+    String? status,
+    String? venue,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'kickoff_time_utc')
+    DateTime? kickoffTimeUtc,
+    List<MatchEventDto> events,
+  });
 }
 
 /// @nodoc
@@ -84,44 +86,47 @@ class _$MatchDtoCopyWithImpl<$Res, $Val extends MatchDto>
     Object? kickoffTimeUtc = freezed,
     Object? events = null,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fixtureId: freezed == fixtureId
-          ? _value.fixtureId
-          : fixtureId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeam: freezed == homeTeam
-          ? _value.homeTeam
-          : homeTeam // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeam: freezed == awayTeam
-          ? _value.awayTeam
-          : awayTeam // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      venue: freezed == venue
-          ? _value.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      kickoffTimeUtc: freezed == kickoffTimeUtc
-          ? _value.kickoffTimeUtc
-          : kickoffTimeUtc // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      events: null == events
-          ? _value.events
-          : events // ignore: cast_nullable_to_non_nullable
-              as List<MatchEventDto>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            fixtureId: freezed == fixtureId
+                ? _value.fixtureId
+                : fixtureId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            homeTeam: freezed == homeTeam
+                ? _value.homeTeam
+                : homeTeam // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            awayTeam: freezed == awayTeam
+                ? _value.awayTeam
+                : awayTeam // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            score: freezed == score
+                ? _value.score
+                : score // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            venue: freezed == venue
+                ? _value.venue
+                : venue // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            kickoffTimeUtc: freezed == kickoffTimeUtc
+                ? _value.kickoffTimeUtc
+                : kickoffTimeUtc // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            events: null == events
+                ? _value.events
+                : events // ignore: cast_nullable_to_non_nullable
+                      as List<MatchEventDto>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -129,22 +134,24 @@ class _$MatchDtoCopyWithImpl<$Res, $Val extends MatchDto>
 abstract class _$$MatchDtoImplCopyWith<$Res>
     implements $MatchDtoCopyWith<$Res> {
   factory _$$MatchDtoImplCopyWith(
-          _$MatchDtoImpl value, $Res Function(_$MatchDtoImpl) then) =
-      __$$MatchDtoImplCopyWithImpl<$Res>;
+    _$MatchDtoImpl value,
+    $Res Function(_$MatchDtoImpl) then,
+  ) = __$$MatchDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
-      @JsonKey(name: 'home_team') String? homeTeam,
-      @JsonKey(name: 'away_team') String? awayTeam,
-      String? score,
-      String? status,
-      String? venue,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'kickoff_time_utc')
-      DateTime? kickoffTimeUtc,
-      List<MatchEventDto> events});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) int? fixtureId,
+    @JsonKey(name: 'home_team') String? homeTeam,
+    @JsonKey(name: 'away_team') String? awayTeam,
+    String? score,
+    String? status,
+    String? venue,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'kickoff_time_utc')
+    DateTime? kickoffTimeUtc,
+    List<MatchEventDto> events,
+  });
 }
 
 /// @nodoc
@@ -152,8 +159,9 @@ class __$$MatchDtoImplCopyWithImpl<$Res>
     extends _$MatchDtoCopyWithImpl<$Res, _$MatchDtoImpl>
     implements _$$MatchDtoImplCopyWith<$Res> {
   __$$MatchDtoImplCopyWithImpl(
-      _$MatchDtoImpl _value, $Res Function(_$MatchDtoImpl) _then)
-      : super(_value, _then);
+    _$MatchDtoImpl _value,
+    $Res Function(_$MatchDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -168,64 +176,66 @@ class __$$MatchDtoImplCopyWithImpl<$Res>
     Object? kickoffTimeUtc = freezed,
     Object? events = null,
   }) {
-    return _then(_$MatchDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      fixtureId: freezed == fixtureId
-          ? _value.fixtureId
-          : fixtureId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeam: freezed == homeTeam
-          ? _value.homeTeam
-          : homeTeam // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeam: freezed == awayTeam
-          ? _value.awayTeam
-          : awayTeam // ignore: cast_nullable_to_non_nullable
-              as String?,
-      score: freezed == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      venue: freezed == venue
-          ? _value.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      kickoffTimeUtc: freezed == kickoffTimeUtc
-          ? _value.kickoffTimeUtc
-          : kickoffTimeUtc // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      events: null == events
-          ? _value._events
-          : events // ignore: cast_nullable_to_non_nullable
-              as List<MatchEventDto>,
-    ));
+    return _then(
+      _$MatchDtoImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        fixtureId: freezed == fixtureId
+            ? _value.fixtureId
+            : fixtureId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        homeTeam: freezed == homeTeam
+            ? _value.homeTeam
+            : homeTeam // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        awayTeam: freezed == awayTeam
+            ? _value.awayTeam
+            : awayTeam // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        score: freezed == score
+            ? _value.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        venue: freezed == venue
+            ? _value.venue
+            : venue // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        kickoffTimeUtc: freezed == kickoffTimeUtc
+            ? _value.kickoffTimeUtc
+            : kickoffTimeUtc // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        events: null == events
+            ? _value._events
+            : events // ignore: cast_nullable_to_non_nullable
+                  as List<MatchEventDto>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$MatchDtoImpl extends _MatchDto {
-  const _$MatchDtoImpl(
-      {@JsonKey(fromJson: _nullableInt) this.id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) this.fixtureId,
-      @JsonKey(name: 'home_team') this.homeTeam,
-      @JsonKey(name: 'away_team') this.awayTeam,
-      this.score,
-      this.status,
-      this.venue,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'kickoff_time_utc')
-      this.kickoffTimeUtc,
-      final List<MatchEventDto> events = const <MatchEventDto>[]})
-      : _events = events,
-        super._();
+  const _$MatchDtoImpl({
+    @JsonKey(fromJson: _nullableInt) this.id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) this.fixtureId,
+    @JsonKey(name: 'home_team') this.homeTeam,
+    @JsonKey(name: 'away_team') this.awayTeam,
+    this.score,
+    this.status,
+    this.venue,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'kickoff_time_utc')
+    this.kickoffTimeUtc,
+    final List<MatchEventDto> events = const <MatchEventDto>[],
+  }) : _events = events,
+       super._();
 
   factory _$MatchDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchDtoImplFromJson(json);
@@ -289,16 +299,17 @@ class _$MatchDtoImpl extends _MatchDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      fixtureId,
-      homeTeam,
-      awayTeam,
-      score,
-      status,
-      venue,
-      kickoffTimeUtc,
-      const DeepCollectionEquality().hash(_events));
+    runtimeType,
+    id,
+    fixtureId,
+    homeTeam,
+    awayTeam,
+    score,
+    status,
+    venue,
+    kickoffTimeUtc,
+    const DeepCollectionEquality().hash(_events),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -308,25 +319,24 @@ class _$MatchDtoImpl extends _MatchDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MatchDtoImplToJson(
-      this,
-    );
+    return _$$MatchDtoImplToJson(this);
   }
 }
 
 abstract class _MatchDto extends MatchDto {
-  const factory _MatchDto(
-      {@JsonKey(fromJson: _nullableInt) final int? id,
-      @JsonKey(name: 'fixture_id', fromJson: _nullableInt) final int? fixtureId,
-      @JsonKey(name: 'home_team') final String? homeTeam,
-      @JsonKey(name: 'away_team') final String? awayTeam,
-      final String? score,
-      final String? status,
-      final String? venue,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'kickoff_time_utc')
-      final DateTime? kickoffTimeUtc,
-      final List<MatchEventDto> events}) = _$MatchDtoImpl;
+  const factory _MatchDto({
+    @JsonKey(fromJson: _nullableInt) final int? id,
+    @JsonKey(name: 'fixture_id', fromJson: _nullableInt) final int? fixtureId,
+    @JsonKey(name: 'home_team') final String? homeTeam,
+    @JsonKey(name: 'away_team') final String? awayTeam,
+    final String? score,
+    final String? status,
+    final String? venue,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'kickoff_time_utc')
+    final DateTime? kickoffTimeUtc,
+    final List<MatchEventDto> events,
+  }) = _$MatchDtoImpl;
   const _MatchDto._() : super._();
 
   factory _MatchDto.fromJson(Map<String, dynamic> json) =

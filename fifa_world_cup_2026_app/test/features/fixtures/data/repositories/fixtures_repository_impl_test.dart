@@ -8,9 +8,11 @@ import 'package:fifa_world_cup_2026_app/features/fixtures/data/repositories/fixt
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockFixturesRemoteDataSource extends Mock implements FixturesRemoteDataSource {}
+class MockFixturesRemoteDataSource extends Mock
+    implements FixturesRemoteDataSource {}
 
-class MockFixturesLocalDataSource extends Mock implements FixturesLocalDataSource {}
+class MockFixturesLocalDataSource extends Mock
+    implements FixturesLocalDataSource {}
 
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
@@ -34,9 +36,19 @@ void main() {
 
   test('returns fresh fixtures and caches them when online', () async {
     final fixtures = [_fixtureDto(1)];
-    when(() => local.getFixtures(date: null, teamId: null, group: null, stage: null)).thenReturn(const []);
+    when(
+      () =>
+          local.getFixtures(date: null, teamId: null, group: null, stage: null),
+    ).thenReturn(const []);
     when(() => networkInfo.isConnected).thenAnswer((_) async => true);
-    when(() => remote.getFixtures(date: null, teamId: null, group: null, stage: null)).thenAnswer((_) async => fixtures);
+    when(
+      () => remote.getFixtures(
+        date: null,
+        teamId: null,
+        group: null,
+        stage: null,
+      ),
+    ).thenAnswer((_) async => fixtures);
     when(() => local.cacheFixtures(fixtures)).thenAnswer((_) async {});
 
     final result = await repository.getFixtures();
@@ -48,9 +60,19 @@ void main() {
 
   test('falls back to cached fixtures when remote fails', () async {
     final cached = [_fixtureDto(2)];
-    when(() => local.getFixtures(date: null, teamId: null, group: null, stage: null)).thenReturn(cached);
+    when(
+      () =>
+          local.getFixtures(date: null, teamId: null, group: null, stage: null),
+    ).thenReturn(cached);
     when(() => networkInfo.isConnected).thenAnswer((_) async => true);
-    when(() => remote.getFixtures(date: null, teamId: null, group: null, stage: null)).thenThrow(Exception('offline'));
+    when(
+      () => remote.getFixtures(
+        date: null,
+        teamId: null,
+        group: null,
+        stage: null,
+      ),
+    ).thenThrow(Exception('offline'));
 
     final result = await repository.getFixtures();
 
@@ -59,9 +81,19 @@ void main() {
   });
 
   test('returns failure when remote and cache both fail', () async {
-    when(() => local.getFixtures(date: null, teamId: null, group: null, stage: null)).thenReturn(const []);
+    when(
+      () =>
+          local.getFixtures(date: null, teamId: null, group: null, stage: null),
+    ).thenReturn(const []);
     when(() => networkInfo.isConnected).thenAnswer((_) async => true);
-    when(() => remote.getFixtures(date: null, teamId: null, group: null, stage: null)).thenThrow(Exception('offline'));
+    when(
+      () => remote.getFixtures(
+        date: null,
+        teamId: null,
+        group: null,
+        stage: null,
+      ),
+    ).thenThrow(Exception('offline'));
 
     final result = await repository.getFixtures();
 

@@ -25,7 +25,9 @@ void main() {
       networkInfo: networkInfo,
       errorHandler: const ErrorHandler(),
     );
-    final cached = HomeSummaryDto(countdownTargetDate: DateTime.utc(2026, 6, 11));
+    final cached = HomeSummaryDto(
+      countdownTargetDate: DateTime.utc(2026, 6, 11),
+    );
 
     when(local.getHomeSummary).thenReturn(cached);
     when(() => networkInfo.isConnected).thenAnswer((_) async => false);
@@ -33,7 +35,10 @@ void main() {
     final result = await repository.getHomeSummary();
 
     expect(result, isA<Success>());
-    expect((result as Success).data.countdownTargetDate, DateTime.utc(2026, 6, 11));
+    expect(
+      (result as Success).data.countdownTargetDate,
+      DateTime.utc(2026, 6, 11),
+    );
     verifyNever(remote.getHomeSummary);
   });
 

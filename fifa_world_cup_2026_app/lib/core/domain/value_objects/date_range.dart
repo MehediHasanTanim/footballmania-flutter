@@ -6,7 +6,8 @@ class DateRange {
 
   bool contains(DateTime dateTime) {
     final value = dateTime.toUtc();
-    final startsBeforeEnd = startUtc == null || !value.isBefore(startUtc!.toUtc());
+    final startsBeforeEnd =
+        startUtc == null || !value.isBefore(startUtc!.toUtc());
     final endsAfterStart = endUtc == null || !value.isAfter(endUtc!.toUtc());
     return startsBeforeEnd && endsAfterStart;
   }

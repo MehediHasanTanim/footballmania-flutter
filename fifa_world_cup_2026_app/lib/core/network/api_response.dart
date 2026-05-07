@@ -1,21 +1,33 @@
 import '../errors/app_exception.dart';
 
 class ApiResponse<T> {
-  const ApiResponse({required this.success, required this.data, this.message, this.code});
+  const ApiResponse({
+    required this.success,
+    required this.data,
+    this.message,
+    this.code,
+  });
 
   final bool success;
   final T data;
   final String? message;
   final String? code;
 
-  static ApiResponse<T> parse<T>(Object? json, T Function(Object? data) parser) {
+  static ApiResponse<T> parse<T>(
+    Object? json,
+    T Function(Object? data) parser,
+  ) {
     if (json is Map<String, dynamic>) {
       final success = _readSuccess(json);
       final message = _readMessage(json);
       final code = json['code']?.toString() ?? json['status_code']?.toString();
 
       if (!success) {
-        throw ServerException(message: message ?? 'Request failed', code: code, details: json);
+        throw ServerException(
+          message: message ?? 'Request failed',
+          code: code,
+          details: json,
+        );
       }
 
       return ApiResponse<T>(
@@ -29,16 +41,24 @@ class ApiResponse<T> {
     return ApiResponse<T>(success: true, data: parser(json));
   }
 
-  static T parseObject<T>(Object? json, T Function(Map<String, dynamic> data) fromJson) {
+  static T parseObject<T>(
+    Object? json,
+    T Function(Map<String, dynamic> data) fromJson,
+  ) {
     return parse<T>(json, (data) {
       if (data is Map<String, dynamic>) return fromJson(data);
       throw const ServerException(message: 'Expected object response');
     }).data;
   }
 
-  static List<T> parseList<T>(Object? json, T Function(Map<String, dynamic> data) fromJson) {
+  static List<T> parseList<T>(
+    Object? json,
+    T Function(Map<String, dynamic> data) fromJson,
+  ) {
     return parse<List<T>>(json, (data) {
-      final items = data is Map<String, dynamic> ? _readListFromMap(data) : data;
+      final items = data is Map<String, dynamic>
+          ? _readListFromMap(data)
+          : data;
       if (items is List) {
         return items
             .whereType<Map>()
@@ -68,6 +88,11 @@ class ApiResponse<T> {
   }
 
   static Object? _readListFromMap(Map<String, dynamic> data) {
-    return data['items'] ?? data['results'] ?? data['data'] ?? data['fixtures'] ?? data['news'] ?? data['teams'];
+    return data['items'] ??
+        data['results'] ??
+        data['data'] ??
+        data['fixtures'] ??
+        data['news'] ??
+        data['teams'];
   }
 }

@@ -16,7 +16,12 @@ void main() {
   });
 }
 
-News _news(int id, DateTime publishedAt, {String title = 'Title', String? sourceUrl = 'https://source.test'}) {
+News _news(
+  int id,
+  DateTime publishedAt, {
+  String title = 'Title',
+  String? sourceUrl = 'https://source.test',
+}) {
   return News(
     id: id,
     title: title,

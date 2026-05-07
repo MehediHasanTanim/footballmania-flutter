@@ -10,5 +10,8 @@ abstract class FixturesRepository {
     bool forceRefresh = false,
   });
 
-  Future<Result<Fixture>> getFixtureById(int fixtureId, {bool forceRefresh = false});
+  Future<Result<Fixture>> getFixtureById(
+    int fixtureId, {
+    bool forceRefresh = false,
+  });
 }

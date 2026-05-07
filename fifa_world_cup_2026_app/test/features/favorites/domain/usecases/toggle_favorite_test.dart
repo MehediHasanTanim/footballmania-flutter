@@ -61,15 +61,22 @@ class _InMemoryFavoritesRepository implements FavoritesRepository {
   }
 
   @override
-  Future<Result<List<FavoriteItem>>> getFavorites() async => Success(items.values.toList(growable: false));
+  Future<Result<List<FavoriteItem>>> getFavorites() async =>
+      Success(items.values.toList(growable: false));
 
   @override
-  Future<Result<bool>> isFavorite({required FavoriteType type, required String referenceId}) async {
+  Future<Result<bool>> isFavorite({
+    required FavoriteType type,
+    required String referenceId,
+  }) async {
     return Success(items.containsKey('${type.name}:$referenceId'));
   }
 
   @override
-  Future<Result<void>> removeFavorite({required FavoriteType type, required String referenceId}) async {
+  Future<Result<void>> removeFavorite({
+    required FavoriteType type,
+    required String referenceId,
+  }) async {
     items.remove('${type.name}:$referenceId');
     return const Success(null);
   }

@@ -19,16 +19,16 @@ _$NewsDtoImpl _$$NewsDtoImplFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
     );
 
-Map<String, dynamic> _$$NewsDtoImplToJson(_$NewsDtoImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'description': instance.description,
-      'content': instance.content,
-      'image_url': instance.imageUrl,
-      'source_name': instance.sourceName,
-      'source_url': instance.sourceUrl,
-      'published_at':
-          const DateTimeJsonConverter().toJson(instance.publishedAt),
-      'url': instance.url,
-    };
+Map<String, dynamic> _$$NewsDtoImplToJson(
+  _$NewsDtoImpl instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'title': instance.title,
+  'description': instance.description,
+  'content': instance.content,
+  'image_url': instance.imageUrl,
+  'source_name': instance.sourceName,
+  'source_url': instance.sourceUrl,
+  'published_at': const DateTimeJsonConverter().toJson(instance.publishedAt),
+  'url': instance.url,
+};

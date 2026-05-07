@@ -21,6 +21,10 @@ class MatchEvent {
   final MatchEventType type;
   final String? detail;
 
-  bool get isCard => type == MatchEventType.yellowCard || type == MatchEventType.redCard;
-  bool get isGoal => type == MatchEventType.goal || type == MatchEventType.ownGoal || type == MatchEventType.penalty;
+  bool get isCard =>
+      type == MatchEventType.yellowCard || type == MatchEventType.redCard;
+  bool get isGoal =>
+      type == MatchEventType.goal ||
+      type == MatchEventType.ownGoal ||
+      type == MatchEventType.penalty;
 }

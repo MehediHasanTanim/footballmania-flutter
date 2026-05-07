@@ -7,7 +7,13 @@ abstract class FavoritesRepository {
 
   Future<Result<FavoriteItem>> addFavorite(FavoriteItem favorite);
 
-  Future<Result<void>> removeFavorite({required FavoriteType type, required String referenceId});
+  Future<Result<void>> removeFavorite({
+    required FavoriteType type,
+    required String referenceId,
+  });
 
-  Future<Result<bool>> isFavorite({required FavoriteType type, required String referenceId});
+  Future<Result<bool>> isFavorite({
+    required FavoriteType type,
+    required String referenceId,
+  });
 }

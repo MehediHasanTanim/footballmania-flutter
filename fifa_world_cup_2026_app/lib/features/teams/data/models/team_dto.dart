@@ -20,7 +20,8 @@ class TeamDto with _$TeamDto {
 
   const TeamDto._();
 
-  factory TeamDto.fromJson(Map<String, dynamic> json) => _$TeamDtoFromJson(_normalize(json));
+  factory TeamDto.fromJson(Map<String, dynamic> json) =>
+      _$TeamDtoFromJson(_normalize(json));
 
   Team toEntity() {
     return Team(

@@ -7,11 +7,27 @@ enum MatchStatus {
   unknown;
 
   static MatchStatus fromString(String? value) {
-    final normalized = value?.trim().toLowerCase().replaceAll('-', '_').replaceAll(' ', '_');
+    final normalized = value
+        ?.trim()
+        .toLowerCase()
+        .replaceAll('-', '_')
+        .replaceAll(' ', '_');
     return switch (normalized) {
-      'upcoming' || 'scheduled' || 'not_started' || 'ns' => MatchStatus.upcoming,
-      'live' || 'in_play' || 'first_half' || 'second_half' || 'halftime' || 'ht' => MatchStatus.live,
-      'completed' || 'finished' || 'ft' || 'aet' || 'pen' => MatchStatus.completed,
+      'upcoming' ||
+      'scheduled' ||
+      'not_started' ||
+      'ns' => MatchStatus.upcoming,
+      'live' ||
+      'in_play' ||
+      'first_half' ||
+      'second_half' ||
+      'halftime' ||
+      'ht' => MatchStatus.live,
+      'completed' ||
+      'finished' ||
+      'ft' ||
+      'aet' ||
+      'pen' => MatchStatus.completed,
       'postponed' || 'pst' => MatchStatus.postponed,
       'cancelled' || 'canceled' || 'cancel' => MatchStatus.cancelled,
       _ => MatchStatus.unknown,
@@ -29,7 +45,11 @@ enum MatchEventType {
   unknown;
 
   static MatchEventType fromString(String? value) {
-    final normalized = value?.trim().toLowerCase().replaceAll('-', '_').replaceAll(' ', '_');
+    final normalized = value
+        ?.trim()
+        .toLowerCase()
+        .replaceAll('-', '_')
+        .replaceAll(' ', '_');
     return switch (normalized) {
       'goal' => MatchEventType.goal,
       'yellow_card' || 'yellowcard' => MatchEventType.yellowCard,

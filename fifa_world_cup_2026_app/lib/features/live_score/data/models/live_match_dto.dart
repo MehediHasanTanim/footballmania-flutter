@@ -23,7 +23,8 @@ class LiveMatchDto with _$LiveMatchDto {
 
   const LiveMatchDto._();
 
-  factory LiveMatchDto.fromJson(Map<String, dynamic> json) => _$LiveMatchDtoFromJson(_normalize(json));
+  factory LiveMatchDto.fromJson(Map<String, dynamic> json) =>
+      _$LiveMatchDtoFromJson(_normalize(json));
 
   LiveMatch toEntity() {
     return LiveMatch(
@@ -49,7 +50,9 @@ class LiveMatchDto with _$LiveMatchDto {
       awayScore: match.awayScore,
       status: match.status.name,
       elapsed: match.elapsed,
-      events: match.events.map(MatchEventDto.fromEntity).toList(growable: false),
+      events: match.events
+          .map(MatchEventDto.fromEntity)
+          .toList(growable: false),
     );
   }
 }

@@ -12,7 +12,8 @@ part of 'match_event_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 MatchEventDto _$MatchEventDtoFromJson(Map<String, dynamic> json) {
   return _MatchEventDto.fromJson(json);
@@ -44,18 +45,20 @@ mixin _$MatchEventDto {
 /// @nodoc
 abstract class $MatchEventDtoCopyWith<$Res> {
   factory $MatchEventDtoCopyWith(
-          MatchEventDto value, $Res Function(MatchEventDto) then) =
-      _$MatchEventDtoCopyWithImpl<$Res, MatchEventDto>;
+    MatchEventDto value,
+    $Res Function(MatchEventDto) then,
+  ) = _$MatchEventDtoCopyWithImpl<$Res, MatchEventDto>;
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(fromJson: _nullableInt) int? minute,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
-      @JsonKey(name: 'team_name') String? teamName,
-      @JsonKey(name: 'player_name') String? playerName,
-      @JsonKey(name: 'assist_name') String? assistName,
-      String? type,
-      String? detail});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(fromJson: _nullableInt) int? minute,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
+    @JsonKey(name: 'team_name') String? teamName,
+    @JsonKey(name: 'player_name') String? playerName,
+    @JsonKey(name: 'assist_name') String? assistName,
+    String? type,
+    String? detail,
+  });
 }
 
 /// @nodoc
@@ -80,40 +83,43 @@ class _$MatchEventDtoCopyWithImpl<$Res, $Val extends MatchEventDto>
     Object? type = freezed,
     Object? detail = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minute: freezed == minute
-          ? _value.minute
-          : minute // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamId: freezed == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamName: freezed == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      playerName: freezed == playerName
-          ? _value.playerName
-          : playerName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assistName: freezed == assistName
-          ? _value.assistName
-          : assistName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      detail: freezed == detail
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            minute: freezed == minute
+                ? _value.minute
+                : minute // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            teamId: freezed == teamId
+                ? _value.teamId
+                : teamId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            teamName: freezed == teamName
+                ? _value.teamName
+                : teamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            playerName: freezed == playerName
+                ? _value.playerName
+                : playerName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            assistName: freezed == assistName
+                ? _value.assistName
+                : assistName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            type: freezed == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            detail: freezed == detail
+                ? _value.detail
+                : detail // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -121,19 +127,21 @@ class _$MatchEventDtoCopyWithImpl<$Res, $Val extends MatchEventDto>
 abstract class _$$MatchEventDtoImplCopyWith<$Res>
     implements $MatchEventDtoCopyWith<$Res> {
   factory _$$MatchEventDtoImplCopyWith(
-          _$MatchEventDtoImpl value, $Res Function(_$MatchEventDtoImpl) then) =
-      __$$MatchEventDtoImplCopyWithImpl<$Res>;
+    _$MatchEventDtoImpl value,
+    $Res Function(_$MatchEventDtoImpl) then,
+  ) = __$$MatchEventDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(fromJson: _nullableInt) int? minute,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
-      @JsonKey(name: 'team_name') String? teamName,
-      @JsonKey(name: 'player_name') String? playerName,
-      @JsonKey(name: 'assist_name') String? assistName,
-      String? type,
-      String? detail});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(fromJson: _nullableInt) int? minute,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) int? teamId,
+    @JsonKey(name: 'team_name') String? teamName,
+    @JsonKey(name: 'player_name') String? playerName,
+    @JsonKey(name: 'assist_name') String? assistName,
+    String? type,
+    String? detail,
+  });
 }
 
 /// @nodoc
@@ -141,8 +149,9 @@ class __$$MatchEventDtoImplCopyWithImpl<$Res>
     extends _$MatchEventDtoCopyWithImpl<$Res, _$MatchEventDtoImpl>
     implements _$$MatchEventDtoImplCopyWith<$Res> {
   __$$MatchEventDtoImplCopyWithImpl(
-      _$MatchEventDtoImpl _value, $Res Function(_$MatchEventDtoImpl) _then)
-      : super(_value, _then);
+    _$MatchEventDtoImpl _value,
+    $Res Function(_$MatchEventDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -156,56 +165,58 @@ class __$$MatchEventDtoImplCopyWithImpl<$Res>
     Object? type = freezed,
     Object? detail = freezed,
   }) {
-    return _then(_$MatchEventDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minute: freezed == minute
-          ? _value.minute
-          : minute // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamId: freezed == teamId
-          ? _value.teamId
-          : teamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      teamName: freezed == teamName
-          ? _value.teamName
-          : teamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      playerName: freezed == playerName
-          ? _value.playerName
-          : playerName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assistName: freezed == assistName
-          ? _value.assistName
-          : assistName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      detail: freezed == detail
-          ? _value.detail
-          : detail // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$MatchEventDtoImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        minute: freezed == minute
+            ? _value.minute
+            : minute // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        teamId: freezed == teamId
+            ? _value.teamId
+            : teamId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        teamName: freezed == teamName
+            ? _value.teamName
+            : teamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        playerName: freezed == playerName
+            ? _value.playerName
+            : playerName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        assistName: freezed == assistName
+            ? _value.assistName
+            : assistName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        type: freezed == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        detail: freezed == detail
+            ? _value.detail
+            : detail // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$MatchEventDtoImpl extends _MatchEventDto {
-  const _$MatchEventDtoImpl(
-      {@JsonKey(fromJson: _nullableInt) this.id,
-      @JsonKey(fromJson: _nullableInt) this.minute,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) this.teamId,
-      @JsonKey(name: 'team_name') this.teamName,
-      @JsonKey(name: 'player_name') this.playerName,
-      @JsonKey(name: 'assist_name') this.assistName,
-      this.type,
-      this.detail})
-      : super._();
+  const _$MatchEventDtoImpl({
+    @JsonKey(fromJson: _nullableInt) this.id,
+    @JsonKey(fromJson: _nullableInt) this.minute,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) this.teamId,
+    @JsonKey(name: 'team_name') this.teamName,
+    @JsonKey(name: 'player_name') this.playerName,
+    @JsonKey(name: 'assist_name') this.assistName,
+    this.type,
+    this.detail,
+  }) : super._();
 
   factory _$MatchEventDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MatchEventDtoImplFromJson(json);
@@ -258,8 +269,17 @@ class _$MatchEventDtoImpl extends _MatchEventDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, minute, teamId, teamName,
-      playerName, assistName, type, detail);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    minute,
+    teamId,
+    teamName,
+    playerName,
+    assistName,
+    type,
+    detail,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -269,22 +289,21 @@ class _$MatchEventDtoImpl extends _MatchEventDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MatchEventDtoImplToJson(
-      this,
-    );
+    return _$$MatchEventDtoImplToJson(this);
   }
 }
 
 abstract class _MatchEventDto extends MatchEventDto {
-  const factory _MatchEventDto(
-      {@JsonKey(fromJson: _nullableInt) final int? id,
-      @JsonKey(fromJson: _nullableInt) final int? minute,
-      @JsonKey(name: 'team_id', fromJson: _nullableInt) final int? teamId,
-      @JsonKey(name: 'team_name') final String? teamName,
-      @JsonKey(name: 'player_name') final String? playerName,
-      @JsonKey(name: 'assist_name') final String? assistName,
-      final String? type,
-      final String? detail}) = _$MatchEventDtoImpl;
+  const factory _MatchEventDto({
+    @JsonKey(fromJson: _nullableInt) final int? id,
+    @JsonKey(fromJson: _nullableInt) final int? minute,
+    @JsonKey(name: 'team_id', fromJson: _nullableInt) final int? teamId,
+    @JsonKey(name: 'team_name') final String? teamName,
+    @JsonKey(name: 'player_name') final String? playerName,
+    @JsonKey(name: 'assist_name') final String? assistName,
+    final String? type,
+    final String? detail,
+  }) = _$MatchEventDtoImpl;
   const _MatchEventDto._() : super._();
 
   factory _MatchEventDto.fromJson(Map<String, dynamic> json) =

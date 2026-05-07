@@ -19,5 +19,10 @@ class FixtureFilter {
   final MatchStatus? status;
 
   bool get isEmpty =>
-      date == null && dateRange == null && teamId == null && group == null && stage == null && status == null;
+      date == null &&
+      dateRange == null &&
+      teamId == null &&
+      group == null &&
+      stage == null &&
+      status == null;
 }

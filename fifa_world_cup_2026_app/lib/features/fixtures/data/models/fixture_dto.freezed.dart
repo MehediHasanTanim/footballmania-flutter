@@ -12,7 +12,8 @@ part of 'fixture_dto.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 FixtureDto _$FixtureDtoFromJson(Map<String, dynamic> json) {
   return _FixtureDto.fromJson(json);
@@ -55,26 +56,28 @@ mixin _$FixtureDto {
 /// @nodoc
 abstract class $FixtureDtoCopyWith<$Res> {
   factory $FixtureDtoCopyWith(
-          FixtureDto value, $Res Function(FixtureDto) then) =
-      _$FixtureDtoCopyWithImpl<$Res, FixtureDto>;
+    FixtureDto value,
+    $Res Function(FixtureDto) then,
+  ) = _$FixtureDtoCopyWithImpl<$Res, FixtureDto>;
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'home_team_id', fromJson: _nullableInt) int? homeTeamId,
-      @JsonKey(name: 'home_team_name') String? homeTeamName,
-      @JsonKey(name: 'away_team_id', fromJson: _nullableInt) int? awayTeamId,
-      @JsonKey(name: 'away_team_name') String? awayTeamName,
-      @JsonKey(name: 'home_team_flag') String? homeTeamFlag,
-      @JsonKey(name: 'away_team_flag') String? awayTeamFlag,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'match_date_utc')
-      DateTime? matchDateUtc,
-      String? venue,
-      String? stage,
-      String? group,
-      String? status,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'home_team_id', fromJson: _nullableInt) int? homeTeamId,
+    @JsonKey(name: 'home_team_name') String? homeTeamName,
+    @JsonKey(name: 'away_team_id', fromJson: _nullableInt) int? awayTeamId,
+    @JsonKey(name: 'away_team_name') String? awayTeamName,
+    @JsonKey(name: 'home_team_flag') String? homeTeamFlag,
+    @JsonKey(name: 'away_team_flag') String? awayTeamFlag,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'match_date_utc')
+    DateTime? matchDateUtc,
+    String? venue,
+    String? stage,
+    String? group,
+    String? status,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
+  });
 }
 
 /// @nodoc
@@ -105,64 +108,67 @@ class _$FixtureDtoCopyWithImpl<$Res, $Val extends FixtureDto>
     Object? homeScore = freezed,
     Object? awayScore = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamId: freezed == homeTeamId
-          ? _value.homeTeamId
-          : homeTeamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamName: freezed == homeTeamName
-          ? _value.homeTeamName
-          : homeTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamId: freezed == awayTeamId
-          ? _value.awayTeamId
-          : awayTeamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayTeamName: freezed == awayTeamName
-          ? _value.awayTeamName
-          : awayTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeTeamFlag: freezed == homeTeamFlag
-          ? _value.homeTeamFlag
-          : homeTeamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamFlag: freezed == awayTeamFlag
-          ? _value.awayTeamFlag
-          : awayTeamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      matchDateUtc: freezed == matchDateUtc
-          ? _value.matchDateUtc
-          : matchDateUtc // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      venue: freezed == venue
-          ? _value.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stage: freezed == stage
-          ? _value.stage
-          : stage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      group: freezed == group
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeScore: freezed == homeScore
-          ? _value.homeScore
-          : homeScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayScore: freezed == awayScore
-          ? _value.awayScore
-          : awayScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            homeTeamId: freezed == homeTeamId
+                ? _value.homeTeamId
+                : homeTeamId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            homeTeamName: freezed == homeTeamName
+                ? _value.homeTeamName
+                : homeTeamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            awayTeamId: freezed == awayTeamId
+                ? _value.awayTeamId
+                : awayTeamId // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            awayTeamName: freezed == awayTeamName
+                ? _value.awayTeamName
+                : awayTeamName // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            homeTeamFlag: freezed == homeTeamFlag
+                ? _value.homeTeamFlag
+                : homeTeamFlag // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            awayTeamFlag: freezed == awayTeamFlag
+                ? _value.awayTeamFlag
+                : awayTeamFlag // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            matchDateUtc: freezed == matchDateUtc
+                ? _value.matchDateUtc
+                : matchDateUtc // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            venue: freezed == venue
+                ? _value.venue
+                : venue // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            stage: freezed == stage
+                ? _value.stage
+                : stage // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            group: freezed == group
+                ? _value.group
+                : group // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            homeScore: freezed == homeScore
+                ? _value.homeScore
+                : homeScore // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            awayScore: freezed == awayScore
+                ? _value.awayScore
+                : awayScore // ignore: cast_nullable_to_non_nullable
+                      as int?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -170,27 +176,29 @@ class _$FixtureDtoCopyWithImpl<$Res, $Val extends FixtureDto>
 abstract class _$$FixtureDtoImplCopyWith<$Res>
     implements $FixtureDtoCopyWith<$Res> {
   factory _$$FixtureDtoImplCopyWith(
-          _$FixtureDtoImpl value, $Res Function(_$FixtureDtoImpl) then) =
-      __$$FixtureDtoImplCopyWithImpl<$Res>;
+    _$FixtureDtoImpl value,
+    $Res Function(_$FixtureDtoImpl) then,
+  ) = __$$FixtureDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(fromJson: _nullableInt) int? id,
-      @JsonKey(name: 'home_team_id', fromJson: _nullableInt) int? homeTeamId,
-      @JsonKey(name: 'home_team_name') String? homeTeamName,
-      @JsonKey(name: 'away_team_id', fromJson: _nullableInt) int? awayTeamId,
-      @JsonKey(name: 'away_team_name') String? awayTeamName,
-      @JsonKey(name: 'home_team_flag') String? homeTeamFlag,
-      @JsonKey(name: 'away_team_flag') String? awayTeamFlag,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'match_date_utc')
-      DateTime? matchDateUtc,
-      String? venue,
-      String? stage,
-      String? group,
-      String? status,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore});
+  $Res call({
+    @JsonKey(fromJson: _nullableInt) int? id,
+    @JsonKey(name: 'home_team_id', fromJson: _nullableInt) int? homeTeamId,
+    @JsonKey(name: 'home_team_name') String? homeTeamName,
+    @JsonKey(name: 'away_team_id', fromJson: _nullableInt) int? awayTeamId,
+    @JsonKey(name: 'away_team_name') String? awayTeamName,
+    @JsonKey(name: 'home_team_flag') String? homeTeamFlag,
+    @JsonKey(name: 'away_team_flag') String? awayTeamFlag,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'match_date_utc')
+    DateTime? matchDateUtc,
+    String? venue,
+    String? stage,
+    String? group,
+    String? status,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) int? awayScore,
+  });
 }
 
 /// @nodoc
@@ -198,8 +206,9 @@ class __$$FixtureDtoImplCopyWithImpl<$Res>
     extends _$FixtureDtoCopyWithImpl<$Res, _$FixtureDtoImpl>
     implements _$$FixtureDtoImplCopyWith<$Res> {
   __$$FixtureDtoImplCopyWithImpl(
-      _$FixtureDtoImpl _value, $Res Function(_$FixtureDtoImpl) _then)
-      : super(_value, _then);
+    _$FixtureDtoImpl _value,
+    $Res Function(_$FixtureDtoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -219,88 +228,88 @@ class __$$FixtureDtoImplCopyWithImpl<$Res>
     Object? homeScore = freezed,
     Object? awayScore = freezed,
   }) {
-    return _then(_$FixtureDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamId: freezed == homeTeamId
-          ? _value.homeTeamId
-          : homeTeamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      homeTeamName: freezed == homeTeamName
-          ? _value.homeTeamName
-          : homeTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamId: freezed == awayTeamId
-          ? _value.awayTeamId
-          : awayTeamId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayTeamName: freezed == awayTeamName
-          ? _value.awayTeamName
-          : awayTeamName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeTeamFlag: freezed == homeTeamFlag
-          ? _value.homeTeamFlag
-          : homeTeamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      awayTeamFlag: freezed == awayTeamFlag
-          ? _value.awayTeamFlag
-          : awayTeamFlag // ignore: cast_nullable_to_non_nullable
-              as String?,
-      matchDateUtc: freezed == matchDateUtc
-          ? _value.matchDateUtc
-          : matchDateUtc // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      venue: freezed == venue
-          ? _value.venue
-          : venue // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stage: freezed == stage
-          ? _value.stage
-          : stage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      group: freezed == group
-          ? _value.group
-          : group // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      homeScore: freezed == homeScore
-          ? _value.homeScore
-          : homeScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-      awayScore: freezed == awayScore
-          ? _value.awayScore
-          : awayScore // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _$FixtureDtoImpl(
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        homeTeamId: freezed == homeTeamId
+            ? _value.homeTeamId
+            : homeTeamId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        homeTeamName: freezed == homeTeamName
+            ? _value.homeTeamName
+            : homeTeamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        awayTeamId: freezed == awayTeamId
+            ? _value.awayTeamId
+            : awayTeamId // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        awayTeamName: freezed == awayTeamName
+            ? _value.awayTeamName
+            : awayTeamName // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        homeTeamFlag: freezed == homeTeamFlag
+            ? _value.homeTeamFlag
+            : homeTeamFlag // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        awayTeamFlag: freezed == awayTeamFlag
+            ? _value.awayTeamFlag
+            : awayTeamFlag // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        matchDateUtc: freezed == matchDateUtc
+            ? _value.matchDateUtc
+            : matchDateUtc // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        venue: freezed == venue
+            ? _value.venue
+            : venue // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        stage: freezed == stage
+            ? _value.stage
+            : stage // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        group: freezed == group
+            ? _value.group
+            : group // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        homeScore: freezed == homeScore
+            ? _value.homeScore
+            : homeScore // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        awayScore: freezed == awayScore
+            ? _value.awayScore
+            : awayScore // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$FixtureDtoImpl extends _FixtureDto {
-  const _$FixtureDtoImpl(
-      {@JsonKey(fromJson: _nullableInt) this.id,
-      @JsonKey(name: 'home_team_id', fromJson: _nullableInt) this.homeTeamId,
-      @JsonKey(name: 'home_team_name') this.homeTeamName,
-      @JsonKey(name: 'away_team_id', fromJson: _nullableInt) this.awayTeamId,
-      @JsonKey(name: 'away_team_name') this.awayTeamName,
-      @JsonKey(name: 'home_team_flag') this.homeTeamFlag,
-      @JsonKey(name: 'away_team_flag') this.awayTeamFlag,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'match_date_utc')
-      this.matchDateUtc,
-      this.venue,
-      this.stage,
-      this.group,
-      this.status,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) this.homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt) this.awayScore})
-      : super._();
+  const _$FixtureDtoImpl({
+    @JsonKey(fromJson: _nullableInt) this.id,
+    @JsonKey(name: 'home_team_id', fromJson: _nullableInt) this.homeTeamId,
+    @JsonKey(name: 'home_team_name') this.homeTeamName,
+    @JsonKey(name: 'away_team_id', fromJson: _nullableInt) this.awayTeamId,
+    @JsonKey(name: 'away_team_name') this.awayTeamName,
+    @JsonKey(name: 'home_team_flag') this.homeTeamFlag,
+    @JsonKey(name: 'away_team_flag') this.awayTeamFlag,
+    @DateTimeJsonConverter() @JsonKey(name: 'match_date_utc') this.matchDateUtc,
+    this.venue,
+    this.stage,
+    this.group,
+    this.status,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) this.homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) this.awayScore,
+  }) : super._();
 
   factory _$FixtureDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$FixtureDtoImplFromJson(json);
@@ -383,21 +392,22 @@ class _$FixtureDtoImpl extends _FixtureDto {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      homeTeamId,
-      homeTeamName,
-      awayTeamId,
-      awayTeamName,
-      homeTeamFlag,
-      awayTeamFlag,
-      matchDateUtc,
-      venue,
-      stage,
-      group,
-      status,
-      homeScore,
-      awayScore);
+    runtimeType,
+    id,
+    homeTeamId,
+    homeTeamName,
+    awayTeamId,
+    awayTeamName,
+    homeTeamFlag,
+    awayTeamFlag,
+    matchDateUtc,
+    venue,
+    stage,
+    group,
+    status,
+    homeScore,
+    awayScore,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -407,33 +417,31 @@ class _$FixtureDtoImpl extends _FixtureDto {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FixtureDtoImplToJson(
-      this,
-    );
+    return _$$FixtureDtoImplToJson(this);
   }
 }
 
 abstract class _FixtureDto extends FixtureDto {
-  const factory _FixtureDto(
-      {@JsonKey(fromJson: _nullableInt) final int? id,
-      @JsonKey(name: 'home_team_id', fromJson: _nullableInt)
-      final int? homeTeamId,
-      @JsonKey(name: 'home_team_name') final String? homeTeamName,
-      @JsonKey(name: 'away_team_id', fromJson: _nullableInt)
-      final int? awayTeamId,
-      @JsonKey(name: 'away_team_name') final String? awayTeamName,
-      @JsonKey(name: 'home_team_flag') final String? homeTeamFlag,
-      @JsonKey(name: 'away_team_flag') final String? awayTeamFlag,
-      @DateTimeJsonConverter()
-      @JsonKey(name: 'match_date_utc')
-      final DateTime? matchDateUtc,
-      final String? venue,
-      final String? stage,
-      final String? group,
-      final String? status,
-      @JsonKey(name: 'home_score', fromJson: _nullableInt) final int? homeScore,
-      @JsonKey(name: 'away_score', fromJson: _nullableInt)
-      final int? awayScore}) = _$FixtureDtoImpl;
+  const factory _FixtureDto({
+    @JsonKey(fromJson: _nullableInt) final int? id,
+    @JsonKey(name: 'home_team_id', fromJson: _nullableInt)
+    final int? homeTeamId,
+    @JsonKey(name: 'home_team_name') final String? homeTeamName,
+    @JsonKey(name: 'away_team_id', fromJson: _nullableInt)
+    final int? awayTeamId,
+    @JsonKey(name: 'away_team_name') final String? awayTeamName,
+    @JsonKey(name: 'home_team_flag') final String? homeTeamFlag,
+    @JsonKey(name: 'away_team_flag') final String? awayTeamFlag,
+    @DateTimeJsonConverter()
+    @JsonKey(name: 'match_date_utc')
+    final DateTime? matchDateUtc,
+    final String? venue,
+    final String? stage,
+    final String? group,
+    final String? status,
+    @JsonKey(name: 'home_score', fromJson: _nullableInt) final int? homeScore,
+    @JsonKey(name: 'away_score', fromJson: _nullableInt) final int? awayScore,
+  }) = _$FixtureDtoImpl;
   const _FixtureDto._() : super._();
 
   factory _FixtureDto.fromJson(Map<String, dynamic> json) =

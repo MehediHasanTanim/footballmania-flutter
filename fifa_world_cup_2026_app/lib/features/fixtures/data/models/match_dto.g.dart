@@ -15,9 +15,11 @@ _$MatchDtoImpl _$$MatchDtoImplFromJson(Map<String, dynamic> json) =>
       score: json['score'] as String?,
       status: json['status'] as String?,
       venue: json['venue'] as String?,
-      kickoffTimeUtc:
-          const DateTimeJsonConverter().fromJson(json['kickoff_time_utc']),
-      events: (json['events'] as List<dynamic>?)
+      kickoffTimeUtc: const DateTimeJsonConverter().fromJson(
+        json['kickoff_time_utc'],
+      ),
+      events:
+          (json['events'] as List<dynamic>?)
               ?.map((e) => MatchEventDto.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <MatchEventDto>[],
@@ -32,7 +34,8 @@ Map<String, dynamic> _$$MatchDtoImplToJson(_$MatchDtoImpl instance) =>
       'score': instance.score,
       'status': instance.status,
       'venue': instance.venue,
-      'kickoff_time_utc':
-          const DateTimeJsonConverter().toJson(instance.kickoffTimeUtc),
+      'kickoff_time_utc': const DateTimeJsonConverter().toJson(
+        instance.kickoffTimeUtc,
+      ),
       'events': instance.events,
     };

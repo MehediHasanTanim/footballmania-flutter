@@ -15,7 +15,11 @@ class NewsRemoteDataSource {
     );
   }
 
-  Future<List<NewsDto>> searchNews({required String query, int page = 1, int pageSize = 20}) {
+  Future<List<NewsDto>> searchNews({
+    required String query,
+    int page = 1,
+    int pageSize = 20,
+  }) {
     return _apiService.getList<NewsDto>(
       ApiConstants.newsSearch,
       queryParameters: {'q': query, 'page': page, 'page_size': pageSize},

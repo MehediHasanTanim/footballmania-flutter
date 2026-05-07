@@ -31,37 +31,64 @@ class FixturesRepositoryImpl implements FixturesRepository {
     String? stage,
     bool forceRefresh = false,
   }) async {
-    final cached = _localDataSource.getFixtures(date: date, teamId: teamId, group: group, stage: stage);
+    final cached = _localDataSource.getFixtures(
+      date: date,
+      teamId: teamId,
+      group: group,
+      stage: stage,
+    );
     try {
       if (!forceRefresh && !await _networkInfo.isConnected) {
-        return cached.isNotEmpty ? Success(_toEntities(cached)) : const FailureResult(Failure(message: 'No cached fixtures available.'));
+        return cached.isNotEmpty
+            ? Success(_toEntities(cached))
+            : const FailureResult(
+                Failure(message: 'No cached fixtures available.'),
+              );
       }
-      final remote = await _remoteDataSource.getFixtures(date: date, teamId: teamId, group: group, stage: stage);
+      final remote = await _remoteDataSource.getFixtures(
+        date: date,
+        teamId: teamId,
+        group: group,
+        stage: stage,
+      );
       await _localDataSource.cacheFixtures(remote);
       return Success(_toEntities(remote));
     } catch (error, stackTrace) {
       if (cached.isNotEmpty) return Success(_toEntities(cached));
-      return FailureResult(_errorHandler.failureFromException(error, stackTrace));
+      return FailureResult(
+        _errorHandler.failureFromException(error, stackTrace),
+      );
     }
   }
 
   @override
-  Future<Result<Fixture>> getFixtureById(int fixtureId, {bool forceRefresh = false}) async {
+  Future<Result<Fixture>> getFixtureById(
+    int fixtureId, {
+    bool forceRefresh = false,
+  }) async {
     final cached = _localDataSource.getFixtureById(fixtureId);
     try {
       if (!forceRefresh && !await _networkInfo.isConnected) {
-        return cached != null ? Success(cached.toEntity()) : const FailureResult(Failure(message: 'No cached fixture available.'));
+        return cached != null
+            ? Success(cached.toEntity())
+            : const FailureResult(
+                Failure(message: 'No cached fixture available.'),
+              );
       }
       final remote = await _remoteDataSource.getFixtureById(fixtureId);
       await _localDataSource.cacheFixture(remote);
       return Success(remote.toEntity());
     } catch (error, stackTrace) {
       if (cached != null) return Success(cached.toEntity());
-      return FailureResult(_errorHandler.failureFromException(error, stackTrace));
+      return FailureResult(
+        _errorHandler.failureFromException(error, stackTrace),
+      );
     }
   }
 
   List<Fixture> _toEntities(Iterable<dynamic> fixtures) {
-    return fixtures.map((fixture) => fixture.toEntity() as Fixture).toList(growable: false);
+    return fixtures
+        .map((fixture) => fixture.toEntity() as Fixture)
+        .toList(growable: false);
   }
 }
