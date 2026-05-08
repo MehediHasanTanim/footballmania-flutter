@@ -1,0 +1,43 @@
+name: Flutter Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fifa_world_cup_2026_app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter test --coverage
+      - run: sudo apt-get update && sudo apt-get install -y lcov
+      - run: genhtml coverage/lcov.info -o coverage/html
+
+  integration-test:
+    if: github.event_name == 'schedule' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fifa_world_cup_2026_app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter test integration_test
