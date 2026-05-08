@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/favorite_type.dart';
 import '../../../../core/domain/enums/match_status.dart';
+import '../../../../core/network/connectivity_provider.dart';
 import '../../../../core/utils/date_time_formatter.dart';
 import '../../../../core/widgets/app_empty_state.dart';
 import '../../../../core/widgets/app_error_view.dart';
@@ -32,16 +33,26 @@ class MatchDetailsScreen extends ConsumerWidget {
 
     final fixture = ref.watch(fixtureDetailsProvider(id));
     final liveMatches = ref.watch(liveScoreProvider).valueOrNull ?? const [];
+    final isOnline = ref.watch(connectivityStatusProvider).valueOrNull ?? true;
+    final usingCache = ref.watch(fixtureDetailsUsingCacheProvider(id));
 
     return AppScaffold(
       title: 'Match Details',
       body: fixture.when(
         loading: () => const AppLoader(label: 'Loading match details'),
-        error: (error, stackTrace) => AppErrorView(
-          message: error.toString(),
-          onRetry: () =>
-              ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
-        ),
+        error: (error, stackTrace) => isOnline
+            ? AppErrorView(
+                message: error.toString(),
+                onRetry: () => ref
+                    .read(fixtureDetailsProvider(id).notifier)
+                    .forceRefresh(),
+              )
+            : const AppEmptyState(
+                title: 'No cached match details',
+                message:
+                    'You are offline and this match has not been saved locally yet.',
+                icon: Icons.cloud_off,
+              ),
         data: (match) {
           final liveMatch = liveMatches
               .where((item) => item.fixtureId == match.id)
@@ -53,6 +64,7 @@ class MatchDetailsScreen extends ConsumerWidget {
                 ref.read(fixtureDetailsProvider(id).notifier).forceRefresh(),
             child: ListView(
               children: [
+                if (usingCache) const _CachedMatchNotice(),
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -173,6 +185,21 @@ class _TeamBlock extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ],
+    );
+  }
+}
+
+class _CachedMatchNotice extends StatelessWidget {
+  const _CachedMatchNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      child: ListTile(
+        leading: Icon(Icons.cloud_off),
+        title: Text('Showing cached match details'),
+        subtitle: Text('You are offline. Match details may be stale.'),
+      ),
     );
   }
 }

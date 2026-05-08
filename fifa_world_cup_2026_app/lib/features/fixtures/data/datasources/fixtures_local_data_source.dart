@@ -29,10 +29,11 @@ class FixturesLocalDataSource {
     int? teamId,
     String? group,
     String? stage,
+    bool includeExpired = false,
   }) {
     final fixtures = _cacheService
         .values<CachedFixture>(HiveConstants.fixturesBox)
-        .where((fixture) => !fixture.isExpired)
+        .where((fixture) => includeExpired || !fixture.isExpired)
         .map(FixtureDto.fromCachedModel)
         .where(
           (fixture) => _matchesFilter(
@@ -47,12 +48,12 @@ class FixturesLocalDataSource {
     return fixtures;
   }
 
-  FixtureDto? getFixtureById(int fixtureId) {
+  FixtureDto? getFixtureById(int fixtureId, {bool includeExpired = false}) {
     final cached = _cacheService.get<CachedFixture>(
       HiveConstants.fixturesBox,
       fixtureId.toString(),
     );
-    if (cached == null || cached.isExpired) return null;
+    if (cached == null || (!includeExpired && cached.isExpired)) return null;
     return FixtureDto.fromCachedModel(cached);
   }
 

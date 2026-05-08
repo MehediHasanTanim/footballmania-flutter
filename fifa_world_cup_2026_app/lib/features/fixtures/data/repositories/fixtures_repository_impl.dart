@@ -31,14 +31,16 @@ class FixturesRepositoryImpl implements FixturesRepository {
     String? stage,
     bool forceRefresh = false,
   }) async {
+    final isConnected = await _networkInfo.isConnected;
     final cached = _localDataSource.getFixtures(
       date: date,
       teamId: teamId,
       group: group,
       stage: stage,
+      includeExpired: !isConnected,
     );
     try {
-      if (!forceRefresh && !await _networkInfo.isConnected) {
+      if (!forceRefresh && !isConnected) {
         return cached.isNotEmpty
             ? Success(_toEntities(cached))
             : const FailureResult(
@@ -66,9 +68,13 @@ class FixturesRepositoryImpl implements FixturesRepository {
     int fixtureId, {
     bool forceRefresh = false,
   }) async {
-    final cached = _localDataSource.getFixtureById(fixtureId);
+    final isConnected = await _networkInfo.isConnected;
+    final cached = _localDataSource.getFixtureById(
+      fixtureId,
+      includeExpired: !isConnected,
+    );
     try {
-      if (!forceRefresh && !await _networkInfo.isConnected) {
+      if (!forceRefresh && !isConnected) {
         return cached != null
             ? Success(cached.toEntity())
             : const FailureResult(

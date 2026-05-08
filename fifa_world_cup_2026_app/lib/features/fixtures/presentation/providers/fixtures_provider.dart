@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/domain/enums/match_status.dart';
+import '../../../../core/network/connectivity_provider.dart';
 import '../../../../core/utils/result.dart';
 import '../../../../shared/providers/usecase_providers.dart';
 import '../../domain/entities/fixture.dart';
@@ -24,6 +25,21 @@ final fixtureDetailsProvider =
       Fixture,
       int
     >(FixtureDetailsNotifier.new);
+
+final fixturesUsingCacheProvider = Provider.autoDispose<bool>((ref) {
+  final hasFixtures =
+      ref.watch(fixturesProvider).valueOrNull?.isNotEmpty == true;
+  final isOnline = ref.watch(connectivityStatusProvider).valueOrNull ?? true;
+  return hasFixtures && !isOnline;
+});
+
+final fixtureDetailsUsingCacheProvider = Provider.autoDispose.family<bool, int>(
+  (ref, fixtureId) {
+    final hasFixture = ref.watch(fixtureDetailsProvider(fixtureId)).hasValue;
+    final isOnline = ref.watch(connectivityStatusProvider).valueOrNull ?? true;
+    return hasFixture && !isOnline;
+  },
+);
 
 final filteredFixturesProvider = Provider<AsyncValue<List<Fixture>>>((ref) {
   final fixtures = ref.watch(fixturesProvider);

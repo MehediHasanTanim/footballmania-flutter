@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/network/connectivity_provider.dart';
 import '../../../../core/utils/date_time_formatter.dart';
+import '../../../../core/widgets/app_empty_state.dart';
 import '../../../../core/widgets/app_error_view.dart';
 import '../../../../core/widgets/app_loader.dart';
 import '../../../../core/widgets/app_scaffold.dart';
@@ -12,7 +14,6 @@ import '../../../../shared/widgets/filter_bottom_sheet.dart';
 import '../../../../shared/widgets/filter_chip_bar.dart';
 import '../../../../shared/widgets/fixture_card.dart';
 import '../../../../shared/widgets/recent_search_list.dart';
-import '../../../../shared/widgets/search_empty_state.dart';
 import '../../../../shared/widgets/search_result_count.dart';
 import '../../domain/entities/fixture.dart';
 import '../../domain/entities/fixture_filter.dart';
@@ -32,6 +33,8 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
     final fixtures = ref.watch(filteredFixturesProvider);
     final filter = ref.watch(fixtureFilterProvider);
     final recentSearches = ref.watch(recentSearchProvider(SearchType.fixture));
+    final isOnline = ref.watch(connectivityStatusProvider).valueOrNull ?? true;
+    final usingCache = ref.watch(fixturesUsingCacheProvider);
 
     return AppScaffold(
       title: 'Fixtures',
@@ -72,9 +75,14 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
               ),
               data: (items) {
                 if (items.isEmpty) {
-                  return const SearchEmptyState(
-                    title: 'No fixtures found',
-                    message: 'Try clearing search or filters.',
+                  return AppEmptyState(
+                    title: isOnline
+                        ? 'No fixtures found'
+                        : 'No cached fixtures',
+                    message: isOnline
+                        ? 'Try clearing search or filters.'
+                        : 'You are offline and no saved fixtures match this view yet.',
+                    icon: isOnline ? Icons.search_off : Icons.cloud_off,
                   );
                 }
                 final grouped = _groupByDate(items);
@@ -83,15 +91,19 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
                   onRefresh: () =>
                       ref.read(fixturesProvider.notifier).forceRefresh(),
                   child: ListView.builder(
-                    itemCount: keys.length + 1,
+                    itemCount: keys.length + 1 + (usingCache ? 1 : 0),
                     itemBuilder: (context, index) {
-                      if (index == 0) {
+                      if (usingCache && index == 0) {
+                        return const _CachedFixturesNotice();
+                      }
+                      final contentIndex = index - (usingCache ? 1 : 0);
+                      if (contentIndex == 0) {
                         return SearchResultCount(
                           count: items.length,
                           label: items.length == 1 ? 'fixture' : 'fixtures',
                         );
                       }
-                      final date = keys[index - 1];
+                      final date = keys[contentIndex - 1];
                       final groupItems = grouped[date]!;
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,5 +188,22 @@ class _FixturesScreenState extends ConsumerState<FixturesScreen> {
       grouped.putIfAbsent(key, () => <Fixture>[]).add(fixture);
     }
     return grouped;
+  }
+}
+
+class _CachedFixturesNotice extends StatelessWidget {
+  const _CachedFixturesNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      child: ListTile(
+        leading: Icon(Icons.cloud_off),
+        title: Text('Showing cached fixtures'),
+        subtitle: Text(
+          'You are offline. Fixture times and scores may be stale.',
+        ),
+      ),
+    );
   }
 }
